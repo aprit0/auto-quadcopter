@@ -1,0 +1,3 @@
+[submodule "Drone/pyMultiWii"]
+	path = Drone/pyMultiWii
+	url = git@github.com:alduxvm/pyMultiWii.git
