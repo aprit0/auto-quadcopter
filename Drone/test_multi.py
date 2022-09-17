@@ -1,5 +1,5 @@
 
-from pymultiwii import MultiWii
+from Comms.pymultiwii import MultiWii
 from sys import stdout
 
 if __name__ == "__main__":
