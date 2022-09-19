@@ -1,4 +1,4 @@
-from pymultiwii import MultiWii
+from Comms.pymultiwii import MultiWii
 
 class MW:
     def __init__(self):
@@ -8,7 +8,8 @@ class MW:
         self.altitude = {'estalt': 0, 'vario': 0, 'elapsed': 0, 'timestamp': 0}
 
     def update_mw(self, data=[1000]*8):
-        self.board.sendCMDreceiveATT(16, MultiWii.SET_RAW_RC, data)
+        # self.board.sendCMDreceiveATT(16, MultiWii.SET_RAW_RC, data)
+        self.sendCMD(8, MultiWii.SET_RAW_RC, data[:4])
         self.motor = self.board.motor
         self.rcChannels = self.board.rcChannels
         self.altitude = self.board.rcChannels
@@ -17,6 +18,7 @@ if __name__ == "__main__":
     FC = MW()
     while True:
         for i in range(1000,2000):
+            print(i)
             data = [1000]*8
             data[0] = i
             FC.update_mw(data)
