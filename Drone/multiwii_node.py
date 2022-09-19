@@ -1,30 +1,33 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
+from sensor_msgs.msg import Joy
+from multi_wii import MW
 
 
-class MinimalSubscriber(Node):
+class MultiWii(Node):
 
     def __init__(self):
-        super().__init__('minimal_subscriber')
-        self.subscription = self.create_subscription(
-            String,
-            'topic',
-            self.listener_callback,
-            10)
-        self.subscription  # prevent unused variable warning
+        super().__init__('multi_wii')
+        self.sub_joy = self.create_subscription(Joy, 'base/Joy',
+                                                     self.listener_callback,
+                                                     10)
+        self.sub_joy  # prevent unused variable warning
+        self.FC = MW()
 
     def listener_callback(self, msg):
-        self.get_logger().info('I heard: "%s"' % msg.data)
+        axes = []
+        buttons = []
+        axes = msg.axes
+        buttons = msg.buttons
+
 
 
 def main(args=None):
     rclpy.init(args=args)
-
-    minimal_subscriber = MinimalSubscriber()
-
-    rclpy.spin(minimal_subscriber)
-    minimal_subscriber.destroy_node()
+    multi_wii = MultiWii()
+    rclpy.spin(multi_wii)
+    multi_wii.destroy_node()
     rclpy.shutdown()
 
 
