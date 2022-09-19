@@ -104,33 +104,19 @@ class MultiWii:
 
     """Function for sending a command to the board"""
 
-    def sendCMD(self, data_length, code, data):
+    def sendCMD(self, data_length, code, data, data_format):
         checksum = 0
-        total_data = ['$', 'M', '<', data_length, code] + data
-        for i in struct.pack('<2B%dh' % len(data), *total_data[3:len(total_data)]):
-            checksum = checksum ^ ord(i)
+        total_data = ['$'.encode('utf-8'), 'M'.encode('utf-8'), '<'.encode('utf-8'), data_length, code] + data
+        for i in struct.pack('<2B' + data_format, *total_data[3:len(total_data)]):
+            checksum = checksum ^ i
         total_data.append(checksum)
         try:
             b = None
-            b = self.ser.write(struct.pack('<3c2B%dhB' % len(data), *total_data))
+            b = self.ser.write(struct.pack('<3c2B' + data_format + 'B', *total_data))
         except Exception as error:
             print("\n\nError in sendCMD.")
-            print("("+str(error)+")\n\n")
-
-    # def sendCMD(self, data_length, code, data, data_format):
-    #     checksum = 0
-    #     total_data = ['$'.encode('utf-8'), 'M'.encode('utf-8'), '<'.encode('utf-8'), data_length, code] + data
-    #     for i in struct.pack('<2B' + data_format, *total_data[3:len(total_data)]):
-    #         checksum = checksum ^ i
-    #     total_data.append(checksum)
-    #     try:
-    #         b = None
-    #         b = self.ser.write(struct.pack('<3c2B' + data_format + 'B', *total_data))
-    #     except Exception as error:
-    #         print("\n\nError in sendCMD.")
-    #         print("(" + str(error) + ")\n\n")
-    #         pass
-
+            print("(" + str(error) + ")\n\n")
+            pass
     """Function for sending a command to the board and receive attitude"""
     """
     Modification required on Multiwii firmware to Protocol.cpp in evaluateCommand:
