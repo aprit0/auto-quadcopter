@@ -1,6 +1,4 @@
-
 from pymultiwii import MultiWii
-from sys import stdout
 
 if __name__ == "__main__":
     board = MultiWii("/dev/ttyUSB0")
