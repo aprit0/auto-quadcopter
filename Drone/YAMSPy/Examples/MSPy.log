@@ -1,0 +1,8 @@
+[WARNING] [2022-09-19 12:33:50,616]: Error opening the serial port (/dev/ttyUSB1): [Errno 2] could not open port /dev/ttyUSB1: [Errno 2] No such file or directory: '/dev/ttyUSB1'
+[WARNING] [2022-09-19 12:33:51,117]: Serial port (/dev/ttyUSB1) not ready/available
+[WARNING] [2022-09-19 12:36:42,311]: Error opening the serial port (/dev/ttyUSB1): [Errno 2] could not open port /dev/ttyUSB1: [Errno 2] No such file or directory: '/dev/ttyUSB1'
+[WARNING] [2022-09-19 12:36:42,812]: Serial port (/dev/ttyUSB1) not ready/available
+[DEBUG] [2022-09-19 12:36:50,204]: RAW message sent: bytearray(b'$M<\x00\x01\x01')
+[WARNING] [2022-09-19 12:37:00,216]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 12:37:16,039]: Error opening the serial port (/dev/ttyUSB1): [Errno 2] could not open port /dev/ttyUSB1: [Errno 2] No such file or directory: '/dev/ttyUSB1'
+[WARNING] [2022-09-19 12:37:16,540]: Serial port (/dev/ttyUSB1) not ready/available

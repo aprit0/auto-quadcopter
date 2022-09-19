@@ -1,27 +1,34 @@
-from Comms.pymultiwii import MultiWii
+from YAMSPy.yamspy import MSPy
+import time
 
-class MW:
-    def __init__(self):
-        self.board = MultiWii("/dev/ttyUSB0")
 
-        self.motor = {'m1': 0, 'm2': 0, 'm3': 0, 'm4': 0, 'elapsed': 0, 'timestamp': 0}
-        self.rcChannels = {'roll': 0, 'pitch': 0, 'yaw': 0, 'throttle': 0, 'elapsed': 0, 'timestamp': 0}
-        self.altitude = {'estalt': 0, 'vario': 0, 'elapsed': 0, 'timestamp': 0}
+serial_port = "/dev/ttyUSB0"
 
-    def update_mw(self, data=[1500]*8):
-        self.board.getData(MultiWii.ATTITUDE)
-        self.motor = self.board.motor
-        self.rcChannels = self.board.rcChannels
-        self.attitude = self.board.attitude
-        print(self.board.attitude)
-        self.board.sendCMD(16, MultiWii.SET_RAW_RC, data[:3], 'i')
-        print(self.board.attitude)
-if __name__ == "__main__":
-    FC = MW()
+CMDS_init = {
+        'roll':     1500,
+        'pitch':    1500,
+        'throttle': 900,
+        'yaw':      1500,
+        'aux1':     1000, # DISARMED (1000) / ARMED (1800)
+        'aux2':     1000, # ANGLE (1000) / HORIZON (1500) / FLIP (1800)
+        'aux3':     1000, # FAILSAFE (1800)
+        'aux4':     1000  # HEADFREE (1800)
+        }
+CMDS = [1500, 1500, 900, 1500, 1000, 1000, 1000, 1000]
+
+with MSPy(device=serial_port, loglevel='WARNING', baudrate=115200) as board:
     while True:
-        for i in range(1000,2000):
-            print(i)
-            data = [1000]*8
-            data[0] = i
-            FC.update_mw(data)
-            print(FC.rcChannels)
+        for i in range(1000, 2000, 1):
+            board.fast_read_attitude()
+            CMDS[2] = i
+            board.send_RAW_RC(CMDS)
+            print(i, board.SENSOR_DATA['kinematics'])
+
+# For some msgs there are available specialized methods to read them faster:
+# fast_read_altitude
+# fast_read_imu
+# fast_read_attitude
+# fast_read_analog
+# fast_msp_rc_cmd
+#
+# Notice they all start with "fast_" ;)
