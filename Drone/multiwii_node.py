@@ -20,6 +20,8 @@ class MultiWii(Node):
         buttons = []
         axes = msg.axes
         buttons = msg.buttons
+        self.FC.update_state(axes)
+        print(self.FC.state)
 
 
 
