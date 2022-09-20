@@ -24718,3 +24718,1012 @@
 [WARNING] [2022-09-19 13:06:35,195]: Timeout occured when receiving a message
 [WARNING] [2022-09-19 13:08:36,555]: Timeout occured when receiving a message
 [WARNING] [2022-09-19 13:09:29,288]: Timeout occured when receiving a message
+[DEBUG] [2022-09-20 05:05:05,084]: RAW message sent: bytearray(b'$M<\x00\x01\x01')
+[WARNING] [2022-09-20 05:05:15,097]: Timeout occured when receiving a message
+[DEBUG] [2022-09-20 05:05:16,099]: IndexError detected on state: 0
+[DEBUG] [2022-09-20 05:05:16,099]: Error detected on state: -1
+[DEBUG] [2022-09-20 05:05:16,099]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,100]: RAW message sent: bytearray(b'$M<\x00\x02\x02')
+[DEBUG] [2022-09-20 05:05:16,105]: State: 0 - byte received (at 1663650316.105797): 36
+[DEBUG] [2022-09-20 05:05:16,106]: State: 1 - byte received (at 1663650316.105797): 77
+[DEBUG] [2022-09-20 05:05:16,106]: State: 2 - byte received (at 1663650316.105797): 33
+[DEBUG] [2022-09-20 05:05:16,106]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,107]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,107]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,107]: RAW message sent: bytearray(b'$M<\x00\x03\x03')
+[DEBUG] [2022-09-20 05:05:16,111]: State: 0 - byte received (at 1663650316.1112266): 36
+[DEBUG] [2022-09-20 05:05:16,111]: State: 1 - byte received (at 1663650316.1112266): 77
+[DEBUG] [2022-09-20 05:05:16,111]: State: 2 - byte received (at 1663650316.1112266): 33
+[DEBUG] [2022-09-20 05:05:16,112]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,112]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,112]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,112]: RAW message sent: bytearray(b'$M<\x00\x05\x05')
+[DEBUG] [2022-09-20 05:05:16,116]: State: 0 - byte received (at 1663650316.1169465): 36
+[DEBUG] [2022-09-20 05:05:16,117]: State: 1 - byte received (at 1663650316.1169465): 77
+[DEBUG] [2022-09-20 05:05:16,117]: State: 2 - byte received (at 1663650316.1169465): 33
+[DEBUG] [2022-09-20 05:05:16,117]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,117]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,117]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,118]: RAW message sent: bytearray(b'$M<\x00\x04\x04')
+[DEBUG] [2022-09-20 05:05:16,122]: State: 0 - byte received (at 1663650316.1227605): 36
+[DEBUG] [2022-09-20 05:05:16,122]: State: 1 - byte received (at 1663650316.1227605): 77
+[DEBUG] [2022-09-20 05:05:16,123]: State: 2 - byte received (at 1663650316.1227605): 33
+[DEBUG] [2022-09-20 05:05:16,123]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,123]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,123]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,123]: RAW message sent: bytearray(b'$M<\x00\xa0\xa0')
+[DEBUG] [2022-09-20 05:05:16,128]: State: 0 - byte received (at 1663650316.1282518): 36
+[DEBUG] [2022-09-20 05:05:16,128]: State: 1 - byte received (at 1663650316.1282518): 77
+[DEBUG] [2022-09-20 05:05:16,128]: State: 2 - byte received (at 1663650316.1282518): 33
+[DEBUG] [2022-09-20 05:05:16,128]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,129]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,129]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,129]: RAW message sent: bytearray(b'$M<\x00\xf0\xf0')
+[DEBUG] [2022-09-20 05:05:16,134]: State: 0 - byte received (at 1663650316.134071): 36
+[DEBUG] [2022-09-20 05:05:16,134]: State: 1 - byte received (at 1663650316.134071): 77
+[DEBUG] [2022-09-20 05:05:16,134]: State: 2 - byte received (at 1663650316.134071): 62
+[DEBUG] [2022-09-20 05:05:16,134]: State: 3 - byte received (at 1663650316.134071): 4
+[DEBUG] [2022-09-20 05:05:16,135]: State: 4 - byte received (at 1663650316.134071): 240
+[DEBUG] [2022-09-20 05:05:16,135]: State: 7 - byte received (at 1663650316.134071): 0
+[DEBUG] [2022-09-20 05:05:16,135]: State: 8 - byte received (at 1663650316.134071): 0
+[DEBUG] [2022-09-20 05:05:16,135]: State: 8 - byte received (at 1663650316.134071): 0
+[DEBUG] [2022-09-20 05:05:16,135]: State: 8 - byte received (at 1663650316.134071): 0
+[DEBUG] [2022-09-20 05:05:16,136]: State: 9 - byte received (at 1663650316.134071): 244
+[DEBUG] [2022-09-20 05:05:16,136]: Message received (length 4) - Code 240
+[DEBUG] [2022-09-20 05:05:16,136]: RAW message sent: bytearray(b'$M<\x00\n\n')
+[DEBUG] [2022-09-20 05:05:16,142]: State: 0 - byte received (at 1663650316.1422825): 36
+[DEBUG] [2022-09-20 05:05:16,142]: State: 1 - byte received (at 1663650316.1422825): 77
+[DEBUG] [2022-09-20 05:05:16,142]: State: 2 - byte received (at 1663650316.1422825): 33
+[DEBUG] [2022-09-20 05:05:16,142]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,143]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,143]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,143]: RAW message sent: bytearray(b'$M<\x00ee')
+[DEBUG] [2022-09-20 05:05:16,148]: State: 0 - byte received (at 1663650316.14877): 36
+[DEBUG] [2022-09-20 05:05:16,149]: State: 1 - byte received (at 1663650316.14877): 77
+[DEBUG] [2022-09-20 05:05:16,149]: State: 2 - byte received (at 1663650316.14877): 62
+[DEBUG] [2022-09-20 05:05:16,149]: State: 3 - byte received (at 1663650316.14877): 11
+[DEBUG] [2022-09-20 05:05:16,149]: State: 4 - byte received (at 1663650316.14877): 101
+[DEBUG] [2022-09-20 05:05:16,149]: State: 7 - byte received (at 1663650316.14877): 240
+[DEBUG] [2022-09-20 05:05:16,149]: State: 8 - byte received (at 1663650316.14877): 10
+[DEBUG] [2022-09-20 05:05:16,150]: State: 8 - byte received (at 1663650316.14877): 10
+[DEBUG] [2022-09-20 05:05:16,150]: State: 8 - byte received (at 1663650316.14877): 4
+[DEBUG] [2022-09-20 05:05:16,150]: State: 8 - byte received (at 1663650316.14877): 7
+[DEBUG] [2022-09-20 05:05:16,150]: State: 8 - byte received (at 1663650316.14877): 0
+[DEBUG] [2022-09-20 05:05:16,150]: State: 8 - byte received (at 1663650316.14877): 0
+[DEBUG] [2022-09-20 05:05:16,150]: State: 8 - byte received (at 1663650316.14877): 0
+[DEBUG] [2022-09-20 05:05:16,151]: State: 8 - byte received (at 1663650316.14877): 0
+[DEBUG] [2022-09-20 05:05:16,151]: State: 8 - byte received (at 1663650316.14877): 0
+[DEBUG] [2022-09-20 05:05:16,151]: State: 8 - byte received (at 1663650316.14877): 0
+[DEBUG] [2022-09-20 05:05:16,151]: State: 9 - byte received (at 1663650316.14877): 157
+[DEBUG] [2022-09-20 05:05:16,151]: Message received (length 11) - Code 101
+[DEBUG] [2022-09-20 05:05:16,152]: RAW message sent: bytearray(b'$M<\x00\x96\x96')
+[DEBUG] [2022-09-20 05:05:16,156]: State: 0 - byte received (at 1663650316.156298): 36
+[DEBUG] [2022-09-20 05:05:16,156]: State: 1 - byte received (at 1663650316.156298): 77
+[DEBUG] [2022-09-20 05:05:16,156]: State: 2 - byte received (at 1663650316.156298): 33
+[DEBUG] [2022-09-20 05:05:16,156]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,156]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,157]: Nothing was received - Code 0
+[DEBUG] [2022-09-20 05:05:16,157]: RAW message sent: bytearray(b'$M<\x00\x01\x01')
+[DEBUG] [2022-09-20 05:05:16,162]: State: 0 - byte received (at 1663650316.1621332): 36
+[DEBUG] [2022-09-20 05:05:16,162]: State: 1 - byte received (at 1663650316.1621332): 77
+[DEBUG] [2022-09-20 05:05:16,162]: State: 2 - byte received (at 1663650316.1621332): 33
+[DEBUG] [2022-09-20 05:05:16,162]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,162]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,163]: RAW message sent: bytearray(b'$M<\x00\x02\x02')
+[DEBUG] [2022-09-20 05:05:16,167]: State: 0 - byte received (at 1663650316.1676042): 36
+[DEBUG] [2022-09-20 05:05:16,167]: State: 1 - byte received (at 1663650316.1676042): 77
+[DEBUG] [2022-09-20 05:05:16,168]: State: 2 - byte received (at 1663650316.1676042): 33
+[DEBUG] [2022-09-20 05:05:16,168]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,168]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,168]: RAW message sent: bytearray(b'$M<\x00\x03\x03')
+[DEBUG] [2022-09-20 05:05:16,173]: State: 0 - byte received (at 1663650316.1730688): 36
+[DEBUG] [2022-09-20 05:05:16,173]: State: 1 - byte received (at 1663650316.1730688): 77
+[DEBUG] [2022-09-20 05:05:16,173]: State: 2 - byte received (at 1663650316.1730688): 33
+[DEBUG] [2022-09-20 05:05:16,173]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,173]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,174]: RAW message sent: bytearray(b'$M<\x00\x04\x04')
+[DEBUG] [2022-09-20 05:05:16,178]: State: 0 - byte received (at 1663650316.1788855): 36
+[DEBUG] [2022-09-20 05:05:16,179]: State: 1 - byte received (at 1663650316.1788855): 77
+[DEBUG] [2022-09-20 05:05:16,179]: State: 2 - byte received (at 1663650316.1788855): 33
+[DEBUG] [2022-09-20 05:05:16,179]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,179]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,180]: RAW message sent: bytearray(b'$M<\x00\x05\x05')
+[DEBUG] [2022-09-20 05:05:16,184]: State: 0 - byte received (at 1663650316.1843615): 36
+[DEBUG] [2022-09-20 05:05:16,184]: State: 1 - byte received (at 1663650316.1843615): 77
+[DEBUG] [2022-09-20 05:05:16,184]: State: 2 - byte received (at 1663650316.1843615): 33
+[DEBUG] [2022-09-20 05:05:16,184]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,185]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,185]: RAW message sent: bytearray(b'$M<\x00\n\n')
+[DEBUG] [2022-09-20 05:05:16,190]: State: 0 - byte received (at 1663650316.1901817): 36
+[DEBUG] [2022-09-20 05:05:16,190]: State: 1 - byte received (at 1663650316.1901817): 77
+[DEBUG] [2022-09-20 05:05:16,190]: State: 2 - byte received (at 1663650316.1901817): 33
+[DEBUG] [2022-09-20 05:05:16,190]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,190]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,191]: RAW message sent: bytearray(b'$M<\x00  ')
+[DEBUG] [2022-09-20 05:05:16,195]: State: 0 - byte received (at 1663650316.1956427): 36
+[DEBUG] [2022-09-20 05:05:16,195]: State: 1 - byte received (at 1663650316.1956427): 77
+[DEBUG] [2022-09-20 05:05:16,196]: State: 2 - byte received (at 1663650316.1956427): 33
+[DEBUG] [2022-09-20 05:05:16,196]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,196]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,196]: RAW message sent: bytearray(b'$M<\x00""')
+[DEBUG] [2022-09-20 05:05:16,201]: State: 0 - byte received (at 1663650316.2014632): 36
+[DEBUG] [2022-09-20 05:05:16,201]: State: 1 - byte received (at 1663650316.2014632): 77
+[DEBUG] [2022-09-20 05:05:16,201]: State: 2 - byte received (at 1663650316.2014632): 33
+[DEBUG] [2022-09-20 05:05:16,202]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,202]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,202]: RAW message sent: bytearray(b'$M<\x00$$')
+[DEBUG] [2022-09-20 05:05:16,206]: State: 0 - byte received (at 1663650316.2069287): 36
+[DEBUG] [2022-09-20 05:05:16,207]: State: 1 - byte received (at 1663650316.2069287): 77
+[DEBUG] [2022-09-20 05:05:16,207]: State: 2 - byte received (at 1663650316.2069287): 33
+[DEBUG] [2022-09-20 05:05:16,207]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,207]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,208]: RAW message sent: bytearray(b'$M<\x00&&')
+[DEBUG] [2022-09-20 05:05:16,212]: State: 0 - byte received (at 1663650316.2123399): 36
+[DEBUG] [2022-09-20 05:05:16,212]: State: 1 - byte received (at 1663650316.2123399): 36
+[DEBUG] [2022-09-20 05:05:16,212]: Something went wrong, no M received.
+[DEBUG] [2022-09-20 05:05:16,212]: Error detected on state: 1
+[DEBUG] [2022-09-20 05:05:16,213]: RAW message sent: bytearray(b'$M<\x00((')
+[DEBUG] [2022-09-20 05:05:16,218]: State: 0 - byte received (at 1663650316.2182584): 36
+[DEBUG] [2022-09-20 05:05:16,218]: State: 1 - byte received (at 1663650316.2182584): 77
+[DEBUG] [2022-09-20 05:05:16,218]: State: 2 - byte received (at 1663650316.2182584): 33
+[DEBUG] [2022-09-20 05:05:16,218]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,219]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,219]: RAW message sent: bytearray(b'$M<\x00**')
+[DEBUG] [2022-09-20 05:05:16,223]: State: 0 - byte received (at 1663650316.2237067): 36
+[DEBUG] [2022-09-20 05:05:16,223]: State: 1 - byte received (at 1663650316.2237067): 77
+[DEBUG] [2022-09-20 05:05:16,224]: State: 2 - byte received (at 1663650316.2237067): 33
+[DEBUG] [2022-09-20 05:05:16,224]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,224]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,224]: RAW message sent: bytearray(b'$M<\x00,,')
+[DEBUG] [2022-09-20 05:05:16,229]: State: 0 - byte received (at 1663650316.229511): 36
+[DEBUG] [2022-09-20 05:05:16,229]: State: 1 - byte received (at 1663650316.229511): 77
+[DEBUG] [2022-09-20 05:05:16,229]: State: 2 - byte received (at 1663650316.229511): 33
+[DEBUG] [2022-09-20 05:05:16,230]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,230]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,230]: RAW message sent: bytearray(b'$M<\x00..')
+[DEBUG] [2022-09-20 05:05:16,235]: State: 0 - byte received (at 1663650316.2349844): 36
+[DEBUG] [2022-09-20 05:05:16,235]: State: 1 - byte received (at 1663650316.2349844): 77
+[DEBUG] [2022-09-20 05:05:16,235]: State: 2 - byte received (at 1663650316.2349844): 33
+[DEBUG] [2022-09-20 05:05:16,235]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,235]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,236]: RAW message sent: bytearray(b'$M<\x0000')
+[DEBUG] [2022-09-20 05:05:16,240]: State: 0 - byte received (at 1663650316.240804): 36
+[DEBUG] [2022-09-20 05:05:16,241]: State: 1 - byte received (at 1663650316.240804): 77
+[DEBUG] [2022-09-20 05:05:16,241]: State: 2 - byte received (at 1663650316.240804): 33
+[DEBUG] [2022-09-20 05:05:16,241]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,241]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,241]: RAW message sent: bytearray(b'$M<\x0022')
+[DEBUG] [2022-09-20 05:05:16,246]: State: 0 - byte received (at 1663650316.2462757): 36
+[DEBUG] [2022-09-20 05:05:16,246]: State: 1 - byte received (at 1663650316.2462757): 77
+[DEBUG] [2022-09-20 05:05:16,246]: State: 2 - byte received (at 1663650316.2462757): 33
+[DEBUG] [2022-09-20 05:05:16,246]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,247]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,247]: RAW message sent: bytearray(b'$M<\x0044')
+[DEBUG] [2022-09-20 05:05:16,252]: State: 0 - byte received (at 1663650316.252092): 36
+[DEBUG] [2022-09-20 05:05:16,252]: State: 1 - byte received (at 1663650316.252092): 77
+[DEBUG] [2022-09-20 05:05:16,252]: State: 2 - byte received (at 1663650316.252092): 33
+[DEBUG] [2022-09-20 05:05:16,252]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,252]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,253]: RAW message sent: bytearray(b'$M<\x0066')
+[DEBUG] [2022-09-20 05:05:16,257]: State: 0 - byte received (at 1663650316.2575748): 36
+[DEBUG] [2022-09-20 05:05:16,257]: State: 1 - byte received (at 1663650316.2575748): 77
+[DEBUG] [2022-09-20 05:05:16,258]: State: 2 - byte received (at 1663650316.2575748): 33
+[DEBUG] [2022-09-20 05:05:16,258]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,258]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,258]: RAW message sent: bytearray(b'$M<\x0088')
+[DEBUG] [2022-09-20 05:05:16,263]: State: 0 - byte received (at 1663650316.2630672): 36
+[DEBUG] [2022-09-20 05:05:16,263]: State: 1 - byte received (at 1663650316.2630672): 77
+[DEBUG] [2022-09-20 05:05:16,263]: State: 2 - byte received (at 1663650316.2630672): 33
+[DEBUG] [2022-09-20 05:05:16,263]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,263]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,264]: RAW message sent: bytearray(b'$M<\x00::')
+[DEBUG] [2022-09-20 05:05:16,268]: State: 0 - byte received (at 1663650316.2688682): 36
+[DEBUG] [2022-09-20 05:05:16,269]: State: 1 - byte received (at 1663650316.2688682): 77
+[DEBUG] [2022-09-20 05:05:16,269]: State: 2 - byte received (at 1663650316.2688682): 33
+[DEBUG] [2022-09-20 05:05:16,269]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,269]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,270]: RAW message sent: bytearray(b'$M<\x00;;')
+[DEBUG] [2022-09-20 05:05:16,274]: State: 0 - byte received (at 1663650316.2746701): 36
+[DEBUG] [2022-09-20 05:05:16,274]: State: 1 - byte received (at 1663650316.2746701): 77
+[DEBUG] [2022-09-20 05:05:16,275]: State: 2 - byte received (at 1663650316.2746701): 33
+[DEBUG] [2022-09-20 05:05:16,275]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,275]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,275]: RAW message sent: bytearray(b'$M<\x00==')
+[DEBUG] [2022-09-20 05:05:16,280]: State: 0 - byte received (at 1663650316.2801485): 36
+[DEBUG] [2022-09-20 05:05:16,280]: State: 1 - byte received (at 1663650316.2801485): 77
+[DEBUG] [2022-09-20 05:05:16,280]: State: 2 - byte received (at 1663650316.2801485): 33
+[DEBUG] [2022-09-20 05:05:16,280]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,280]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,281]: RAW message sent: bytearray(b'$M<\x00@@')
+[DEBUG] [2022-09-20 05:05:16,285]: State: 0 - byte received (at 1663650316.285636): 36
+[DEBUG] [2022-09-20 05:05:16,285]: State: 1 - byte received (at 1663650316.285636): 77
+[DEBUG] [2022-09-20 05:05:16,286]: State: 2 - byte received (at 1663650316.285636): 33
+[DEBUG] [2022-09-20 05:05:16,286]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,286]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,286]: RAW message sent: bytearray(b'$M<\x00FF')
+[DEBUG] [2022-09-20 05:05:16,291]: State: 0 - byte received (at 1663650316.2914457): 36
+[DEBUG] [2022-09-20 05:05:16,291]: State: 1 - byte received (at 1663650316.2914457): 77
+[DEBUG] [2022-09-20 05:05:16,291]: State: 2 - byte received (at 1663650316.2914457): 33
+[DEBUG] [2022-09-20 05:05:16,292]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,292]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,292]: RAW message sent: bytearray(b'$M<\x00II')
+[DEBUG] [2022-09-20 05:05:16,296]: State: 0 - byte received (at 1663650316.2969124): 36
+[DEBUG] [2022-09-20 05:05:16,297]: State: 1 - byte received (at 1663650316.2969124): 77
+[DEBUG] [2022-09-20 05:05:16,297]: State: 2 - byte received (at 1663650316.2969124): 33
+[DEBUG] [2022-09-20 05:05:16,297]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,297]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,298]: RAW message sent: bytearray(b'$M<\x00KK')
+[DEBUG] [2022-09-20 05:05:16,302]: State: 0 - byte received (at 1663650316.3023865): 36
+[DEBUG] [2022-09-20 05:05:16,302]: State: 1 - byte received (at 1663650316.3023865): 77
+[DEBUG] [2022-09-20 05:05:16,302]: State: 2 - byte received (at 1663650316.3023865): 33
+[DEBUG] [2022-09-20 05:05:16,302]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,303]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,303]: RAW message sent: bytearray(b'$M<\x00MM')
+[DEBUG] [2022-09-20 05:05:16,308]: State: 0 - byte received (at 1663650316.3082647): 36
+[DEBUG] [2022-09-20 05:05:16,308]: State: 1 - byte received (at 1663650316.3082647): 77
+[DEBUG] [2022-09-20 05:05:16,308]: State: 2 - byte received (at 1663650316.3082647): 33
+[DEBUG] [2022-09-20 05:05:16,308]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,309]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,309]: RAW message sent: bytearray(b'$M<\x00OO')
+[DEBUG] [2022-09-20 05:05:16,314]: State: 0 - byte received (at 1663650316.3140202): 36
+[DEBUG] [2022-09-20 05:05:16,314]: State: 1 - byte received (at 1663650316.3140202): 77
+[DEBUG] [2022-09-20 05:05:16,314]: State: 2 - byte received (at 1663650316.3140202): 33
+[DEBUG] [2022-09-20 05:05:16,314]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,314]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,315]: RAW message sent: bytearray(b'$M<\x00PP')
+[DEBUG] [2022-09-20 05:05:16,319]: State: 0 - byte received (at 1663650316.3194985): 36
+[DEBUG] [2022-09-20 05:05:16,319]: State: 1 - byte received (at 1663650316.3194985): 77
+[DEBUG] [2022-09-20 05:05:16,319]: State: 2 - byte received (at 1663650316.3194985): 33
+[DEBUG] [2022-09-20 05:05:16,320]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,320]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,320]: RAW message sent: bytearray(b'$M<\x00RR')
+[DEBUG] [2022-09-20 05:05:16,325]: State: 0 - byte received (at 1663650316.3249662): 36
+[DEBUG] [2022-09-20 05:05:16,325]: State: 1 - byte received (at 1663650316.3249662): 77
+[DEBUG] [2022-09-20 05:05:16,325]: State: 2 - byte received (at 1663650316.3249662): 33
+[DEBUG] [2022-09-20 05:05:16,325]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,325]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,326]: RAW message sent: bytearray(b'$M<\x00TT')
+[DEBUG] [2022-09-20 05:05:16,330]: State: 0 - byte received (at 1663650316.3308084): 36
+[DEBUG] [2022-09-20 05:05:16,331]: State: 1 - byte received (at 1663650316.3308084): 77
+[DEBUG] [2022-09-20 05:05:16,331]: State: 2 - byte received (at 1663650316.3308084): 33
+[DEBUG] [2022-09-20 05:05:16,331]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,331]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,332]: RAW message sent: bytearray(b'$M<\x00VV')
+[DEBUG] [2022-09-20 05:05:16,336]: State: 0 - byte received (at 1663650316.3362763): 36
+[DEBUG] [2022-09-20 05:05:16,336]: State: 1 - byte received (at 1663650316.3362763): 77
+[DEBUG] [2022-09-20 05:05:16,336]: State: 2 - byte received (at 1663650316.3362763): 33
+[DEBUG] [2022-09-20 05:05:16,336]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,337]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,337]: RAW message sent: bytearray(b'$M<\x00WW')
+[DEBUG] [2022-09-20 05:05:16,341]: State: 0 - byte received (at 1663650316.3417351): 36
+[DEBUG] [2022-09-20 05:05:16,342]: State: 1 - byte received (at 1663650316.3417351): 77
+[DEBUG] [2022-09-20 05:05:16,342]: State: 2 - byte received (at 1663650316.3417351): 33
+[DEBUG] [2022-09-20 05:05:16,342]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,342]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,342]: RAW message sent: bytearray(b'$M<\x00XX')
+[DEBUG] [2022-09-20 05:05:16,347]: State: 0 - byte received (at 1663650316.3475554): 36
+[DEBUG] [2022-09-20 05:05:16,347]: State: 1 - byte received (at 1663650316.3475554): 77
+[DEBUG] [2022-09-20 05:05:16,348]: State: 2 - byte received (at 1663650316.3475554): 33
+[DEBUG] [2022-09-20 05:05:16,348]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,348]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,348]: RAW message sent: bytearray(b'$M<\x00ZZ')
+[DEBUG] [2022-09-20 05:05:16,353]: State: 0 - byte received (at 1663650316.353383): 36
+[DEBUG] [2022-09-20 05:05:16,353]: State: 1 - byte received (at 1663650316.353383): 77
+[DEBUG] [2022-09-20 05:05:16,353]: State: 2 - byte received (at 1663650316.353383): 33
+[DEBUG] [2022-09-20 05:05:16,354]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,354]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,354]: RAW message sent: bytearray(b'$M<\x00\\\\')
+[DEBUG] [2022-09-20 05:05:16,358]: State: 0 - byte received (at 1663650316.3588383): 36
+[DEBUG] [2022-09-20 05:05:16,359]: State: 1 - byte received (at 1663650316.3588383): 77
+[DEBUG] [2022-09-20 05:05:16,359]: State: 2 - byte received (at 1663650316.3588383): 33
+[DEBUG] [2022-09-20 05:05:16,359]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,359]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,360]: RAW message sent: bytearray(b'$M<\x00^^')
+[DEBUG] [2022-09-20 05:05:16,364]: State: 0 - byte received (at 1663650316.3643155): 36
+[DEBUG] [2022-09-20 05:05:16,364]: State: 1 - byte received (at 1663650316.3643155): 77
+[DEBUG] [2022-09-20 05:05:16,364]: State: 2 - byte received (at 1663650316.3643155): 33
+[DEBUG] [2022-09-20 05:05:16,364]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,365]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,365]: RAW message sent: bytearray(b'$M<\x00``')
+[DEBUG] [2022-09-20 05:05:16,370]: State: 0 - byte received (at 1663650316.3701313): 36
+[DEBUG] [2022-09-20 05:05:16,370]: State: 1 - byte received (at 1663650316.3701313): 77
+[DEBUG] [2022-09-20 05:05:16,370]: State: 2 - byte received (at 1663650316.3701313): 33
+[DEBUG] [2022-09-20 05:05:16,370]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,370]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,371]: RAW message sent: bytearray(b'$M<\x00cc')
+[DEBUG] [2022-09-20 05:05:16,375]: State: 0 - byte received (at 1663650316.3755999): 36
+[DEBUG] [2022-09-20 05:05:16,375]: State: 1 - byte received (at 1663650316.3755999): 77
+[DEBUG] [2022-09-20 05:05:16,376]: State: 2 - byte received (at 1663650316.3755999): 33
+[DEBUG] [2022-09-20 05:05:16,376]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,376]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,376]: RAW message sent: bytearray(b'$M<\x00ee')
+[DEBUG] [2022-09-20 05:05:16,382]: State: 0 - byte received (at 1663650316.3821115): 36
+[DEBUG] [2022-09-20 05:05:16,382]: State: 1 - byte received (at 1663650316.3821115): 77
+[DEBUG] [2022-09-20 05:05:16,382]: State: 2 - byte received (at 1663650316.3821115): 62
+[DEBUG] [2022-09-20 05:05:16,382]: State: 3 - byte received (at 1663650316.3821115): 11
+[DEBUG] [2022-09-20 05:05:16,383]: State: 4 - byte received (at 1663650316.3821115): 101
+[DEBUG] [2022-09-20 05:05:16,383]: State: 7 - byte received (at 1663650316.3821115): 240
+[DEBUG] [2022-09-20 05:05:16,383]: State: 8 - byte received (at 1663650316.3821115): 10
+[DEBUG] [2022-09-20 05:05:16,383]: State: 8 - byte received (at 1663650316.3821115): 40
+[DEBUG] [2022-09-20 05:05:16,383]: State: 8 - byte received (at 1663650316.3821115): 4
+[DEBUG] [2022-09-20 05:05:16,384]: State: 8 - byte received (at 1663650316.3821115): 7
+[DEBUG] [2022-09-20 05:05:16,384]: State: 8 - byte received (at 1663650316.3821115): 0
+[DEBUG] [2022-09-20 05:05:16,384]: State: 8 - byte received (at 1663650316.3821115): 0
+[DEBUG] [2022-09-20 05:05:16,384]: State: 8 - byte received (at 1663650316.3821115): 0
+[DEBUG] [2022-09-20 05:05:16,384]: State: 8 - byte received (at 1663650316.3821115): 0
+[DEBUG] [2022-09-20 05:05:16,384]: State: 8 - byte received (at 1663650316.3821115): 0
+[DEBUG] [2022-09-20 05:05:16,385]: State: 8 - byte received (at 1663650316.3821115): 0
+[DEBUG] [2022-09-20 05:05:16,385]: State: 9 - byte received (at 1663650316.3821115): 191
+[DEBUG] [2022-09-20 05:05:16,385]: Message received (length 11) - Code 101
+[DEBUG] [2022-09-20 05:05:16,385]: RAW message sent: bytearray(b'$M<\x00ff')
+[DEBUG] [2022-09-20 05:05:16,391]: State: 0 - byte received (at 1663650316.3913684): 36
+[DEBUG] [2022-09-20 05:05:16,391]: State: 1 - byte received (at 1663650316.3913684): 77
+[DEBUG] [2022-09-20 05:05:16,391]: State: 2 - byte received (at 1663650316.3913684): 62
+[DEBUG] [2022-09-20 05:05:16,392]: State: 3 - byte received (at 1663650316.3913684): 18
+[DEBUG] [2022-09-20 05:05:16,392]: State: 4 - byte received (at 1663650316.3913684): 102
+[DEBUG] [2022-09-20 05:05:16,392]: State: 7 - byte received (at 1663650316.3913684): 179
+[DEBUG] [2022-09-20 05:05:16,392]: State: 8 - byte received (at 1663650316.3913684): 255
+[DEBUG] [2022-09-20 05:05:16,392]: State: 8 - byte received (at 1663650316.3913684): 2
+[DEBUG] [2022-09-20 05:05:16,393]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,393]: State: 8 - byte received (at 1663650316.3913684): 245
+[DEBUG] [2022-09-20 05:05:16,393]: State: 8 - byte received (at 1663650316.3913684): 1
+[DEBUG] [2022-09-20 05:05:16,393]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,393]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,394]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,394]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,394]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,394]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,394]: State: 8 - byte received (at 1663650316.3913684): 18
+[DEBUG] [2022-09-20 05:05:16,394]: State: 8 - byte received (at 1663650316.3913684): 0
+[DEBUG] [2022-09-20 05:05:16,395]: State: 8 - byte received (at 1663650316.3913684): 240
+[DEBUG] [2022-09-20 05:05:16,395]: State: 8 - byte received (at 1663650316.3913684): 255
+[DEBUG] [2022-09-20 05:05:16,395]: State: 8 - byte received (at 1663650316.3913684): 253
+[DEBUG] [2022-09-20 05:05:16,395]: State: 8 - byte received (at 1663650316.3913684): 255
+[DEBUG] [2022-09-20 05:05:16,396]: State: 9 - byte received (at 1663650316.3913684): 209
+[DEBUG] [2022-09-20 05:05:16,396]: Message received (length 18) - Code 102
+[DEBUG] [2022-09-20 05:05:16,396]: RAW message sent: bytearray(b'$M<\x00gg')
+[DEBUG] [2022-09-20 05:05:16,402]: State: 0 - byte received (at 1663650316.4022732): 36
+[DEBUG] [2022-09-20 05:05:16,402]: State: 1 - byte received (at 1663650316.4022732): 77
+[DEBUG] [2022-09-20 05:05:16,402]: State: 2 - byte received (at 1663650316.4022732): 62
+[DEBUG] [2022-09-20 05:05:16,402]: State: 3 - byte received (at 1663650316.4022732): 16
+[DEBUG] [2022-09-20 05:05:16,402]: State: 4 - byte received (at 1663650316.4022732): 103
+[DEBUG] [2022-09-20 05:05:16,403]: State: 7 - byte received (at 1663650316.4022732): 220
+[DEBUG] [2022-09-20 05:05:16,403]: State: 8 - byte received (at 1663650316.4022732): 5
+[DEBUG] [2022-09-20 05:05:16,403]: State: 8 - byte received (at 1663650316.4022732): 220
+[DEBUG] [2022-09-20 05:05:16,403]: State: 8 - byte received (at 1663650316.4022732): 5
+[DEBUG] [2022-09-20 05:05:16,403]: State: 8 - byte received (at 1663650316.4022732): 220
+[DEBUG] [2022-09-20 05:05:16,403]: State: 8 - byte received (at 1663650316.4022732): 5
+[DEBUG] [2022-09-20 05:05:16,404]: State: 8 - byte received (at 1663650316.4022732): 220
+[DEBUG] [2022-09-20 05:05:16,404]: State: 8 - byte received (at 1663650316.4022732): 5
+[DEBUG] [2022-09-20 05:05:16,404]: State: 8 - byte received (at 1663650316.4022732): 220
+[DEBUG] [2022-09-20 05:05:16,404]: State: 8 - byte received (at 1663650316.4022732): 5
+[DEBUG] [2022-09-20 05:05:16,404]: State: 8 - byte received (at 1663650316.4022732): 220
+[DEBUG] [2022-09-20 05:05:16,404]: State: 8 - byte received (at 1663650316.4022732): 5
+[DEBUG] [2022-09-20 05:05:16,404]: State: 8 - byte received (at 1663650316.4022732): 220
+[DEBUG] [2022-09-20 05:05:16,405]: State: 8 - byte received (at 1663650316.4022732): 5
+[DEBUG] [2022-09-20 05:05:16,405]: State: 8 - byte received (at 1663650316.4022732): 232
+[DEBUG] [2022-09-20 05:05:16,405]: State: 8 - byte received (at 1663650316.4022732): 3
+[DEBUG] [2022-09-20 05:05:16,405]: State: 9 - byte received (at 1663650316.4022732): 69
+[DEBUG] [2022-09-20 05:05:16,405]: Message received (length 16) - Code 103
+[DEBUG] [2022-09-20 05:05:16,406]: RAW message sent: bytearray(b'$M<\x00hh')
+[DEBUG] [2022-09-20 05:05:16,410]: State: 0 - byte received (at 1663650316.41084): 36
+[DEBUG] [2022-09-20 05:05:16,411]: State: 1 - byte received (at 1663650316.41084): 77
+[DEBUG] [2022-09-20 05:05:16,411]: State: 2 - byte received (at 1663650316.41084): 62
+[DEBUG] [2022-09-20 05:05:16,411]: State: 3 - byte received (at 1663650316.41084): 16
+[DEBUG] [2022-09-20 05:05:16,411]: State: 4 - byte received (at 1663650316.41084): 104
+[DEBUG] [2022-09-20 05:05:16,411]: State: 7 - byte received (at 1663650316.41084): 232
+[DEBUG] [2022-09-20 05:05:16,412]: State: 8 - byte received (at 1663650316.41084): 3
+[DEBUG] [2022-09-20 05:05:16,412]: State: 8 - byte received (at 1663650316.41084): 232
+[DEBUG] [2022-09-20 05:05:16,412]: State: 8 - byte received (at 1663650316.41084): 3
+[DEBUG] [2022-09-20 05:05:16,412]: State: 8 - byte received (at 1663650316.41084): 232
+[DEBUG] [2022-09-20 05:05:16,412]: State: 8 - byte received (at 1663650316.41084): 3
+[DEBUG] [2022-09-20 05:05:16,412]: State: 8 - byte received (at 1663650316.41084): 232
+[DEBUG] [2022-09-20 05:05:16,412]: State: 8 - byte received (at 1663650316.41084): 3
+[DEBUG] [2022-09-20 05:05:16,413]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,413]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,413]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,413]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,413]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,413]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,414]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,414]: State: 8 - byte received (at 1663650316.41084): 0
+[DEBUG] [2022-09-20 05:05:16,414]: State: 9 - byte received (at 1663650316.41084): 120
+[DEBUG] [2022-09-20 05:05:16,414]: Message received (length 16) - Code 104
+[DEBUG] [2022-09-20 05:05:16,414]: RAW message sent: bytearray(b'$M<\x00ii')
+[DEBUG] [2022-09-20 05:05:16,422]: State: 0 - byte received (at 1663650316.4221525): 36
+[DEBUG] [2022-09-20 05:05:16,422]: State: 1 - byte received (at 1663650316.4221525): 77
+[DEBUG] [2022-09-20 05:05:16,422]: State: 2 - byte received (at 1663650316.4221525): 62
+[DEBUG] [2022-09-20 05:05:16,422]: State: 3 - byte received (at 1663650316.4221525): 16
+[DEBUG] [2022-09-20 05:05:16,423]: State: 4 - byte received (at 1663650316.4221525): 105
+[DEBUG] [2022-09-20 05:05:16,423]: State: 7 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,423]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,423]: State: 8 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,423]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,423]: State: 8 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,424]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,424]: State: 8 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,424]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,424]: State: 8 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,424]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,424]: State: 8 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,425]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,425]: State: 8 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,425]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,425]: State: 8 - byte received (at 1663650316.4221525): 220
+[DEBUG] [2022-09-20 05:05:16,425]: State: 8 - byte received (at 1663650316.4221525): 5
+[DEBUG] [2022-09-20 05:05:16,425]: State: 9 - byte received (at 1663650316.4221525): 121
+[DEBUG] [2022-09-20 05:05:16,426]: Message received (length 16) - Code 105
+[DEBUG] [2022-09-20 05:05:16,426]: RAW message sent: bytearray(b'$M<\x00jj')
+[DEBUG] [2022-09-20 05:05:16,432]: State: 0 - byte received (at 1663650316.4320552): 36
+[DEBUG] [2022-09-20 05:05:16,432]: State: 1 - byte received (at 1663650316.4320552): 77
+[DEBUG] [2022-09-20 05:05:16,432]: State: 2 - byte received (at 1663650316.4320552): 33
+[DEBUG] [2022-09-20 05:05:16,432]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,432]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,433]: RAW message sent: bytearray(b'$M<\x00kk')
+[DEBUG] [2022-09-20 05:05:16,437]: State: 0 - byte received (at 1663650316.43753): 36
+[DEBUG] [2022-09-20 05:05:16,437]: State: 1 - byte received (at 1663650316.43753): 77
+[DEBUG] [2022-09-20 05:05:16,438]: State: 2 - byte received (at 1663650316.43753): 33
+[DEBUG] [2022-09-20 05:05:16,438]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,438]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,438]: RAW message sent: bytearray(b'$M<\x00ll')
+[DEBUG] [2022-09-20 05:05:16,443]: State: 0 - byte received (at 1663650316.4436898): 36
+[DEBUG] [2022-09-20 05:05:16,443]: State: 1 - byte received (at 1663650316.4436898): 77
+[DEBUG] [2022-09-20 05:05:16,444]: State: 2 - byte received (at 1663650316.4436898): 62
+[DEBUG] [2022-09-20 05:05:16,444]: State: 3 - byte received (at 1663650316.4436898): 6
+[DEBUG] [2022-09-20 05:05:16,444]: State: 4 - byte received (at 1663650316.4436898): 108
+[DEBUG] [2022-09-20 05:05:16,444]: State: 7 - byte received (at 1663650316.4436898): 176
+[DEBUG] [2022-09-20 05:05:16,445]: State: 8 - byte received (at 1663650316.4436898): 255
+[DEBUG] [2022-09-20 05:05:16,445]: State: 8 - byte received (at 1663650316.4436898): 3
+[DEBUG] [2022-09-20 05:05:16,445]: State: 8 - byte received (at 1663650316.4436898): 0
+[DEBUG] [2022-09-20 05:05:16,445]: State: 8 - byte received (at 1663650316.4436898): 133
+[DEBUG] [2022-09-20 05:05:16,445]: State: 8 - byte received (at 1663650316.4436898): 255
+[DEBUG] [2022-09-20 05:05:16,445]: State: 9 - byte received (at 1663650316.4436898): 92
+[DEBUG] [2022-09-20 05:05:16,446]: Message received (length 6) - Code 108
+[DEBUG] [2022-09-20 05:05:16,446]: RAW message sent: bytearray(b'$M<\x00mm')
+[DEBUG] [2022-09-20 05:05:16,452]: State: 0 - byte received (at 1663650316.4523005): 36
+[DEBUG] [2022-09-20 05:05:16,452]: State: 1 - byte received (at 1663650316.4523005): 77
+[DEBUG] [2022-09-20 05:05:16,452]: State: 2 - byte received (at 1663650316.4523005): 62
+[DEBUG] [2022-09-20 05:05:16,453]: State: 3 - byte received (at 1663650316.4523005): 6
+[DEBUG] [2022-09-20 05:05:16,453]: State: 4 - byte received (at 1663650316.4523005): 109
+[DEBUG] [2022-09-20 05:05:16,453]: State: 7 - byte received (at 1663650316.4523005): 253
+[DEBUG] [2022-09-20 05:05:16,453]: State: 8 - byte received (at 1663650316.4523005): 255
+[DEBUG] [2022-09-20 05:05:16,453]: State: 8 - byte received (at 1663650316.4523005): 255
+[DEBUG] [2022-09-20 05:05:16,454]: State: 8 - byte received (at 1663650316.4523005): 255
+[DEBUG] [2022-09-20 05:05:16,454]: State: 8 - byte received (at 1663650316.4523005): 0
+[DEBUG] [2022-09-20 05:05:16,454]: State: 8 - byte received (at 1663650316.4523005): 0
+[DEBUG] [2022-09-20 05:05:16,454]: State: 9 - byte received (at 1663650316.4523005): 105
+[DEBUG] [2022-09-20 05:05:16,454]: Message received (length 6) - Code 109
+[DEBUG] [2022-09-20 05:05:16,455]: RAW message sent: bytearray(b'$M<\x00nn')
+[DEBUG] [2022-09-20 05:05:16,460]: State: 0 - byte received (at 1663650316.460452): 36
+[DEBUG] [2022-09-20 05:05:16,460]: State: 1 - byte received (at 1663650316.460452): 77
+[DEBUG] [2022-09-20 05:05:16,460]: State: 2 - byte received (at 1663650316.460452): 62
+[DEBUG] [2022-09-20 05:05:16,461]: State: 3 - byte received (at 1663650316.460452): 7
+[DEBUG] [2022-09-20 05:05:16,461]: State: 4 - byte received (at 1663650316.460452): 110
+[DEBUG] [2022-09-20 05:05:16,461]: State: 7 - byte received (at 1663650316.460452): 0
+[DEBUG] [2022-09-20 05:05:16,461]: State: 8 - byte received (at 1663650316.460452): 0
+[DEBUG] [2022-09-20 05:05:16,461]: State: 8 - byte received (at 1663650316.460452): 0
+[DEBUG] [2022-09-20 05:05:16,462]: State: 8 - byte received (at 1663650316.460452): 0
+[DEBUG] [2022-09-20 05:05:16,462]: State: 8 - byte received (at 1663650316.460452): 0
+[DEBUG] [2022-09-20 05:05:16,462]: State: 8 - byte received (at 1663650316.460452): 0
+[DEBUG] [2022-09-20 05:05:16,462]: State: 8 - byte received (at 1663650316.460452): 0
+[DEBUG] [2022-09-20 05:05:16,462]: State: 9 - byte received (at 1663650316.460452): 105
+[DEBUG] [2022-09-20 05:05:16,462]: Message received (length 7) - Code 110
+[DEBUG] [2022-09-20 05:05:16,463]: Received data processing error: pop from empty bytearray
+[DEBUG] [2022-09-20 05:05:16,463]: RAW message sent: bytearray(b'$M<\x00oo')
+[DEBUG] [2022-09-20 05:05:16,469]: State: 0 - byte received (at 1663650316.4690225): 36
+[DEBUG] [2022-09-20 05:05:16,469]: State: 1 - byte received (at 1663650316.4690225): 77
+[DEBUG] [2022-09-20 05:05:16,469]: State: 2 - byte received (at 1663650316.4690225): 62
+[DEBUG] [2022-09-20 05:05:16,469]: State: 3 - byte received (at 1663650316.4690225): 7
+[DEBUG] [2022-09-20 05:05:16,469]: State: 4 - byte received (at 1663650316.4690225): 111
+[DEBUG] [2022-09-20 05:05:16,470]: State: 7 - byte received (at 1663650316.4690225): 90
+[DEBUG] [2022-09-20 05:05:16,470]: State: 8 - byte received (at 1663650316.4690225): 65
+[DEBUG] [2022-09-20 05:05:16,470]: State: 8 - byte received (at 1663650316.4690225): 0
+[DEBUG] [2022-09-20 05:05:16,470]: State: 8 - byte received (at 1663650316.4690225): 0
+[DEBUG] [2022-09-20 05:05:16,470]: State: 8 - byte received (at 1663650316.4690225): 0
+[DEBUG] [2022-09-20 05:05:16,471]: State: 8 - byte received (at 1663650316.4690225): 50
+[DEBUG] [2022-09-20 05:05:16,471]: State: 8 - byte received (at 1663650316.4690225): 0
+[DEBUG] [2022-09-20 05:05:16,471]: State: 9 - byte received (at 1663650316.4690225): 65
+[DEBUG] [2022-09-20 05:05:16,471]: Message received (length 7) - Code 111
+[DEBUG] [2022-09-20 05:05:16,472]: Received data processing error: pop from empty bytearray
+[DEBUG] [2022-09-20 05:05:16,472]: RAW message sent: bytearray(b'$M<\x00pp')
+[DEBUG] [2022-09-20 05:05:16,477]: State: 0 - byte received (at 1663650316.4773552): 36
+[DEBUG] [2022-09-20 05:05:16,477]: State: 1 - byte received (at 1663650316.4773552): 77
+[DEBUG] [2022-09-20 05:05:16,477]: State: 2 - byte received (at 1663650316.4773552): 62
+[DEBUG] [2022-09-20 05:05:16,478]: State: 3 - byte received (at 1663650316.4773552): 30
+[DEBUG] [2022-09-20 05:05:16,478]: State: 4 - byte received (at 1663650316.4773552): 112
+[DEBUG] [2022-09-20 05:05:16,479]: State: 7 - byte received (at 1663650316.4773552): 33
+[DEBUG] [2022-09-20 05:05:16,479]: State: 8 - byte received (at 1663650316.4773552): 30
+[DEBUG] [2022-09-20 05:05:16,479]: State: 8 - byte received (at 1663650316.4773552): 23
+[DEBUG] [2022-09-20 05:05:16,480]: State: 8 - byte received (at 1663650316.4773552): 33
+[DEBUG] [2022-09-20 05:05:16,480]: State: 8 - byte received (at 1663650316.4773552): 30
+[DEBUG] [2022-09-20 05:05:16,480]: State: 8 - byte received (at 1663650316.4773552): 23
+[DEBUG] [2022-09-20 05:05:16,480]: State: 8 - byte received (at 1663650316.4773552): 68
+[DEBUG] [2022-09-20 05:05:16,480]: State: 8 - byte received (at 1663650316.4773552): 45
+[DEBUG] [2022-09-20 05:05:16,481]: State: 8 - byte received (at 1663650316.4773552): 0
+[DEBUG] [2022-09-20 05:05:16,481]: State: 8 - byte received (at 1663650316.4773552): 64
+[DEBUG] [2022-09-20 05:05:16,481]: State: 8 - byte received (at 1663650316.4773552): 25
+[DEBUG] [2022-09-20 05:05:16,481]: State: 8 - byte received (at 1663650316.4773552): 24
+[DEBUG] [2022-09-20 05:05:16,481]: State: 8 - byte received (at 1663650316.4773552): 15
+[DEBUG] [2022-09-20 05:05:16,481]: State: 8 - byte received (at 1663650316.4773552): 0
+[DEBUG] [2022-09-20 05:05:16,482]: State: 8 - byte received (at 1663650316.4773552): 0
+[DEBUG] [2022-09-20 05:05:16,482]: State: 8 - byte received (at 1663650316.4773552): 34
+[DEBUG] [2022-09-20 05:05:16,482]: State: 8 - byte received (at 1663650316.4773552): 14
+[DEBUG] [2022-09-20 05:05:16,482]: State: 8 - byte received (at 1663650316.4773552): 53
+[DEBUG] [2022-09-20 05:05:16,482]: State: 8 - byte received (at 1663650316.4773552): 25
+[DEBUG] [2022-09-20 05:05:16,482]: State: 8 - byte received (at 1663650316.4773552): 33
+[DEBUG] [2022-09-20 05:05:16,483]: State: 8 - byte received (at 1663650316.4773552): 83
+[DEBUG] [2022-09-20 05:05:16,483]: State: 8 - byte received (at 1663650316.4773552): 90
+[DEBUG] [2022-09-20 05:05:16,483]: State: 8 - byte received (at 1663650316.4773552): 10
+[DEBUG] [2022-09-20 05:05:16,483]: State: 8 - byte received (at 1663650316.4773552): 100
+[DEBUG] [2022-09-20 05:05:16,483]: State: 8 - byte received (at 1663650316.4773552): 40
+[DEBUG] [2022-09-20 05:05:16,483]: State: 8 - byte received (at 1663650316.4773552): 255
+[DEBUG] [2022-09-20 05:05:16,484]: State: 8 - byte received (at 1663650316.4773552): 255
+[DEBUG] [2022-09-20 05:05:16,484]: State: 8 - byte received (at 1663650316.4773552): 0
+[DEBUG] [2022-09-20 05:05:16,484]: State: 8 - byte received (at 1663650316.4773552): 0
+[DEBUG] [2022-09-20 05:05:16,484]: State: 8 - byte received (at 1663650316.4773552): 0
+[DEBUG] [2022-09-20 05:05:16,484]: State: 9 - byte received (at 1663650316.4773552): 39
+[DEBUG] [2022-09-20 05:05:16,484]: Message received (length 30) - Code 112
+[DEBUG] [2022-09-20 05:05:16,485]: RAW message sent: bytearray(b'$M<\x00rr')
+[DEBUG] [2022-09-20 05:05:16,493]: State: 0 - byte received (at 1663650316.4929638): 36
+[DEBUG] [2022-09-20 05:05:16,493]: State: 1 - byte received (at 1663650316.4929638): 77
+[DEBUG] [2022-09-20 05:05:16,493]: State: 2 - byte received (at 1663650316.4929638): 62
+[DEBUG] [2022-09-20 05:05:16,493]: State: 3 - byte received (at 1663650316.4929638): 22
+[DEBUG] [2022-09-20 05:05:16,493]: State: 4 - byte received (at 1663650316.4929638): 114
+[DEBUG] [2022-09-20 05:05:16,494]: State: 7 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,494]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,494]: State: 8 - byte received (at 1663650316.4929638): 126
+[DEBUG] [2022-09-20 05:05:16,494]: State: 8 - byte received (at 1663650316.4929638): 4
+[DEBUG] [2022-09-20 05:05:16,494]: State: 8 - byte received (at 1663650316.4929638): 58
+[DEBUG] [2022-09-20 05:05:16,494]: State: 8 - byte received (at 1663650316.4929638): 7
+[DEBUG] [2022-09-20 05:05:16,495]: State: 8 - byte received (at 1663650316.4929638): 232
+[DEBUG] [2022-09-20 05:05:16,495]: State: 8 - byte received (at 1663650316.4929638): 3
+[DEBUG] [2022-09-20 05:05:16,495]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,495]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,495]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,495]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,496]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,496]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,496]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,496]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,496]: State: 8 - byte received (at 1663650316.4929638): 111
+[DEBUG] [2022-09-20 05:05:16,496]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,497]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,497]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,497]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,497]: State: 8 - byte received (at 1663650316.4929638): 0
+[DEBUG] [2022-09-20 05:05:16,497]: State: 9 - byte received (at 1663650316.4929638): 167
+[DEBUG] [2022-09-20 05:05:16,497]: Message received (length 22) - Code 114
+[DEBUG] [2022-09-20 05:05:16,498]: RAW message sent: bytearray(b'$M<\x00tt')
+[DEBUG] [2022-09-20 05:05:16,502]: State: 0 - byte received (at 1663650316.5027063): 36
+[DEBUG] [2022-09-20 05:05:16,502]: State: 1 - byte received (at 1663650316.5027063): 77
+[DEBUG] [2022-09-20 05:05:16,503]: State: 2 - byte received (at 1663650316.5027063): 62
+[DEBUG] [2022-09-20 05:05:16,503]: State: 3 - byte received (at 1663650316.5027063): 27
+[DEBUG] [2022-09-20 05:05:16,503]: State: 4 - byte received (at 1663650316.5027063): 116
+[DEBUG] [2022-09-20 05:05:16,504]: State: 7 - byte received (at 1663650316.5027063): 65
+[DEBUG] [2022-09-20 05:05:16,504]: State: 8 - byte received (at 1663650316.5027063): 82
+[DEBUG] [2022-09-20 05:05:16,504]: State: 8 - byte received (at 1663650316.5027063): 77
+[DEBUG] [2022-09-20 05:05:16,505]: State: 8 - byte received (at 1663650316.5027063): 59
+[DEBUG] [2022-09-20 05:05:16,505]: State: 8 - byte received (at 1663650316.5027063): 65
+[DEBUG] [2022-09-20 05:05:16,505]: State: 8 - byte received (at 1663650316.5027063): 78
+[DEBUG] [2022-09-20 05:05:16,505]: State: 8 - byte received (at 1663650316.5027063): 71
+[DEBUG] [2022-09-20 05:05:16,505]: State: 8 - byte received (at 1663650316.5027063): 76
+[DEBUG] [2022-09-20 05:05:16,505]: State: 8 - byte received (at 1663650316.5027063): 69
+[DEBUG] [2022-09-20 05:05:16,505]: State: 8 - byte received (at 1663650316.5027063): 59
+[DEBUG] [2022-09-20 05:05:16,506]: State: 8 - byte received (at 1663650316.5027063): 72
+[DEBUG] [2022-09-20 05:05:16,506]: State: 8 - byte received (at 1663650316.5027063): 79
+[DEBUG] [2022-09-20 05:05:16,506]: State: 8 - byte received (at 1663650316.5027063): 82
+[DEBUG] [2022-09-20 05:05:16,506]: State: 8 - byte received (at 1663650316.5027063): 73
+[DEBUG] [2022-09-20 05:05:16,506]: State: 8 - byte received (at 1663650316.5027063): 90
+[DEBUG] [2022-09-20 05:05:16,506]: State: 8 - byte received (at 1663650316.5027063): 79
+[DEBUG] [2022-09-20 05:05:16,507]: State: 8 - byte received (at 1663650316.5027063): 78
+[DEBUG] [2022-09-20 05:05:16,507]: State: 8 - byte received (at 1663650316.5027063): 59
+[DEBUG] [2022-09-20 05:05:16,507]: State: 8 - byte received (at 1663650316.5027063): 66
+[DEBUG] [2022-09-20 05:05:16,507]: State: 8 - byte received (at 1663650316.5027063): 65
+[DEBUG] [2022-09-20 05:05:16,507]: State: 8 - byte received (at 1663650316.5027063): 82
+[DEBUG] [2022-09-20 05:05:16,507]: State: 8 - byte received (at 1663650316.5027063): 79
+[DEBUG] [2022-09-20 05:05:16,507]: State: 8 - byte received (at 1663650316.5027063): 59
+[DEBUG] [2022-09-20 05:05:16,508]: State: 8 - byte received (at 1663650316.5027063): 77
+[DEBUG] [2022-09-20 05:05:16,508]: State: 8 - byte received (at 1663650316.5027063): 65
+[DEBUG] [2022-09-20 05:05:16,508]: State: 8 - byte received (at 1663650316.5027063): 71
+[DEBUG] [2022-09-20 05:05:16,508]: State: 8 - byte received (at 1663650316.5027063): 59
+[DEBUG] [2022-09-20 05:05:16,508]: State: 9 - byte received (at 1663650316.5027063): 89
+[DEBUG] [2022-09-20 05:05:16,508]: Message received (length 27) - Code 116
+[DEBUG] [2022-09-20 05:05:16,509]: RAW message sent: bytearray(b'$M<\x00uu')
+[DEBUG] [2022-09-20 05:05:16,513]: State: 0 - byte received (at 1663650316.5139532): 36
+[DEBUG] [2022-09-20 05:05:16,514]: State: 1 - byte received (at 1663650316.5139532): 77
+[DEBUG] [2022-09-20 05:05:16,514]: State: 2 - byte received (at 1663650316.5139532): 62
+[DEBUG] [2022-09-20 05:05:16,514]: State: 3 - byte received (at 1663650316.5139532): 47
+[DEBUG] [2022-09-20 05:05:16,514]: State: 4 - byte received (at 1663650316.5139532): 117
+[DEBUG] [2022-09-20 05:05:16,517]: State: 7 - byte received (at 1663650316.5139532): 82
+[DEBUG] [2022-09-20 05:05:16,517]: State: 8 - byte received (at 1663650316.5139532): 79
+[DEBUG] [2022-09-20 05:05:16,517]: State: 8 - byte received (at 1663650316.5139532): 76
+[DEBUG] [2022-09-20 05:05:16,518]: State: 8 - byte received (at 1663650316.5139532): 76
+[DEBUG] [2022-09-20 05:05:16,518]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,518]: State: 8 - byte received (at 1663650316.5139532): 80
+[DEBUG] [2022-09-20 05:05:16,518]: State: 8 - byte received (at 1663650316.5139532): 73
+[DEBUG] [2022-09-20 05:05:16,518]: State: 8 - byte received (at 1663650316.5139532): 84
+[DEBUG] [2022-09-20 05:05:16,518]: State: 8 - byte received (at 1663650316.5139532): 67
+[DEBUG] [2022-09-20 05:05:16,518]: State: 8 - byte received (at 1663650316.5139532): 72
+[DEBUG] [2022-09-20 05:05:16,519]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,519]: State: 8 - byte received (at 1663650316.5139532): 89
+[DEBUG] [2022-09-20 05:05:16,519]: State: 8 - byte received (at 1663650316.5139532): 65
+[DEBUG] [2022-09-20 05:05:16,519]: State: 8 - byte received (at 1663650316.5139532): 87
+[DEBUG] [2022-09-20 05:05:16,519]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,519]: State: 8 - byte received (at 1663650316.5139532): 65
+[DEBUG] [2022-09-20 05:05:16,519]: State: 8 - byte received (at 1663650316.5139532): 76
+[DEBUG] [2022-09-20 05:05:16,520]: State: 8 - byte received (at 1663650316.5139532): 84
+[DEBUG] [2022-09-20 05:05:16,520]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,520]: State: 8 - byte received (at 1663650316.5139532): 80
+[DEBUG] [2022-09-20 05:05:16,520]: State: 8 - byte received (at 1663650316.5139532): 111
+[DEBUG] [2022-09-20 05:05:16,520]: State: 8 - byte received (at 1663650316.5139532): 115
+[DEBUG] [2022-09-20 05:05:16,520]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,521]: State: 8 - byte received (at 1663650316.5139532): 80
+[DEBUG] [2022-09-20 05:05:16,521]: State: 8 - byte received (at 1663650316.5139532): 111
+[DEBUG] [2022-09-20 05:05:16,521]: State: 8 - byte received (at 1663650316.5139532): 115
+[DEBUG] [2022-09-20 05:05:16,521]: State: 8 - byte received (at 1663650316.5139532): 82
+[DEBUG] [2022-09-20 05:05:16,521]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,521]: State: 8 - byte received (at 1663650316.5139532): 78
+[DEBUG] [2022-09-20 05:05:16,521]: State: 8 - byte received (at 1663650316.5139532): 97
+[DEBUG] [2022-09-20 05:05:16,522]: State: 8 - byte received (at 1663650316.5139532): 118
+[DEBUG] [2022-09-20 05:05:16,522]: State: 8 - byte received (at 1663650316.5139532): 82
+[DEBUG] [2022-09-20 05:05:16,522]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,522]: State: 8 - byte received (at 1663650316.5139532): 76
+[DEBUG] [2022-09-20 05:05:16,522]: State: 8 - byte received (at 1663650316.5139532): 69
+[DEBUG] [2022-09-20 05:05:16,522]: State: 8 - byte received (at 1663650316.5139532): 86
+[DEBUG] [2022-09-20 05:05:16,522]: State: 8 - byte received (at 1663650316.5139532): 69
+[DEBUG] [2022-09-20 05:05:16,523]: State: 8 - byte received (at 1663650316.5139532): 76
+[DEBUG] [2022-09-20 05:05:16,523]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,523]: State: 8 - byte received (at 1663650316.5139532): 77
+[DEBUG] [2022-09-20 05:05:16,523]: State: 8 - byte received (at 1663650316.5139532): 65
+[DEBUG] [2022-09-20 05:05:16,523]: State: 8 - byte received (at 1663650316.5139532): 71
+[DEBUG] [2022-09-20 05:05:16,523]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,524]: State: 8 - byte received (at 1663650316.5139532): 86
+[DEBUG] [2022-09-20 05:05:16,524]: State: 8 - byte received (at 1663650316.5139532): 69
+[DEBUG] [2022-09-20 05:05:16,524]: State: 8 - byte received (at 1663650316.5139532): 76
+[DEBUG] [2022-09-20 05:05:16,524]: State: 8 - byte received (at 1663650316.5139532): 59
+[DEBUG] [2022-09-20 05:05:16,524]: State: 9 - byte received (at 1663650316.5139532): 12
+[DEBUG] [2022-09-20 05:05:16,524]: Message received (length 47) - Code 117
+[DEBUG] [2022-09-20 05:05:16,525]: RAW message sent: bytearray(b'$M<\x00vv')
+[DEBUG] [2022-09-20 05:05:16,530]: State: 0 - byte received (at 1663650316.5302534): 36
+[DEBUG] [2022-09-20 05:05:16,530]: State: 1 - byte received (at 1663650316.5302534): 77
+[DEBUG] [2022-09-20 05:05:16,530]: State: 2 - byte received (at 1663650316.5302534): 33
+[DEBUG] [2022-09-20 05:05:16,530]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,530]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,531]: RAW message sent: bytearray(b'$M<\x00ww')
+[DEBUG] [2022-09-20 05:05:16,536]: State: 0 - byte received (at 1663650316.5363686): 36
+[DEBUG] [2022-09-20 05:05:16,536]: State: 1 - byte received (at 1663650316.5363686): 77
+[DEBUG] [2022-09-20 05:05:16,536]: State: 2 - byte received (at 1663650316.5363686): 62
+[DEBUG] [2022-09-20 05:05:16,536]: State: 3 - byte received (at 1663650316.5363686): 5
+[DEBUG] [2022-09-20 05:05:16,537]: State: 4 - byte received (at 1663650316.5363686): 119
+[DEBUG] [2022-09-20 05:05:16,537]: State: 7 - byte received (at 1663650316.5363686): 0
+[DEBUG] [2022-09-20 05:05:16,537]: State: 8 - byte received (at 1663650316.5363686): 1
+[DEBUG] [2022-09-20 05:05:16,537]: State: 8 - byte received (at 1663650316.5363686): 2
+[DEBUG] [2022-09-20 05:05:16,537]: State: 8 - byte received (at 1663650316.5363686): 3
+[DEBUG] [2022-09-20 05:05:16,537]: State: 8 - byte received (at 1663650316.5363686): 5
+[DEBUG] [2022-09-20 05:05:16,538]: State: 9 - byte received (at 1663650316.5363686): 119
+[DEBUG] [2022-09-20 05:05:16,538]: Message received (length 5) - Code 119
+[DEBUG] [2022-09-20 05:05:16,538]: RAW message sent: bytearray(b'$M<\x00xx')
+[DEBUG] [2022-09-20 05:05:16,545]: State: 0 - byte received (at 1663650316.5449665): 36
+[DEBUG] [2022-09-20 05:05:16,545]: State: 1 - byte received (at 1663650316.5449665): 77
+[DEBUG] [2022-09-20 05:05:16,545]: State: 2 - byte received (at 1663650316.5449665): 62
+[DEBUG] [2022-09-20 05:05:16,545]: State: 3 - byte received (at 1663650316.5449665): 56
+[DEBUG] [2022-09-20 05:05:16,546]: State: 4 - byte received (at 1663650316.5449665): 120
+[DEBUG] [2022-09-20 05:05:16,549]: State: 7 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,549]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,549]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,549]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,550]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,550]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,550]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,550]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,550]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,550]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,551]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,551]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,551]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,551]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,551]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,551]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,552]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,552]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,552]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,552]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,552]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,552]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,553]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,553]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,553]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,553]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,553]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,553]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,554]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,554]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,554]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,554]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,554]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,554]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,554]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,555]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,555]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,555]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,555]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,555]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,556]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,556]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,556]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,556]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,556]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,556]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,556]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,557]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,557]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,557]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,557]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,557]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,557]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,558]: State: 8 - byte received (at 1663650316.5449665): 255
+[DEBUG] [2022-09-20 05:05:16,558]: State: 8 - byte received (at 1663650316.5449665): 126
+[DEBUG] [2022-09-20 05:05:16,558]: State: 8 - byte received (at 1663650316.5449665): 4
+[DEBUG] [2022-09-20 05:05:16,558]: State: 9 - byte received (at 1663650316.5449665): 58
+[DEBUG] [2022-09-20 05:05:16,558]: Message received (length 56) - Code 120
+[DEBUG] [2022-09-20 05:05:16,559]: RAW message sent: bytearray(b'$M<\x00||')
+[DEBUG] [2022-09-20 05:05:16,564]: State: 0 - byte received (at 1663650316.5640793): 36
+[DEBUG] [2022-09-20 05:05:16,564]: State: 1 - byte received (at 1663650316.5640793): 77
+[DEBUG] [2022-09-20 05:05:16,564]: State: 2 - byte received (at 1663650316.5640793): 33
+[DEBUG] [2022-09-20 05:05:16,564]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,564]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,564]: RAW message sent: bytearray(b'$M<\x00}}')
+[DEBUG] [2022-09-20 05:05:16,569]: State: 0 - byte received (at 1663650316.5695376): 36
+[DEBUG] [2022-09-20 05:05:16,569]: State: 1 - byte received (at 1663650316.5695376): 77
+[DEBUG] [2022-09-20 05:05:16,569]: State: 2 - byte received (at 1663650316.5695376): 33
+[DEBUG] [2022-09-20 05:05:16,570]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,570]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,570]: RAW message sent: bytearray(b'$M<\x00~~')
+[DEBUG] [2022-09-20 05:05:16,575]: State: 0 - byte received (at 1663650316.575128): 36
+[DEBUG] [2022-09-20 05:05:16,575]: State: 1 - byte received (at 1663650316.575128): 77
+[DEBUG] [2022-09-20 05:05:16,575]: State: 2 - byte received (at 1663650316.575128): 33
+[DEBUG] [2022-09-20 05:05:16,575]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,576]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,576]: RAW message sent: bytearray(b'$M<\x00\x7f\x7f')
+[DEBUG] [2022-09-20 05:05:16,580]: State: 0 - byte received (at 1663650316.580902): 36
+[DEBUG] [2022-09-20 05:05:16,581]: State: 1 - byte received (at 1663650316.580902): 77
+[DEBUG] [2022-09-20 05:05:16,581]: State: 2 - byte received (at 1663650316.580902): 33
+[DEBUG] [2022-09-20 05:05:16,581]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,581]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,582]: RAW message sent: bytearray(b'$M<\x00\x80\x80')
+[DEBUG] [2022-09-20 05:05:16,586]: State: 0 - byte received (at 1663650316.5866923): 36
+[DEBUG] [2022-09-20 05:05:16,586]: State: 1 - byte received (at 1663650316.5866923): 77
+[DEBUG] [2022-09-20 05:05:16,587]: State: 2 - byte received (at 1663650316.5866923): 33
+[DEBUG] [2022-09-20 05:05:16,587]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,587]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,587]: RAW message sent: bytearray(b'$M<\x00\x81\x81')
+[DEBUG] [2022-09-20 05:05:16,592]: State: 0 - byte received (at 1663650316.5921872): 36
+[DEBUG] [2022-09-20 05:05:16,592]: State: 1 - byte received (at 1663650316.5921872): 77
+[DEBUG] [2022-09-20 05:05:16,592]: State: 2 - byte received (at 1663650316.5921872): 33
+[DEBUG] [2022-09-20 05:05:16,592]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,592]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,593]: RAW message sent: bytearray(b'$M<\x00\x82\x82')
+[DEBUG] [2022-09-20 05:05:16,597]: State: 0 - byte received (at 1663650316.5976408): 36
+[DEBUG] [2022-09-20 05:05:16,597]: State: 1 - byte received (at 1663650316.5976408): 77
+[DEBUG] [2022-09-20 05:05:16,598]: State: 2 - byte received (at 1663650316.5976408): 33
+[DEBUG] [2022-09-20 05:05:16,598]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,598]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,598]: RAW message sent: bytearray(b'$M<\x00\x83\x83')
+[DEBUG] [2022-09-20 05:05:16,603]: State: 0 - byte received (at 1663650316.603449): 36
+[DEBUG] [2022-09-20 05:05:16,603]: State: 1 - byte received (at 1663650316.603449): 77
+[DEBUG] [2022-09-20 05:05:16,603]: State: 2 - byte received (at 1663650316.603449): 33
+[DEBUG] [2022-09-20 05:05:16,604]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,604]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,604]: RAW message sent: bytearray(b'$M<\x00\x84\x84')
+[DEBUG] [2022-09-20 05:05:16,608]: State: 0 - byte received (at 1663650316.608932): 36
+[DEBUG] [2022-09-20 05:05:16,609]: State: 1 - byte received (at 1663650316.608932): 77
+[DEBUG] [2022-09-20 05:05:16,609]: State: 2 - byte received (at 1663650316.608932): 33
+[DEBUG] [2022-09-20 05:05:16,609]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,609]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,610]: RAW message sent: bytearray(b'$M<\x00\x85\x85')
+[DEBUG] [2022-09-20 05:05:16,614]: State: 0 - byte received (at 1663650316.6147401): 36
+[DEBUG] [2022-09-20 05:05:16,615]: State: 1 - byte received (at 1663650316.6147401): 77
+[DEBUG] [2022-09-20 05:05:16,615]: State: 2 - byte received (at 1663650316.6147401): 33
+[DEBUG] [2022-09-20 05:05:16,615]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,615]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,615]: RAW message sent: bytearray(b'$M<\x00\x87\x87')
+[DEBUG] [2022-09-20 05:05:16,620]: State: 0 - byte received (at 1663650316.6202185): 36
+[DEBUG] [2022-09-20 05:05:16,620]: State: 1 - byte received (at 1663650316.6202185): 77
+[DEBUG] [2022-09-20 05:05:16,620]: State: 2 - byte received (at 1663650316.6202185): 33
+[DEBUG] [2022-09-20 05:05:16,620]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,621]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,621]: RAW message sent: bytearray(b'$M<\x00\x96\x96')
+[DEBUG] [2022-09-20 05:05:16,626]: State: 0 - byte received (at 1663650316.6260328): 36
+[DEBUG] [2022-09-20 05:05:16,626]: State: 1 - byte received (at 1663650316.6260328): 77
+[DEBUG] [2022-09-20 05:05:16,626]: State: 2 - byte received (at 1663650316.6260328): 33
+[DEBUG] [2022-09-20 05:05:16,626]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,626]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,627]: RAW message sent: bytearray(b'$M<\x00\xa0\xa0')
+[DEBUG] [2022-09-20 05:05:16,631]: State: 0 - byte received (at 1663650316.6315036): 36
+[DEBUG] [2022-09-20 05:05:16,631]: State: 1 - byte received (at 1663650316.6315036): 77
+[DEBUG] [2022-09-20 05:05:16,631]: State: 2 - byte received (at 1663650316.6315036): 33
+[DEBUG] [2022-09-20 05:05:16,632]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,632]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,632]: RAW message sent: bytearray(b'$M<\x00\xa4\xa4')
+[DEBUG] [2022-09-20 05:05:16,637]: State: 0 - byte received (at 1663650316.6369889): 36
+[DEBUG] [2022-09-20 05:05:16,637]: State: 1 - byte received (at 1663650316.6369889): 77
+[DEBUG] [2022-09-20 05:05:16,637]: State: 2 - byte received (at 1663650316.6369889): 33
+[DEBUG] [2022-09-20 05:05:16,637]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,637]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,638]: RAW message sent: bytearray(b'$M<\x00\xa6\xa6')
+[DEBUG] [2022-09-20 05:05:16,642]: State: 0 - byte received (at 1663650316.6428084): 36
+[DEBUG] [2022-09-20 05:05:16,643]: State: 1 - byte received (at 1663650316.6428084): 77
+[DEBUG] [2022-09-20 05:05:16,643]: State: 2 - byte received (at 1663650316.6428084): 33
+[DEBUG] [2022-09-20 05:05:16,643]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,643]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,644]: RAW message sent: bytearray(b'$M<\x00\xb6\xb6')
+[DEBUG] [2022-09-20 05:05:16,648]: State: 0 - byte received (at 1663650316.648313): 36
+[DEBUG] [2022-09-20 05:05:16,648]: State: 1 - byte received (at 1663650316.648313): 77
+[DEBUG] [2022-09-20 05:05:16,648]: State: 2 - byte received (at 1663650316.648313): 33
+[DEBUG] [2022-09-20 05:05:16,648]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,649]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,649]: RAW message sent: bytearray(b'$M<\x00\xb7\xb7')
+[DEBUG] [2022-09-20 05:05:16,654]: State: 0 - byte received (at 1663650316.6540887): 36
+[DEBUG] [2022-09-20 05:05:16,654]: State: 1 - byte received (at 1663650316.6540887): 77
+[DEBUG] [2022-09-20 05:05:16,654]: State: 2 - byte received (at 1663650316.6540887): 33
+[DEBUG] [2022-09-20 05:05:16,654]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,654]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,655]: RAW message sent: bytearray(b'$M<\x00\xb8\xb8')
+[DEBUG] [2022-09-20 05:05:16,659]: State: 0 - byte received (at 1663650316.6595674): 36
+[DEBUG] [2022-09-20 05:05:16,659]: State: 1 - byte received (at 1663650316.6595674): 77
+[DEBUG] [2022-09-20 05:05:16,660]: State: 2 - byte received (at 1663650316.6595674): 33
+[DEBUG] [2022-09-20 05:05:16,660]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,660]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,660]: RAW message sent: bytearray(b'$M<\x00\xcd\xcd')
+[DEBUG] [2022-09-20 05:05:16,665]: State: 0 - byte received (at 1663650316.665374): 36
+[DEBUG] [2022-09-20 05:05:16,665]: State: 1 - byte received (at 1663650316.665374): 77
+[DEBUG] [2022-09-20 05:05:16,665]: State: 2 - byte received (at 1663650316.665374): 62
+[DEBUG] [2022-09-20 05:05:16,666]: State: 3 - byte received (at 1663650316.665374): 0
+[DEBUG] [2022-09-20 05:05:16,666]: State: 4 - byte received (at 1663650316.665374): 205
+[DEBUG] [2022-09-20 05:05:16,666]: State: 9 - byte received (at 1663650316.665374): 205
+[DEBUG] [2022-09-20 05:05:16,666]: Message received (length 0) - Code 205
+[DEBUG] [2022-09-20 05:05:16,667]: RAW message sent: bytearray(b'$M<\x00\xce\xce')
+[DEBUG] [2022-09-20 05:05:16,670]: State: 0 - byte received (at 1663650316.6708548): 36
+[DEBUG] [2022-09-20 05:05:16,671]: State: 1 - byte received (at 1663650316.6708548): 77
+[DEBUG] [2022-09-20 05:05:16,671]: State: 2 - byte received (at 1663650316.6708548): 62
+[DEBUG] [2022-09-20 05:05:16,671]: State: 3 - byte received (at 1663650316.6708548): 0
+[DEBUG] [2022-09-20 05:05:16,671]: State: 4 - byte received (at 1663650316.6708548): 206
+[DEBUG] [2022-09-20 05:05:16,672]: State: 9 - byte received (at 1663650316.6708548): 206
+[DEBUG] [2022-09-20 05:05:16,672]: Message received (length 0) - Code 206
+[DEBUG] [2022-09-20 05:05:16,672]: RAW message sent: bytearray(b'$M<\x00\xee\xee')
+[DEBUG] [2022-09-20 05:05:16,676]: State: 0 - byte received (at 1663650316.6766703): 36
+[DEBUG] [2022-09-20 05:05:16,676]: State: 1 - byte received (at 1663650316.6766703): 77
+[DEBUG] [2022-09-20 05:05:16,677]: State: 2 - byte received (at 1663650316.6766703): 33
+[DEBUG] [2022-09-20 05:05:16,677]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,677]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,677]: RAW message sent: bytearray(b'$M<\x00\xf0\xf0')
+[DEBUG] [2022-09-20 05:05:16,682]: State: 0 - byte received (at 1663650316.6824896): 36
+[DEBUG] [2022-09-20 05:05:16,682]: State: 1 - byte received (at 1663650316.6824896): 77
+[DEBUG] [2022-09-20 05:05:16,682]: State: 2 - byte received (at 1663650316.6824896): 62
+[DEBUG] [2022-09-20 05:05:16,683]: State: 3 - byte received (at 1663650316.6824896): 4
+[DEBUG] [2022-09-20 05:05:16,683]: State: 4 - byte received (at 1663650316.6824896): 240
+[DEBUG] [2022-09-20 05:05:16,683]: State: 7 - byte received (at 1663650316.6824896): 0
+[DEBUG] [2022-09-20 05:05:16,683]: State: 8 - byte received (at 1663650316.6824896): 0
+[DEBUG] [2022-09-20 05:05:16,684]: State: 8 - byte received (at 1663650316.6824896): 0
+[DEBUG] [2022-09-20 05:05:16,684]: State: 8 - byte received (at 1663650316.6824896): 0
+[DEBUG] [2022-09-20 05:05:16,684]: State: 9 - byte received (at 1663650316.6824896): 244
+[DEBUG] [2022-09-20 05:05:16,684]: Message received (length 4) - Code 240
+[DEBUG] [2022-09-20 05:05:16,685]: RAW message sent: bytearray(b'$M<\x00\xf1\xf1')
+[DEBUG] [2022-09-20 05:05:16,690]: State: 0 - byte received (at 1663650316.690704): 36
+[DEBUG] [2022-09-20 05:05:16,690]: State: 1 - byte received (at 1663650316.690704): 77
+[DEBUG] [2022-09-20 05:05:16,691]: State: 2 - byte received (at 1663650316.690704): 33
+[DEBUG] [2022-09-20 05:05:16,691]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,691]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,691]: RAW message sent: bytearray(b'$M<\x00\xf7\xf7')
+[DEBUG] [2022-09-20 05:05:16,696]: State: 0 - byte received (at 1663650316.696165): 36
+[DEBUG] [2022-09-20 05:05:16,696]: State: 1 - byte received (at 1663650316.696165): 77
+[DEBUG] [2022-09-20 05:05:16,696]: State: 2 - byte received (at 1663650316.696165): 33
+[DEBUG] [2022-09-20 05:05:16,696]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,696]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,697]: RAW message sent: bytearray(b'$M<\x00\xfd\xfd')
+[DEBUG] [2022-09-20 05:05:16,702]: State: 0 - byte received (at 1663650316.701965): 36
+[DEBUG] [2022-09-20 05:05:16,702]: State: 1 - byte received (at 1663650316.701965): 77
+[DEBUG] [2022-09-20 05:05:16,702]: State: 2 - byte received (at 1663650316.701965): 33
+[DEBUG] [2022-09-20 05:05:16,702]: FC reports unsupported message error.
+[DEBUG] [2022-09-20 05:05:16,702]: Error detected on state: 2
+[DEBUG] [2022-09-20 05:05:16,703]: RAW message sent: bytearray(b'$M<\x00\xfe\xfe')
+[DEBUG] [2022-09-20 05:05:16,708]: State: 0 - byte received (at 1663650316.7081692): 36
+[DEBUG] [2022-09-20 05:05:16,708]: State: 1 - byte received (at 1663650316.7081692): 77
+[DEBUG] [2022-09-20 05:05:16,708]: State: 2 - byte received (at 1663650316.7081692): 62
+[DEBUG] [2022-09-20 05:05:16,709]: State: 3 - byte received (at 1663650316.7081692): 8
+[DEBUG] [2022-09-20 05:05:16,709]: State: 4 - byte received (at 1663650316.7081692): 254
+[DEBUG] [2022-09-20 05:05:16,709]: State: 7 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,709]: State: 8 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,709]: State: 8 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,710]: State: 8 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,710]: State: 8 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,710]: State: 8 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,710]: State: 8 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,710]: State: 8 - byte received (at 1663650316.7081692): 0
+[DEBUG] [2022-09-20 05:05:16,711]: State: 9 - byte received (at 1663650316.7081692): 246
+[DEBUG] [2022-09-20 05:05:16,711]: Message received (length 8) - Code 254
+[DEBUG] [2022-09-20 05:05:16,712]: RAW message sent: bytearray(b'$X<\x00\x05\x10\x00\x00\x9d')
+[WARNING] [2022-09-20 05:05:38,369]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 05:51:40,040]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 05:52:14,378]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:14:28,714]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:20:04,149]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:20:54,494]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:21:42,936]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:23:21,020]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:25:20,674]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:25:31,818]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:25:42,839]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:25:53,858]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:26:04,879]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:26:15,899]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:26:26,917]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:26:37,938]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:26:48,956]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:26:59,975]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:27:10,995]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:27:22,016]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:27:36,616]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:27:47,762]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:27:58,781]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:28:09,800]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:28:20,821]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:28:31,841]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:28:42,861]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:28:53,880]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:29:04,900]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:29:15,920]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:29:26,939]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:29:37,960]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:29:48,979]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:29:59,998]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:30:11,017]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:30:22,035]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:30:33,056]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:30:44,075]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:30:55,093]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:31:06,112]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:31:17,132]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:31:28,151]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:31:39,170]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:31:50,190]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:32:01,209]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:32:12,227]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:32:23,247]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:32:34,266]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:32:45,284]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:32:56,304]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:33:07,324]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:33:18,344]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:33:29,364]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:33:40,383]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:33:51,401]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:34:02,420]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:34:13,440]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:34:24,460]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:34:35,479]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:34:46,498]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:34:57,518]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:35:08,538]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:35:19,557]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:35:30,577]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:35:41,598]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:35:52,617]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:36:03,635]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:36:14,656]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:36:25,676]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:36:36,695]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:36:47,716]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:44:21,183]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:44:45,572]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 06:45:12,406]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 12:57:46,949]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-09-20 12:57:47,450]: Serial port (/dev/ttyUSB0) not ready/available
+[WARNING] [2022-09-20 12:58:36,665]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-09-20 12:58:37,166]: Serial port (/dev/ttyUSB0) not ready/available
+[WARNING] [2022-09-20 12:59:53,299]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:19:06,698]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:29:54,550]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:32:07,034]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:32:40,272]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:33:10,971]: Timeout occured when receiving a message
