@@ -6,19 +6,22 @@ from multi_wii import MW
 
 
 class MultiWii(Node):
-
     def __init__(self):
         super().__init__('multi_wii')
         self.sub_joy = self.create_subscription(Joy, 'base/Joy',
                                                      self.listener_callback,
                                                      10)
         self.sub_joy  # prevent unused variable warning
+        self.timer = self.create_timer(1, self.listener_callback)
         self.FC = MW()
+        print('fin setup')
 
-    def listener_callback(self, msg):
+    def listener_callback(self):#, msg):
+        msg = Joy()
+        print(msg)
         axes = []
         buttons = []
-        axes = msg.axes
+        axes = [1000]*8#msg.axes
         buttons = msg.buttons
         self.FC.update_state(axes)
         print(self.FC.state)
