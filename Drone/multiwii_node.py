@@ -12,18 +12,15 @@ class MultiWii(Node):
                                                      self.listener_callback,
                                                      10)
         self.sub_joy  # prevent unused variable warning
-        self.timer = self.create_timer(1, self.listener_callback)
+        # self.timer = self.create_timer(1, self.listener_callback)
         self.FC = MW()
         print('fin setup')
 
-    def listener_callback(self):#, msg):
-        msg = Joy()
+    def listener_callback(self, msg):
+        print('hi')
         print(msg)
-        axes = []
-        buttons = []
-        axes = [1000]*8#msg.axes
         buttons = msg.buttons
-        self.FC.update_state(axes)
+        self.FC.update_state(msg.axes)
         print(self.FC.state)
 
 

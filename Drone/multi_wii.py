@@ -24,10 +24,11 @@ class MW(MSPy):
         }
 
     def update_state(self, axes):
-        print('Arm: ', self.bit_check(self.CONFIG['mode'], 0))
         self.CMDS = {self.CMD_key[i]: axes[i] for i in range(len(axes))}
         self.fast_read_attitude()
         raw_cmd = [self.CMDS[key] for key in list(self.CMDS.keys())]
+        print('Arm: ', self.bit_check(self.CONFIG['mode'], 0))
+        print(raw_cmd)
         self.send_RAW_RC(raw_cmd)
         self.state['kinematics'] = self.SENSOR_DATA['kinematics']
         self.state['altitude'] = self.SENSOR_DATA['altitude']
