@@ -9,7 +9,7 @@ import pygame
 class JoystickNode(Node):
     def __init__(self, args):
         super().__init__('joystick_mode')
-        self.pub_joy = self.create_publisher(Joy, 'base/joy', 10)
+        self.pub_joy = self.create_publisher(Joy, 'base/Joy', 10)
         timer_period = 0.1  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
@@ -24,8 +24,8 @@ class JoystickNode(Node):
             msg.header.stamp = self.get_clock().now().to_msg()
             msg.axes = [float(i) for i in state['axes']]
             msg.buttons = [int(i) for i in state['buttons']]
+            print(msg)
             self.pub_joy.publish(msg)
-            self.get_logger().info('{}'.format(msg))
 
 
 def main(args={'Key': True}):
