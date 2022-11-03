@@ -13,12 +13,13 @@ See update_state for XBOX one Controller keymaps
 
 
 class Joystick:
-    def __init__(self, Keyboard=True, MVA=False):
-        self.reset = {'axes': [0.] * 2 + [-1.] + [0.] * 2 + [-1.],
+    def __init__(self, Keyboard=True, joystick=None, MVA=False):
+        self.reset = {'axes': [0.] * 6, # + [-1.] + [0.] * 2 + [-1.],
                       'buttons': [0.] * 11}
         self.MVA = MVA
         self.Key = Keyboard
         self.state = deepcopy(self.reset)
+        self.joy = joystick
 
     def filter(self, old_axes):
         new_axes = self.state['axes']
@@ -63,7 +64,7 @@ class Joystick:
 
     def get_joystick(self, event):
         # Limited from -1 to 1
-        if event.type == pygame.JOYBUTTONDOWN:
+        for num in range(self.joy.get_numbuttons()):
             '''
             BUTTON
             Number: Key
@@ -79,9 +80,9 @@ class Joystick:
             9: LeftJoy
             10: RightJoy
             '''
-            num = event.button
-            self.state['buttons'][num] = 0 if self.state['buttons'][num] != 0 else 1
-        elif event.type == pygame.JOYAXISMOTION:
+            pressed = self.joy.get_button(num)
+            self.state['buttons'][num] = pressed
+        for axes in range(self.joy.get_numaxes()):
             # Joystick: [-1, 1] maps to [Left, Right] and [Up, Down]
             # Trigger: [-1, 1] maps to [0, depressed]
             '''
@@ -92,10 +93,19 @@ class Joystick:
             4: RY
             5: RT
             '''
-            axes = event.axis
-            self.state['axes'][axes] = event.value
-        elif event.type == pygame.JOYHATMOTION:
+            pose = self.joy.get_axis(axes)
+            if axes == 2 or axes == 5:
+                # Triggers
+                pass
+            else:
+                # Joysticks
+                # direction = -1 if pose < -0.5 else 1 if pose > 0.5 else 0
+                STEP = 0.03
+                pose = 0 if 0.15 > pose > -0.15 else pose
+                self.state['axes'][axes] += pose * STEP
+            # self.state['axes'][axes] = np.clip(self.state['axes'][axes], 1000, 2000)
+        # elif event.type == pygame.JOYHATMOTION:
             # xy buttons
-            pass
-        else:
-            pass
+            # pass
+        # else:
+            # pass
