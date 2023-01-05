@@ -1,0 +1,147 @@
+[WARNING] [2022-09-19 13:16:56,122]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 13:17:07,186]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 13:17:18,199]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 13:18:25,704]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 13:19:34,197]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 13:20:27,988]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 13:21:06,758]: Timeout occured when receiving a message
+[WARNING] [2022-09-19 13:23:03,545]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:51:42,289]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:54:16,590]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 13:58:02,686]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 14:01:00,021]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 14:04:25,829]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 14:05:08,492]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 14:06:09,006]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 14:07:07,950]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 14:07:53,828]: Timeout occured when receiving a message
+[WARNING] [2022-09-20 14:11:17,765]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:42:03,529]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:49:58,213]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:51:05,407]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:51:54,132]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:52:37,409]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:53:36,331]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:55:04,834]: Timeout occured when receiving a message
+[WARNING] [2022-09-30 11:56:33,928]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 03:43:00,662]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 03:57:01,774]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 04:08:04,264]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 04:12:51,142]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 04:14:13,395]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 04:15:19,654]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 04:15:47,528]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 04:17:13,905]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 04:19:03,344]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 06:12:49,476]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:49,978]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:50,479]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:50,980]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:51,481]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:51,982]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:52,484]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:52,985]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:12:53,486]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:29,179]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:29,680]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:30,182]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:30,683]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:31,184]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:31,685]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:32,186]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:32,687]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:33,189]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:33,690]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:34,191]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:34,692]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:35,193]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:35,694]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:36,195]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:36,697]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:37,198]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:37,699]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:38,201]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:38,702]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:39,203]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:39,704]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:40,206]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:40,707]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:41,208]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:41,709]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:42,210]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:42,711]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:43,213]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:43,714]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:44,215]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:44,716]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:45,217]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:45,719]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:46,220]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:46,721]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:47,222]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:47,723]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:48,224]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:48,725]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:49,227]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:49,728]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:50,229]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:50,730]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:51,231]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:51,732]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:52,233]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:52,735]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:53,236]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:53,737]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:54,238]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:54,739]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:55,240]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:55,742]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:56,243]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:56,744]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:57,245]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:57,746]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:58,247]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:58,748]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:59,250]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:13:59,751]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:00,252]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:00,753]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:01,254]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:01,755]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:02,257]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:02,758]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:03,259]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:03,760]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:04,261]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:04,763]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:05,264]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:05,765]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:06,266]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:06,767]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:07,268]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:07,770]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:08,271]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:08,772]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:09,273]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:09,774]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:10,275]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:10,776]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:11,277]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:11,779]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:12,280]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:12,781]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:13,282]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:13,783]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:14,284]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:14,786]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:15,287]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:15,788]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:16,289]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:16,790]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:17,291]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:17,792]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:18,294]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:18,795]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2022-10-03 06:14:59,294]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 06:15:31,836]: Timeout occured when receiving a message
+[WARNING] [2022-10-03 06:16:54,332]: Timeout occured when receiving a message
