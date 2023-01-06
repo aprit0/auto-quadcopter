@@ -18,7 +18,7 @@ class ControlSystem:
     def __init__(self):
         self.kp = 10
         self.ki = 0.01
-        self.kd = 0.1
+        self.kd = 1
         self.setpoint = 0
         
         self.roll, self.pitch = PID(self.kp, self.ki, self.kd), PID(self.kp, self.ki, self.kd)

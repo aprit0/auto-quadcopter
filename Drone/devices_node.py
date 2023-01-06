@@ -29,9 +29,15 @@ class DeviceNode(Node):
         self.pub_quat = self.create_publisher(QuaternionStamped, 'drone/Quaternion', 10)
         timer_period = 0.01  # seconds
         self.timer = self.create_timer(timer_period, self.quat_callback)
+        self.timer_print = self.create_timer(0.1, self.print_callback)
 
         self.mpu = INERTIAL()
         self.motors = ESC()
+
+    def print_callback(self):
+        print(f'{self.motors.armed}')
+        print(f'fl,fr:{self.motors.last_cmd[:2]} \nbl,br:{self.motors.last_cmd[2:]}')
+        pass
 
     def quat_callback(self):
         self.mpu.read()
@@ -44,19 +50,21 @@ class DeviceNode(Node):
         msg.quaternion.z =self.mpu.quat[2]
         msg.quaternion.w =self.mpu.quat[3]
         self.pub_quat.publish(msg)
-        print(self.mpu.euler)
+        # print(self.mpu.euler)
     
     def cmd_callback(self, msg):
         cmd = msg.data
+        # print('CMD: ', cmd)
         self.motors.drive(cmd)
     
     def arm_callback(self, msg):
         arm = msg.data
-        if arm:
+        if arm and not self.motors.armed:
             self.motors.arm()
-        else:
+        elif not arm and self.motors.armed:
             self.motors.disarm()
-        print(f'Motor: {arm} == {self.motors.armed}')
+            
+        # print(f'Motor: {arm} == {self.motors.armed}')
 
 
 

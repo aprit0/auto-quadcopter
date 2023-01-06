@@ -42,6 +42,7 @@ class ControlNode(Node):
     
     def joy_callback(self, msg):
         self.Control.read_joystick(msg.axes, msg.buttons)
+        # print('ARM: ', self.Control.ARM)
 
     def cmd_callback(self):
         cmd = self.Control.run()
@@ -58,6 +59,7 @@ class ControlNode(Node):
         msg.layout.dim[1].stride = width
         msg.layout.data_offset = 0
         msg.data = [int(i) for i in cmd]
+        # print('CMD: ', cmd)
         self.pub_cmd.publish(msg)
 
         msg = Bool()
