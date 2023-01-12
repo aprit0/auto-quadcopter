@@ -43,6 +43,7 @@ class INERTIAL:
             fusionPose = data['fusionPose']
             r, p, y = math.degrees(fusionPose[0]), math.degrees(fusionPose[1]), math.degrees(fusionPose[2])
             self.euler = [r, p, y] 
+            print(data['fusionPoseValid'], [f'{i:.2f}' for i in self.euler])
             self.last_read = time.time()
             if data['fusionQPoseValid']:
                 return 1
@@ -54,6 +55,7 @@ if __name__ == '__main__':
     mpu = INERTIAL()
     while True:
         mpu.read()
-        print(mpu.quat)
+        # time.sleep(0.1)
+        # print(mpu.quat)
 
 

@@ -1,9 +1,10 @@
+import time
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import QuaternionStamped 
 from std_msgs.msg import Bool, Int16MultiArray, Header 
 
-from Devices.imu import INERTIAL
+from Devices.bno085 import INERTIAL
 from Devices.motors import ESC
 
 '''

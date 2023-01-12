@@ -6,12 +6,11 @@ import time
 class ESC:
     channels = 16
     motor_channels = { # EDIT
-        'a':0,
-        'b':1,
-        'fl':11,
+        'fl':12,
         'fr':13,
-        'bl':14,
-        'br':15
+        'bl':15,
+        'br':14
+        # 'test': 0
     }
     arm_val = 1050
     disarm_val = 1000
@@ -29,7 +28,7 @@ class ESC:
 
     def arm(self):
         self.drive([self.arm_val]*self.motor_count, force=1)
-        self.armed = True
+        self.armed = True 
 
     def disarm(self):
         self.drive([self.disarm_val]*self.motor_count, force=1)
@@ -39,7 +38,7 @@ class ESC:
     def drive(self, cmd, force=0):
         # cmd: [fl, fr, bl, br] where fl:br ∈ [1000, 2000]
         if self.armed or force: 
-            cmd = np.clip(cmd, self.disarm_val, self.max_val)
+            cmd = np.clip(np.array(cmd), self.disarm_val, self.max_val)
             mapped_cmd = self.map_val(cmd)
             index = 0
             for key in self.motor_channels.keys():
@@ -53,19 +52,25 @@ class ESC:
     def test(self):
         self.arm()
         for i in range(self.motor_count):
-            cmd = [1000] * self.motor_count
-            print(cmd)
+            cmd = [self.disarm_val] * self.motor_count
             self.drive(cmd)
-            cmd[i] = 1300
+            cmd[i] = 1100
             input(f'Test motor {self.motor_id[i]}?')
             self.drive(cmd)
-            time.sleep(0.5)
+            time.sleep(1.5)
         self.disarm()
+
+
 
 if __name__ == '__main__':
     motor = ESC()
-    print('Motor began')
-    motor.test()
+    x = int(input('Motor began \n0: Disarm \n1 Test '))
+    if not x:
+        motor.disarm()
+    elif x == 1:
+        print('Begin Test')
+        motor.test()
+
 
 
     

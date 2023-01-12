@@ -21,7 +21,7 @@ class ControlSystem:
         self.kd = 1
         self.setpoint = 0
         
-        self.roll, self.pitch = PID(self.kp, self.ki, self.kd), PID(self.kp, self.ki, self.kd)
+        self.roll, self.pitch = PID(self.kp, self.ki, self.kd), PID(-self.kp, -self.ki, -self.kd)
         # self.yaw = PID()
         # self.height = PID()
         self.init()
