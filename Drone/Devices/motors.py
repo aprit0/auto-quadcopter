@@ -64,12 +64,19 @@ class ESC:
 
 if __name__ == '__main__':
     motor = ESC()
-    x = int(input('Motor began \n0: Disarm \n1 Test '))
-    if not x:
-        motor.disarm()
-    elif x == 1:
-        print('Begin Test')
-        motor.test()
+    while True:
+        x = int(input('Motor began \n0: Disarm \n1: Test \n2: Drive'))
+        if not x:
+            motor.disarm()
+        elif x == 1:
+            print('Begin Test')
+            motor.test()
+        elif x == 2:
+            x = int(input('Motor speed: '))
+            motor.arm()
+            cmd = [x]*4
+            motor.drive(cmd)
+            time.sleep(1)
 
 
 

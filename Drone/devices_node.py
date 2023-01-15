@@ -28,7 +28,7 @@ class DeviceNode(Node):
         self.sub_arm = self.create_subscription(Bool,'drone/ARM',self.arm_callback,10)
         self.sub_arm  
         self.pub_quat = self.create_publisher(QuaternionStamped, 'drone/Quaternion', 10)
-        timer_period = 0.01  # seconds
+        timer_period = 0.005  # seconds
         self.timer = self.create_timer(timer_period, self.quat_callback)
         self.timer_print = self.create_timer(0.1, self.print_callback)
 

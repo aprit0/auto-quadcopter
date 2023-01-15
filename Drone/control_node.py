@@ -26,7 +26,7 @@ class ControlNode(Node):
         self.sub_joy = self.create_subscription(Joy,'base/Joy',self.joy_callback,10)
         self.sub_joy 
         self.pub_cmd = self.create_publisher(Int16MultiArray,'drone/CMD', 10)
-        timer_period = 0.025  # seconds
+        timer_period = 0.01  # seconds
         self.timer_cmd = self.create_timer(timer_period, self.cmd_callback)
         self.pub_arm = self.create_publisher(Bool,'drone/ARM', 10)
         
@@ -45,26 +45,29 @@ class ControlNode(Node):
         # print('ARM: ', self.Control.ARM)
 
     def cmd_callback(self):
-        cmd = self.Control.run()
-        width = 4
-        height = 1
-        msg = Int16MultiArray()
-        msg.layout.dim.append(MultiArrayDimension())
-        msg.layout.dim.append(MultiArrayDimension())
-        msg.layout.dim[0].label = "height"
-        msg.layout.dim[1].label = "width"
-        msg.layout.dim[0].size = height
-        msg.layout.dim[1].size = width
-        msg.layout.dim[0].stride = width*height
-        msg.layout.dim[1].stride = width
-        msg.layout.data_offset = 0
-        msg.data = [int(i) for i in cmd]
-        # print('CMD: ', cmd)
-        self.pub_cmd.publish(msg)
+        try:
+            cmd = self.Control.run()
+            width = 4
+            height = 1
+            msg = Int16MultiArray()
+            msg.layout.dim.append(MultiArrayDimension())
+            msg.layout.dim.append(MultiArrayDimension())
+            msg.layout.dim[0].label = "height"
+            msg.layout.dim[1].label = "width"
+            msg.layout.dim[0].size = height
+            msg.layout.dim[1].size = width
+            msg.layout.dim[0].stride = width*height
+            msg.layout.dim[1].stride = width
+            msg.layout.data_offset = 0
+            msg.data = [int(i) for i in cmd]
+            # print('CMD: ', cmd)
+            self.pub_cmd.publish(msg)
 
-        msg = Bool()
-        msg.data = bool(self.Control.ARM)
-        self.pub_arm.publish(msg)
+            msg = Bool()
+            msg.data = bool(self.Control.ARM)
+            self.pub_arm.publish(msg)
+        except RemoteIO as e:
+            print(e)
 
     
 def main(args=None):
