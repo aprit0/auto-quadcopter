@@ -39,12 +39,13 @@ class FC:
         self.update_pid()
         # Roll axis facing forwards, ie Negative AC from front
         # Pitch axis facing right from front, ie Negative Facing up
-        fl = self.throttle_base  + self.throttle_pid[0] - self.throttle_pid[1] 
-        fr = self.throttle_base - self.throttle_pid[0] - self.throttle_pid[1] 
-        bl = self.throttle_base + self.throttle_pid[0] + self.throttle_pid[1] 
-        br = self.throttle_base - self.throttle_pid[0] + self.throttle_pid[1] 
-        # print(f'PID0: {self.throttle_pid[0]:.2f} Ang0: {self.euler_current[0]:.2f}, Set0: {self.euler_setpoints[0]}' )
-        print([f'{i:.2f}' for i in self.euler_current])
+        fl = self.throttle_base  + self.throttle_pid[0] #- self.throttle_pid[1] 
+        fr = self.throttle_base - self.throttle_pid[0] #- self.throttle_pid[1] 
+        bl = self.throttle_base + self.throttle_pid[0] #+ self.throttle_pid[1] 
+        br = self.throttle_base - self.throttle_pid[0] #+ self.throttle_pid[1] 
+        print(f'{[round(i) for i in self.throttle_pid]}')
+        print(f'PID0: {self.throttle_pid[0]:.2f} Ang0: {self.euler_current[0]:.2f}, Set0: {self.euler_setpoints[0]}' )
+        # print([f'{i:.2f}' for i in self.euler_current])
         return [fl, fr, bl, br]
         
     def read_joystick(self, axes, buttons):

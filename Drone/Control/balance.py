@@ -16,12 +16,12 @@ Functions:
 
 class ControlSystem:
     def __init__(self):
-        self.kp =7
+        self.kp =1.3
         '''
         7: takeoff then small oscillation
         '''
-        self.ki = 0# 0.01
-        self.kd = 0# 1
+        self.ki = 0.1#.01#0.001# 0.01
+        self.kd = 0.55# 1
         '''
         0.01:
         '''
@@ -32,7 +32,7 @@ class ControlSystem:
         # self.height = PID()
         self.init()
 
-    def init(self, lim_o=200, proportional=False):
+    def init(self, lim_o=100, proportional=False):
         self.roll.output_limits = (-lim_o, lim_o)
         self.pitch.output_limits = (-lim_o, lim_o)
         self.yaw.output_limits = (-lim_o, lim_o)
@@ -45,7 +45,8 @@ class ControlSystem:
         self.pitch.setpoint = euler_setpoint[1]
         self.pitch.setpoint = euler_setpoint[2]
         output = [self.roll(euler_input[0]), self.pitch(euler_input[1]),  self.yaw(euler_input[2])]
-        return output
+
+        return [float(i) for i in output]
 
     def get_params(self):
         self.kp, self.ki, self.kd = self.roll.components
