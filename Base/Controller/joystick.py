@@ -35,9 +35,13 @@ class Joystick:
                 self.get_joystick(event)
         if self.MVA:
             self.state['axes'] = self.filter(old_state['axes'])
-        if self.state['buttons'][4] or self.state['buttons'][5]:
-            # Reset angles on RB or LB
-            self.state['axes'][1:] = [0.]*5
+        # SAFETIES
+        if self.state['buttons'][5]:
+            # Reset angles on LB
+            self.state['axes'][1:] = self.reset['axes'][1:]
+        if self.state['buttons'][4]:
+            # Reset throttle on RB
+            self.state['axes'][0] = self.reset['axes'][0]
 
         return self.input_to_pwm()
 
@@ -107,7 +111,7 @@ class Joystick:
             # else:
             # Joysticks
             # direction = -1 if pose < -0.5 else 1 if pose > 0.5 else 0
-            STEP = 0.03
+            STEP = 0.02
             pose = 0 if 0.10 > pose > -0.10 else pose
             new_axes.append(pose * STEP)
             
