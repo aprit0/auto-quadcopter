@@ -30,7 +30,7 @@ class FC:
         self.euler_setpoints = [0, 0, 0]
         self.throttle_base = 1000
         self.throttle_pid = [0, 0, 0]
-        self.joy_angle_range = [[-15, 15], [0, 360]]
+        self.joy_angle_range = [[-15, 15], [-180, 180]]
         self.joy_input_range = [1000, 2000]
         self.button_output_range = [0, 1]
         self.buttons_old = [0] * 11
@@ -43,7 +43,7 @@ class FC:
         fr = self.throttle_base - self.throttle_pid[0] - self.throttle_pid[1] 
         bl = self.throttle_base + self.throttle_pid[0] + self.throttle_pid[1] 
         br = self.throttle_base - self.throttle_pid[0] + self.throttle_pid[1] 
-        print(f'PID0: {self.throttle_pid[0]:.2f} Ang0: {self.euler_current[0]:.2f}, Set0: {self.euler_setpoints[0]}' )
+        # print(f'PID0: {self.throttle_pid[0]:.2f} Ang0: {self.euler_current[0]:.2f}, Set0: {self.euler_setpoints[0]}' )
         print([f'{i:.2f}' for i in self.euler_current])
         return [fl, fr, bl, br]
         

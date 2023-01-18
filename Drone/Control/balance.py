@@ -16,26 +16,35 @@ Functions:
 
 class ControlSystem:
     def __init__(self):
-        self.kp = 10
-        self.ki = 0.01
-        self.kd = 1
+        self.kp =7
+        '''
+        7: takeoff then small oscillation
+        '''
+        self.ki = 0# 0.01
+        self.kd = 0# 1
+        '''
+        0.01:
+        '''
         self.setpoint = 0
         
         self.roll, self.pitch = PID(self.kp, self.ki, self.kd), PID(-self.kp, -self.ki, -self.kd)
-        # self.yaw = PID()
+        self.yaw = PID(self.kp, self.ki, self.kd)
         # self.height = PID()
         self.init()
 
-    def init(self, lim_o=100, proportional=False):
+    def init(self, lim_o=200, proportional=False):
         self.roll.output_limits = (-lim_o, lim_o)
         self.pitch.output_limits = (-lim_o, lim_o)
+        self.yaw.output_limits = (-lim_o, lim_o)
         self.roll.proportional_on_measurement = proportional
         self.pitch.proportional_on_measurement = proportional
+        self.yaw.proportional_on_measurement = proportional
 
     def run(self, euler_input, euler_setpoint):
         self.roll.setpoint = euler_setpoint[0]
         self.pitch.setpoint = euler_setpoint[1]
-        output = [self.roll(euler_input[0]), self.pitch(euler_input[1]), 0]
+        self.pitch.setpoint = euler_setpoint[2]
+        output = [self.roll(euler_input[0]), self.pitch(euler_input[1]),  self.yaw(euler_input[2])]
         return output
 
     def get_params(self):
@@ -44,6 +53,7 @@ class ControlSystem:
     def update_params(self, kp, ki, kd):
         self.roll.tunings(kp, ki, kd)
         self.pitch.tunings(kp, ki, kd)
+        self.yaw.tunings(kp, ki, kd)
 
 import random
 import time
