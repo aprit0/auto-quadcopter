@@ -1,5 +1,8 @@
 # auto-quadcopter
 ## Autonomous Quadcopter
+  The plan is to develop a drone capable of autonomous and semi autonomous flight. As I am no flying wiz, I am supplementing skill with software! 
+### Pr
+
 
 # Background
 ## Main:
