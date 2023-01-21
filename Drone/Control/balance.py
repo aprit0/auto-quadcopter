@@ -16,7 +16,7 @@ Functions:
 
 class ControlSystem:
     def __init__(self):
-        self.kp =1.3
+        self.kp =1.2
         '''
         7: takeoff then small oscillation
         '''
@@ -28,7 +28,7 @@ class ControlSystem:
         self.setpoint = 0
         
         self.roll, self.pitch = PID(self.kp, self.ki, self.kd), PID(-self.kp, -self.ki, -self.kd)
-        self.yaw = PID(self.kp, self.ki, self.kd)
+        self.yaw = PID(-2, 0, 0)
         # self.height = PID()
         self.init()
 

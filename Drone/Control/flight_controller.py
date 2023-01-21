@@ -30,7 +30,7 @@ class FC:
         self.euler_setpoints = [0, 0, 0]
         self.throttle_base = 1000
         self.throttle_pid = [0, 0, 0]
-        self.joy_angle_range = [[-15, 15], [-180, 180]]
+        self.joy_angle_range = [[-5, 5], [-180, 180]]
         self.joy_input_range = [1000, 2000]
         self.button_output_range = [0, 1]
         self.buttons_old = [0] * 11
@@ -39,13 +39,13 @@ class FC:
         self.update_pid()
         # Roll axis facing forwards, ie Negative AC from front
         # Pitch axis facing right from front, ie Negative Facing up
-        fl = self.throttle_base  + self.throttle_pid[0] #- self.throttle_pid[1] 
-        fr = self.throttle_base - self.throttle_pid[0] #- self.throttle_pid[1] 
-        bl = self.throttle_base + self.throttle_pid[0] #+ self.throttle_pid[1] 
-        br = self.throttle_base - self.throttle_pid[0] #+ self.throttle_pid[1] 
+        fl = self.throttle_base + self.throttle_pid[0] - self.throttle_pid[1] - self.throttle_pid[2] 
+        fr = self.throttle_base - self.throttle_pid[0] - self.throttle_pid[1] + self.throttle_pid[2]
+        bl = self.throttle_base + self.throttle_pid[0] + self.throttle_pid[1] + self.throttle_pid[2]
+        br = self.throttle_base - self.throttle_pid[0] + self.throttle_pid[1] - self.throttle_pid[2]
         print(f'{[round(i) for i in self.throttle_pid]}')
-        print(f'PID0: {self.throttle_pid[0]:.2f} Ang0: {self.euler_current[0]:.2f}, Set0: {self.euler_setpoints[0]}' )
-        # print([f'{i:.2f}' for i in self.euler_current])
+        print(f'PID0: {self.throttle_pid[2]:.2f} Ang0: {self.euler_current[2]:.2f}, Set0: {self.euler_setpoints[2]}' )
+        print(self.euler_offsets)
         return [fl, fr, bl, br]
         
     def read_joystick(self, axes, buttons):
@@ -69,6 +69,9 @@ class FC:
         euler = self.euler_from_quaternion(q[0], q[1], q[2], q[3])
         if self.calib_imu and type(self.euler_offsets) == type(None):
             self.euler_offsets = [-1 * i for i in euler]
+            # Only apply offsets to yaw
+            self.euler_offsets[0] = 0
+            self.euler_offsets[1] = 0
         elif not self.calib_imu and type(self.euler_offsets) == type(None):
             self.euler_offsets = [0, 0, 0]
         self.euler_current = [i + j for (i, j) in zip(euler, self.euler_offsets)]
