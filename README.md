@@ -14,10 +14,10 @@
 
 
 # Background
-## Main:
+## Main
   Utilising a self developed flightcontroller, rpi controls the drone and interacts with the base over wifi.
   
-## Arduino:
+## Arduino
   A tested combination of rpi brain and arduino pwm/C based loop. Due to i2c redundancies, the arduino was shown to be not required. As I was using an arduino nano, the hardware speed is too low to provide a meaningful benefit. This method was tried second and dropped in favour of a complete pi based drone.
   
 ## Multiwii
