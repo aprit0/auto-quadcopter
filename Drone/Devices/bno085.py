@@ -63,6 +63,6 @@ if __name__ == '__main__':
     while True:
         mpu.read()
         # time.sleep(0.1)
-        print(mpu.quat)
+        print(mpu.euler)
 
 
