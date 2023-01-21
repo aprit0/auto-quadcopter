@@ -1,7 +1,16 @@
-# auto-quadcopter
-## Autonomous Quadcopter
-  The plan is to develop a drone capable of autonomous and semi autonomous flight. As I am no flying wiz, I am supplementing skill with software! 
-### Pr
+# Autonomous Quadcopter
+  An autonomous drone designed for semi autonomous flight. As I am no flying wiz, I am supplementing skill with software! 
+## STATUS
+- [x] Build prototype hardware
+- [x] Code and integrate flight controller sensors
+- [x] Code and integrate base station
+- [x] Roll/Pitch/Yaw PID Tuning
+- [x] FIRST FLIGHT
+- [ ] Code and integrate XYZ Hover
+- [ ] Code and integrate GPS
+
+## Bugs
+- [ ] BMS Current Sensor 
 
 
 # Background
@@ -31,5 +40,6 @@ Using ROS2 nodes, the code base can be easily modular, adaptable and upgradeable
 | Camera Feed | Analogue Camera, TX, RX, Android Phone | N/A |
 | BMS | Self Designed PCB | TBD: I2C |
 
-  
-  
+## Features
+- XYZ Stabilisation with optical flow
+- Benefits of ROS ecosystem
