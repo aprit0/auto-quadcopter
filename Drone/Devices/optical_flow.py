@@ -5,7 +5,7 @@ import time
 import math
 import cv2 as cv
 import numpy as np
-
+# Inspired by https://github.com/simondlevy/OpenCV-Python-Hacks 
 
 class OpticalFlow:
     def __init__(self, camera_idx=0):
@@ -38,7 +38,7 @@ class OpticalFlow:
             FPS = t_1 - self.t_0
             count = (flow.shape[0] * flow.shape[1])
             average_velocity_pixels_per_second = (flow_xy / count / FPS)
-            vel = self._velocity_meters_per_second(average_velocity_pixels_per_second, flow.shape,
+            vel = self._velocity_meters_per_second(average_velocity_pixels_per_second, flow.shape[:-1],
                                                    self.height, self.angle)
             self.pose[0] += vel[1] * FPS
             self.pose[1] += vel[0] * FPS
@@ -53,20 +53,19 @@ class OpticalFlow:
         self.height = self.tof.range * 0.001  # In metres
 
     def set_angle(self, angle):
-        self.angle = angle
+        self.angle = math.radians(angle + 90)
 
     @staticmethod
     def _velocity_meters_per_second(velocity_pixels_per_second, dimsize_pixels, height_metres, perspective_angle):
-        distance_pixels = ((dimsize_pixels / 2) /
-                           math.tan(perspective_angle / 2))
-        pixels_per_meter = distance_pixels / height_metres
-        return velocity_pixels_per_second / pixels_per_meter
+        perspective_angle = 1e-15 if perspective_angle == 0 else perspective_angle
+        pixels_per_meter = [i / 2 / (math.tan(perspective_angle / 2)) / height_metres for i in dimsize_pixels]
+        return np.divide(velocity_pixels_per_second, pixels_per_meter) 
 
 
 if __name__ == '__main__':
     OF = OpticalFlow()
     while True:
         OF.get_height()
-        OF.get_angle()
+        OF.set_angle(0)
         OF.get_pose()
         print(OF.pose)
