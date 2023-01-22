@@ -2,11 +2,7 @@ import math
 
 import cv2 as cv
 import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import mode
-from sklearn.cluster import KMeans, MiniBatchKMeans
 import time
-# https://medium.com/@ikunyankin/camera-motion-estimation-using-optical-flow-ce441d7ffec
 
 def _get_velocity(flow, sum_velocity_pixels, dimsize_pixels,
                   distance_meters, timestep_seconds):
