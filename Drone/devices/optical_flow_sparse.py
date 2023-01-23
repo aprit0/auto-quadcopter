@@ -5,7 +5,7 @@ import cv2 as cv
 import numpy as np
 import imageio as iio
 
-from utils import quat_2_euler
+from devices.utils import quat_2_euler
 
 class OpticalFlow:
     feature_params = dict( maxCorners = 100,
@@ -27,16 +27,17 @@ class OpticalFlow:
         self.last_frame, self.t_0, frame = self.get_image()
         self.mask = np.zeros_like(frame)
         self.mask[..., 1] = 255
-        fourcc = cv.VideoWriter_fourcc(*'XVID')
-        self.video_grey = cv.VideoWriter('output_grey.avi', cv.VideoWriter_fourcc(*'XVID'), 20.0, (frame.shape[1], frame.shape[0]))
-        self.video_flow = cv.VideoWriter('output_flow.avi', cv.VideoWriter_fourcc(*'XVID'), 20.0, (frame.shape[1], frame.shape[0]))
+        # fourcc = cv.VideoWriter_fourcc(*'XVID')
+        # self.video = cv.VideoWriter('output.avi', fourcc, 20.0, (frame.shape[1], frame.shape[0]))
+        self.p0 = cv.goodFeaturesToTrack(self.last_frame, mask = None,
+                            **self.feature_params)
 
     def get_image(self, show=False):
         img = None
         for i in range(50):
             img = self.camera.get_data(0)
         # img = img[55:, :] # Remove bodywork from image
-        scale_percent = 50 # percent of original size
+        scale_percent = 100 # percent of original size
         width = int(img.shape[1] * scale_percent / 100)
         height = int(img.shape[0] * scale_percent / 100)
         new_frame = cv.resize(img, (width, height), interpolation=cv.INTER_AREA)
@@ -52,22 +53,32 @@ class OpticalFlow:
         time_0 = time.time()
         if self.euler is not None and self.height is not None:
             time_1 = time.time()
-            current_frame, t_1, img = self.get_image() # 0.016ms with compression
+            current_frame, t_1, _ = self.get_image() # 0.016ms with compression
             time_2 = time.time()
+                                            #    None, 0.5, 3, 15, 3, 5, 1.2, 0) # 0.05ms
+            p1, status, error = cv.calcOpticalFlowPyrLK(self.last_frame, current_frame,
+                                           self.p0, None, **self.lk_params)
 
-            flow = cv.calcOpticalFlowFarneback(self.last_frame, current_frame,
-                                               None, 0.5, 3, 15, 3, 5, 1.2, 0) # 0.05ms
-            magnitude, angle = cv.cartToPolar(flow[..., 0], flow[..., 1])
-            print(magnitude, angle)
+            # flow = cv.calcOpticalFlowFarneback(self.last_frame, current_frame,
+                                            #    None, 0.5, 3, 15, 3, 5, 1.2, 0) # 0.05ms
+            # magnitude, angle = cv.cartToPolar(flow[..., 0], flow[..., 1])
+            # print(magnitude, angle)
 
+            # Select good points
+            good_new = p1[status == 1]
+            print(good_new)
+            good_old = self.p0[status == 1]
+            mag = np.subtract(good_new, good_old)
+            ang = np.arctan2(mag[:, 1], mag[:, 0])
+            # print([['N:',i,'O',j,'M',k, 'A', l] for (i, j, k, l) in zip(good_new, good_old, mag, ang)])
             time_3 = time.time()
-            self.visualise(magnitude, angle, img)
+            # self.visualise(magnitude, angle, current_frame)
             print(f'Height: {time_1 - time_0}, image: {time_2 - time_1}, flow: {time_3 - time_2}, viz: {time.time() - time_3}')
-            # print(mag, np.degrees(ang))
+            print(mag, np.degrees(ang))
             # print(np.std(mag), np.std(ang))
-            # print(np.mean(mag), np.mean(ang))
+            print(np.mean(mag), np.mean(ang))
             FPS = t_1 - self.t_0
-            # vel_pixels = mag * FPS
+            vel_pixels = mag * FPS
             pixels_per_metre = lambda height, img_dim: (img_dim * 0.5) / height
             pp_x = pixels_per_metre(self.height, self.last_frame.shape[1])
             pp_y = pixels_per_metre(self.height, self.last_frame.shape[0])
@@ -98,8 +109,7 @@ class OpticalFlow:
         # Opens a new window and displays the output frame
         # cv.imwrite("test_flow.jpg", rgb)
         # cv.imwrite("test_grey.jpg", grey)
-        self.video_flow.write(rgb)
-        self.video_grey.write(grey)
+        self.video.write(rgb)
 
 
     def set_height(self, height):
@@ -117,11 +127,8 @@ class OpticalFlow:
 
 if __name__ == '__main__':
     OF = OpticalFlow()
-    for i in range(1000):
-        OF.set_height(1)
+    for i in range(10):
         OF.set_angle([0, 0, 0, 0])
         OF.get_pose()
         print(OF.pose, i)
-    OF.camera.close()
-    
     
