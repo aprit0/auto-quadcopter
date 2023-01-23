@@ -4,7 +4,7 @@ from sensor_msgs.msg import Joy
 from geometry_msgs.msg import QuaternionStamped 
 from std_msgs.msg import Bool, Int16MultiArray, Header, MultiArrayDimension 
 
-from Control.flight_controller import FC
+from control.flight_controller import FC
 
 '''
 Subscribes:
@@ -71,7 +71,7 @@ def main(args=None):
     rclpy.init(args=args)
     control_node = ControlNode()
     rclpy.spin(control_node)
-    minimal_publisher.destroy_node()
+    control_node.destroy_node()
     rclpy.shutdown()
 
 

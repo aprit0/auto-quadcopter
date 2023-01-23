@@ -4,8 +4,8 @@ from rclpy.node import Node
 from geometry_msgs.msg import QuaternionStamped 
 from std_msgs.msg import Bool, Int16MultiArray, Header 
 
-from Devices.bno085 import INERTIAL
-from Devices.motors import ESC
+from devices.bno085 import INERTIAL
+from devices.motors import ESC
 
 '''
 External connection node
@@ -74,7 +74,7 @@ def main(args=None):
     rclpy.init(args=args)
     device_node = DeviceNode()
     rclpy.spin(device_node)
-    minimal_publisher.destroy_node()
+    device_node.destroy_node()
     rclpy.shutdown()
 
 
