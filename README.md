@@ -43,3 +43,12 @@ Using ROS2 nodes, the code base can be easily modular, adaptable and upgradeable
 ## Features
 - XYZ Stabilisation with optical flow
 - Benefits of ROS ecosystem
+
+
+
+# Installation
+## Dependencies
+..
+
+## Boot
+crontab -e, "@reboot ~/ros2_ws/src/auto-quadcopter/boot.sh"
