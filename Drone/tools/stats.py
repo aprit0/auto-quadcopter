@@ -101,7 +101,7 @@ font = ImageFont.load_default()
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 # font = ImageFont.truetype('Minecraftia.ttf', 8)
-
+t_0 = time.time()
 while True:
 
     # Draw a black filled box to clear the image.
@@ -112,6 +112,7 @@ while True:
     IP = str(subprocess.check_output(cmd, shell = True ))
     cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
     CPU = str(subprocess.check_output(cmd, shell = True ))
+    uptime = (time.time() - t_0) / 60 # minutes
     cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
     MemUsage = str(subprocess.check_output(cmd, shell = True ))
     cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
@@ -119,7 +120,7 @@ while True:
 
     # Write two lines of text.
     draw.text((x, top),       "IP: " + IP[2:-3],  font=font, fill=255)
-    draw.text((x, top+8),     CPU[2:-1], font=font, fill=255)
+    draw.text((x, top+8),     f'{CPU[2:-1]} T:{uptime:.1f}', font=font, fill=255)
     draw.text((x, top+16),    MemUsage[2:-1],  font=font, fill=255)
     draw.text((x, top+25),    Disk[2:-1],  font=font, fill=255)
 

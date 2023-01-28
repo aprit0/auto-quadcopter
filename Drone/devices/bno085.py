@@ -1,13 +1,16 @@
 import time
+import math
 from board import SCL, SDA
 from busio import I2C
 from adafruit_bno08x import (
     BNO_REPORT_STEP_COUNTER,
     BNO_REPORT_ROTATION_VECTOR,
     BNO_REPORT_GEOMAGNETIC_ROTATION_VECTOR,
+    BNO_REPORT_LINEAR_ACCELERATION
 )
 from adafruit_bno08x.i2c import BNO08X_I2C
-from devices.utils import quat_2_euler
+from utils import quat_2_euler
+# from devices.utils import quat_2_euler
 
 class INERTIAL:
     SETTINGS_FILE = "RTIMULib_2"
@@ -19,10 +22,14 @@ class INERTIAL:
         self.imu.enable_feature(BNO_REPORT_STEP_COUNTER)
         self.imu.enable_feature(BNO_REPORT_ROTATION_VECTOR)
         self.imu.enable_feature(BNO_REPORT_GEOMAGNETIC_ROTATION_VECTOR)
+        self.imu.enable_feature(BNO_REPORT_LINEAR_ACCELERATION)
 
         # params
         self.quat = [] # x, y, z, w
         self.euler = [] # roll, pitch, yaw
+        self.linear_accel = [] # x, y, z
+        self.linear_vel = [] # x, y, z
+        self.t_0 = None
     
     def read(self):
         '''
@@ -30,18 +37,31 @@ class INERTIAL:
         Current loop speed of max: 0.0022, min: 0.00067
         '''
         # Get Data 
+        ax, ay, az = self.imu.linear_acceleration
+        self.linear_accel = [ax, ay, az]
         i, j, k, w = self.imu.quaternion
         self.quat = [i, j, k, w]
         r, p, y = quat_2_euler(i, j, k, w)
         self.euler = [r, p, y] 
+        if self.t_0 is not None:
+            dt = time.time() - self.t_0
+            vel = [i * dt for i in self.linear_accel]
+            self.linear_vel[0] = math.cos(math.radians(p)) * vel[0]
+            self.linear_vel[1] = math.cos(math.radians(r)) * vel[1]
+            self.linear_vel[2] = math.cos(math.radians(r)) * math.cos(math.radians(p)) * vel[2]
+        self.t_0 = time.time()
+
         return 1
 
         
 if __name__ == '__main__':
     mpu = INERTIAL()
+    t_0 = time.time()
     while True:
-        mpu.read()
-        # time.sleep(0.1)
-        print(mpu.euler)
+        if time.time() - t_0 > 0.01:
+            mpu.read()
+            t_0 = time.time()
+            # time.sleep(0.1)
+            print([round(i, 4) for i in mpu.linear_vel])
 
 
