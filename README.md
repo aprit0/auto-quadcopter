@@ -52,3 +52,11 @@ Using ROS2 nodes, the code base can be easily modular, adaptable and upgradeable
 
 ## Boot
 crontab -e, "@reboot ~/ros2_ws/src/auto-quadcopter/boot.sh"
+
+# Learnings
+## Optical Flow
+This algorithm was coded and implemented. Loop speed was reasonable at 60Hz and able to accurately track magnitude and directions with both sparse and dense flow algorithms. 
+Limitation: The hardware used was a webcam, this was limited to 30Hz BUT *Auto focus could cause every second image to be blurred*
+Fix: Buy Optical Flow hardware for lateral velocity
+
+
