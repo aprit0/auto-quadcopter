@@ -39,7 +39,7 @@ class ZAXIS:
         alt_status = self.altimeter.read()
         alt_height =self.altimeter.altitude - self.alt_offset
         # Terms of positional choice
-        print(f'Tof: {tof_height:.3f} Alt:{alt_status}:{alt_height:.3f} {time.time() - t_0:.3f}')
+        # print(f'Tof: {tof_height:.3f} Alt:{alt_status}:{alt_height:.3f} {time.time() - t_0:.3f}')
         if tof_height < 1.1:
             self.height = tof_height
             self.status = 1

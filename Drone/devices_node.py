@@ -5,7 +5,7 @@ import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Bool, Int16MultiArray, Header 
-from sensor_msgs.msg import CompressedImage
+from sensor_msgs.msg import CompressedImage, NavSatFix
 
 from devices.bno085 import INERTIAL
 from devices.motors import ESC
@@ -45,11 +45,12 @@ class DeviceNode(Node):
 
         self.pub_img0 = self.create_publisher(CompressedImage, 'drone/Img0', 10)
         timer_img0 = 0.05  # seconds
-        self.timer_img0 = self.create_timer(timer_img0, self.img0_callback)
+        # self.timer_img0 = self.create_timer(timer_img0, self.img0_callback)
 
         timer_print= 0.1  # seconds
         self.timer_print = self.create_timer(timer_print, self.print_callback)
         
+        self.pub_gps = self.create_publisher(NavSatFix, 'drone/GPS', 10)
         timer_gps= 0.1  # seconds
         self.timer_gps = self.create_timer(timer_gps, self.gps_callback)
 
@@ -69,12 +70,25 @@ class DeviceNode(Node):
         pass
 
     def gps_callback(self):
+        print('gps_callback')
         sts = self.gps.read()
         if sts:
             self.pose[0] = self.gps.local_pose[0]
             self.pose[1] = self.gps.local_pose[1]
+            msg = NavSatFix()
+            h = Header()
+            h.stamp = self.get_clock().now().to_msg()
+            msg.header = h
+            msg.status.status = self.gps.sat_status
+            msg.latitude = self.gps.raw_pose[0]
+            msg.longitude = self.gps.raw_pose[1]
+            msg.altitude = self.gps.raw_pose[2]
+            self.pub_gps.publish(msg)
+
+
 
     def img0_callback(self):
+        print('img0_callback')
         self.cam0.read()
         image_np = self.cam0.processed
         msg = CompressedImage()
@@ -86,6 +100,7 @@ class DeviceNode(Node):
         self.pub_img0.publish(msg)
 
     def height_callback(self):
+        print('height_callback')
         self.tof.read()
         # self.pose[2] = self.tof.height if self.tof.status else self.pose[2]
         
@@ -102,7 +117,7 @@ class DeviceNode(Node):
         if self.imu_dt is not None:
             dt = time.time() - self.imu_dt
             self.pose[2] += -self.mpu.linear_vel[2]
-            print(self.pose[-1], self.mpu.linear_accel[2] * dt, dt)
+            # print(self.pose[-1], self.mpu.linear_accel[2] * dt, dt)
         self.imu_dt = time.time()
 
         msg = Odometry()

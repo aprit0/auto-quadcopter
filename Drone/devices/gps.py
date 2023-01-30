@@ -13,6 +13,7 @@ class BN0:
         self.local_origin = [0, 0, 0]
         self.raw_pose = None
         self.local_pose = None
+        self.sat_status = None
 
         self.calib()
 
@@ -52,6 +53,7 @@ class BN0:
             nmea_time = NMEA_buff[0]                    #extract time from GPGGA string
             nmea_latitude = NMEA_buff[1]                #extract latitude from GPGGA string
             nmea_longitude = NMEA_buff[3]               #extract longitude from GPGGA string
+            self.sat_status = (int)(NMEA_buff[5])
             nmea_height = (float)(NMEA_buff[8])
             lat = (float)(nmea_latitude)
             lat = self.convert_to_degrees(lat)
