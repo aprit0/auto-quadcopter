@@ -1,13 +1,13 @@
 # Autonomous Quadcopter
-  An autonomous drone designed for semi autonomous flight. As I am no flying wiz, I am supplementing skill with software! 
+  An autonomous drone designed for semi autonomous flight. As I am no flying wiz, skill is supplemented with software! 
 ## STATUS
 - [x] Build prototype hardware
 - [x] Code and integrate flight controller sensors
 - [x] Code and integrate base station
 - [x] Roll/Pitch/Yaw PID Tuning
 - [x] FIRST FLIGHT
-- [ ] Code and integrate XYZ Hover
-- [ ] Code and integrate GPS
+- [ ] Code and integrate XYZ Hover - Awaiting Optical Flow Sensor
+- [x] Code and integrate GPS
 
 ## Bugs
 - [ ] BMS Current Sensor 
