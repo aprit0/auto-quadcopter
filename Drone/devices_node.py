@@ -11,6 +11,7 @@ from devices.bno085 import INERTIAL
 from devices.motors import ESC
 from devices.tof import ZAXIS
 from devices.camera import Video
+from devices.gps import BN0
 
 '''
 External connection node
@@ -36,7 +37,7 @@ class DeviceNode(Node):
         # Publishers
         # Publish Odom at a higher rate to complement IMU
         self.pub_odom = self.create_publisher(Odometry, 'drone/Odom', 10)
-        timer_odom = 0.05  # seconds
+        timer_odom = 0.005  # seconds
         self.timer_odom = self.create_timer(timer_odom, self.odom_callback)
 
         timer_height = 0.05  # seconds
@@ -48,11 +49,16 @@ class DeviceNode(Node):
 
         timer_print= 0.1  # seconds
         self.timer_print = self.create_timer(timer_print, self.print_callback)
+        
+        timer_gps= 0.1  # seconds
+        self.timer_gps = self.create_timer(timer_gps, self.gps_callback)
 
         self.mpu = INERTIAL()
         self.motors = ESC()
         self.tof = ZAXIS()
         self.cam0 = Video()
+        self.gps = BN0()
+        self.gps_dt = time.time()
 
         self.pose = [0., 0., 0.]
         self.imu_dt = None
@@ -61,6 +67,12 @@ class DeviceNode(Node):
         # print(f'{self.motors.armed}')
         # print(f'fl,fr:{self.motors.last_cmd[:2]} \nbl,br:{self.motors.last_cmd[2:]}')
         pass
+
+    def gps_callback(self):
+        sts = self.gps.read()
+        if sts:
+            self.pose[0] = self.gps.local_pose[0]
+            self.pose[1] = self.gps.local_pose[1]
 
     def img0_callback(self):
         self.cam0.read()
@@ -79,6 +91,8 @@ class DeviceNode(Node):
         
 
     def odom_callback(self):
+        print('loop_time: ', time.time() - self.gps_dt)
+        self.gps_dt = time.time()
         try:
             self.mpu.read()
         except Exception as e:

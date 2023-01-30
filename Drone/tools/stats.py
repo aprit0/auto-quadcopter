@@ -102,29 +102,27 @@ font = ImageFont.load_default()
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 # font = ImageFont.truetype('Minecraftia.ttf', 8)
 t_0 = time.time()
-while True:
 
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0,0,width,height), outline=0, fill=0)
+# Draw a black filled box to clear the image.
+draw.rectangle((0,0,width,height), outline=0, fill=0)
 
-    # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
-    cmd = "hostname -I | cut -d\' \' -f1"
-    IP = str(subprocess.check_output(cmd, shell = True ))
-    cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
-    CPU = str(subprocess.check_output(cmd, shell = True ))
-    uptime = (time.time() - t_0) / 60 # minutes
-    cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
-    MemUsage = str(subprocess.check_output(cmd, shell = True ))
-    cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
-    Disk = str(subprocess.check_output(cmd, shell = True ))
+# Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
+cmd = "hostname -I | cut -d\' \' -f1"
+IP = str(subprocess.check_output(cmd, shell = True ))
+cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
+CPU = str(subprocess.check_output(cmd, shell = True ))
+uptime = (time.time() - t_0) / 60 # minutes
+cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
+MemUsage = str(subprocess.check_output(cmd, shell = True ))
+cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
+Disk = str(subprocess.check_output(cmd, shell = True ))
 
-    # Write two lines of text.
-    draw.text((x, top),       "IP: " + IP[2:-3],  font=font, fill=255)
-    draw.text((x, top+8),     f'{CPU[2:-1]} T:{uptime:.1f}', font=font, fill=255)
-    draw.text((x, top+16),    MemUsage[2:-1],  font=font, fill=255)
-    draw.text((x, top+25),    Disk[2:-1],  font=font, fill=255)
+# Write two lines of text.
+draw.text((x, top),       "IP: " + IP[2:-3],  font=font, fill=255)
+draw.text((x, top+8),     f'{CPU[2:-1]} T:{uptime:.1f}', font=font, fill=255)
+draw.text((x, top+16),    MemUsage[2:-1],  font=font, fill=255)
+draw.text((x, top+25),    Disk[2:-1],  font=font, fill=255)
 
-    # Display image.
-    disp.image(image)
-    disp.display()
-    time.sleep(.5)
+# Display image.
+disp.image(image)
+disp.display()
