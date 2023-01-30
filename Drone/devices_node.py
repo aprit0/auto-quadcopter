@@ -3,13 +3,13 @@ import numpy as np
 import cv2 as cv
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import QuaternionStamped 
-from std_msgs.msg import Bool, Int16MultiArray, Header, Float32 
+from nav_msgs.msg import Odometry
+from std_msgs.msg import Bool, Int16MultiArray, Header 
 from sensor_msgs.msg import CompressedImage
 
 from devices.bno085 import INERTIAL
 from devices.motors import ESC
-from devices.tof import VL53
+from devices.tof import ZAXIS
 from devices.camera import Video
 
 '''
@@ -20,8 +20,7 @@ Subscribes:
 - drone/ARM | Bool
 
 Publishes:
-- drone/Quaternion | QuaternionStamped
-- drone/Height | Float32
+- drone/Odom | Odometry
 - drone/Img0 | CompressedImage
 '''
 
@@ -35,11 +34,11 @@ class DeviceNode(Node):
         self.sub_arm = self.create_subscription(Bool,'drone/ARM',self.arm_callback,10)
         self.sub_arm  
         # Publishers
-        self.pub_quat = self.create_publisher(QuaternionStamped, 'drone/Quaternion', 10)
-        timer_quat = 0.005  # seconds
-        self.timer_quat = self.create_timer(timer_quat, self.quat_callback)
+        # Publish Odom at a higher rate to complement IMU
+        self.pub_odom = self.create_publisher(Odometry, 'drone/Odom', 10)
+        timer_odom = 0.05  # seconds
+        self.timer_odom = self.create_timer(timer_odom, self.odom_callback)
 
-        self.pub_height = self.create_publisher(Float32, 'drone/Height', 10)
         timer_height = 0.05  # seconds
         self.timer_height = self.create_timer(timer_height, self.height_callback)
 
@@ -52,12 +51,16 @@ class DeviceNode(Node):
 
         self.mpu = INERTIAL()
         self.motors = ESC()
-        self.tof = VL53()
+        self.tof = ZAXIS()
         self.cam0 = Video()
 
+        self.pose = [0., 0., 0.]
+        self.imu_dt = None
+
     def print_callback(self):
-        print(f'{self.motors.armed}')
-        print(f'fl,fr:{self.motors.last_cmd[:2]} \nbl,br:{self.motors.last_cmd[2:]}')
+        # print(f'{self.motors.armed}')
+        # print(f'fl,fr:{self.motors.last_cmd[:2]} \nbl,br:{self.motors.last_cmd[2:]}')
+        pass
 
     def img0_callback(self):
         self.cam0.read()
@@ -71,31 +74,41 @@ class DeviceNode(Node):
         self.pub_img0.publish(msg)
 
     def height_callback(self):
-        try:
-            height = self.tof.read()
-        except Exception as e:
-            print(f'--------------{e}')
-            time.sleep(2)
-        msg = Float32()
-        msg.data = height
-        self.pub_height.publish(msg)
+        self.tof.read()
+        # self.pose[2] = self.tof.height if self.tof.status else self.pose[2]
+        
 
-    def quat_callback(self):
+    def odom_callback(self):
         try:
             self.mpu.read()
         except Exception as e:
             print(f'--------------{e}')
             time.sleep(2)
-        msg = QuaternionStamped()
+
+        if self.imu_dt is not None:
+            dt = time.time() - self.imu_dt
+            self.pose[2] += -self.mpu.linear_vel[2]
+            print(self.pose[-1], self.mpu.linear_accel[2] * dt, dt)
+        self.imu_dt = time.time()
+
+        msg = Odometry()
         h = Header()
         h.stamp = self.get_clock().now().to_msg()
         msg.header = h
-        msg.quaternion.x =self.mpu.quat[0]
-        msg.quaternion.y =self.mpu.quat[1]
-        msg.quaternion.z =self.mpu.quat[2]
-        msg.quaternion.w =self.mpu.quat[3]
-        self.pub_quat.publish(msg)
-        # print(self.mpu.euler)
+        msg.pose.pose.position.x = self.pose[0]
+        msg.pose.pose.position.y = self.pose[1]
+        msg.pose.pose.position.z = self.pose[2]
+        msg.pose.pose.orientation.x =self.mpu.quat[0]
+        msg.pose.pose.orientation.y =self.mpu.quat[1]
+        msg.pose.pose.orientation.z =self.mpu.quat[2]
+        msg.pose.pose.orientation.w =self.mpu.quat[3]
+        msg.twist.twist.linear.x =self.mpu.linear_vel[0]
+        msg.twist.twist.linear.y =self.mpu.linear_vel[1]
+        msg.twist.twist.linear.z =self.mpu.linear_vel[2]
+        msg.twist.twist.angular.x =self.mpu.angular_vel[0]
+        msg.twist.twist.angular.y =self.mpu.angular_vel[1]
+        msg.twist.twist.angular.z =self.mpu.angular_vel[2]
+        self.pub_odom.publish(msg)
     
     def cmd_callback(self, msg):
         cmd = msg.data

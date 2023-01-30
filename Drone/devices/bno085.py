@@ -9,8 +9,8 @@ from adafruit_bno08x import (
     BNO_REPORT_LINEAR_ACCELERATION
 )
 from adafruit_bno08x.i2c import BNO08X_I2C
-from utils import quat_2_euler
-# from devices.utils import quat_2_euler
+# from utils import quat_2_euler
+from devices.utils import quat_2_euler
 
 class INERTIAL:
     SETTINGS_FILE = "RTIMULib_2"
@@ -27,9 +27,13 @@ class INERTIAL:
         # params
         self.quat = [] # x, y, z, w
         self.euler = [] # roll, pitch, yaw
+        self.euler_last = []
         self.linear_accel = [] # x, y, z
-        self.linear_vel = [] # x, y, z
+        self.linear_vel = [0] * 3 # x, y, z
+        self.angular_vel = []
         self.t_0 = None
+
+        self.read()
     
     def read(self):
         '''
@@ -49,8 +53,10 @@ class INERTIAL:
             self.linear_vel[0] = math.cos(math.radians(p)) * vel[0]
             self.linear_vel[1] = math.cos(math.radians(r)) * vel[1]
             self.linear_vel[2] = math.cos(math.radians(r)) * math.cos(math.radians(p)) * vel[2]
+            self.angular_vel = [math.radians((i - j))/dt for (i, j) in zip(self.euler, self.euler_last)]
         self.t_0 = time.time()
-
+        self.euler_last = self.euler
+        
         return 1
 
         
