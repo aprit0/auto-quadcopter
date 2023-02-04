@@ -3,9 +3,9 @@ import time
 import VL53L0X
 
 # Create a VL53L0X object
-tof = VL53L0X.VL53L0X(i2c_bus=1,i2c_address=0x29)
+tof = VL53L0X.VL53L0X(i2c_bus=11,i2c_address=0x29)
 # I2C Address can change before tof.open()
-# tof.change_address(0x32)
+# tof.change_address(0x41)
 tof.open()
 # Start ranging
 tof.start_ranging(VL53L0X.Vl53l0xAccuracyMode.HIGH_SPEED)

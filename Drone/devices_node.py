@@ -12,6 +12,7 @@ from devices.motors import ESC
 from devices.tof import ZAXIS
 from devices.camera import Video
 from devices.gps import BN0
+from devices.optical_flow import FLOW
 
 '''
 External connection node
@@ -42,6 +43,9 @@ class DeviceNode(Node):
 
         timer_height = 0.05  # seconds
         self.timer_height = self.create_timer(timer_height, self.height_callback)
+        
+        timer_flow = 0.01  # seconds
+        self.timer_flow = self.create_timer(timer_flow, self.flow_callback)
 
         self.pub_img0 = self.create_publisher(CompressedImage, 'drone/Img0', 10)
         timer_img0 = 0.05  # seconds
@@ -59,9 +63,12 @@ class DeviceNode(Node):
         self.tof = ZAXIS()
         self.cam0 = Video()
         self.gps = BN0()
+        self.of = FLOW()
         self.gps_dt = time.time()
 
-        self.pose = [0., 0., 0.]
+        self.pose = [0., 0., 0.] # x, y, z
+        self.quat = [0., 0., 0., 0.,] # x, y, z, w
+        self.twist = [0., 0., 0., 0., 0., 0.] # linear: x, y, z, angular: x, y, z
         self.imu_dt = None
 
     def print_callback(self):
@@ -73,8 +80,8 @@ class DeviceNode(Node):
         print('gps_callback')
         sts = self.gps.read()
         if sts:
-            self.pose[0] = self.gps.local_pose[0]
-            self.pose[1] = self.gps.local_pose[1]
+            # self.pose[0] = self.gps.local_pose[0]
+            # self.pose[1] = self.gps.local_pose[1]
             msg = NavSatFix()
             h = Header()
             h.stamp = self.get_clock().now().to_msg()
@@ -102,23 +109,21 @@ class DeviceNode(Node):
     def height_callback(self):
         print('height_callback')
         self.tof.read()
-        # self.pose[2] = self.tof.height if self.tof.status else self.pose[2]
+        self.pose[2] = self.tof.height if self.tof.status else self.pose[2]
+
+    def flow_callback(self):
+        self.flow.read()
+        self.pose[0:2] = self.flow.pose
+        self.twist[0:2] = self.flow.twist
         
 
     def odom_callback(self):
         print('loop_time: ', time.time() - self.gps_dt)
         self.gps_dt = time.time()
-        try:
-            self.mpu.read()
-        except Exception as e:
-            print(f'--------------{e}')
-            time.sleep(2)
+        self.mpu.read()
+        self.quat = self.mpu.quat
+        self.twist[3:] = self.mpu.angular_vel
 
-        if self.imu_dt is not None:
-            dt = time.time() - self.imu_dt
-            self.pose[2] += -self.mpu.linear_vel[2]
-            # print(self.pose[-1], self.mpu.linear_accel[2] * dt, dt)
-        self.imu_dt = time.time()
 
         msg = Odometry()
         h = Header()
@@ -131,12 +136,12 @@ class DeviceNode(Node):
         msg.pose.pose.orientation.y =self.mpu.quat[1]
         msg.pose.pose.orientation.z =self.mpu.quat[2]
         msg.pose.pose.orientation.w =self.mpu.quat[3]
-        msg.twist.twist.linear.x =self.mpu.linear_vel[0]
-        msg.twist.twist.linear.y =self.mpu.linear_vel[1]
-        msg.twist.twist.linear.z =self.mpu.linear_vel[2]
-        msg.twist.twist.angular.x =self.mpu.angular_vel[0]
-        msg.twist.twist.angular.y =self.mpu.angular_vel[1]
-        msg.twist.twist.angular.z =self.mpu.angular_vel[2]
+        msg.twist.twist.linear.x =self.twist[0]
+        msg.twist.twist.linear.y =self.twist[1]
+        msg.twist.twist.linear.z =self.twist[2]
+        msg.twist.twist.angular.x = self.twist[3]
+        msg.twist.twist.angular.y = self.twist[4]
+        msg.twist.twist.angular.z = self.twist[5]
         self.pub_odom.publish(msg)
     
     def cmd_callback(self, msg):
