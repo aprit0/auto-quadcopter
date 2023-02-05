@@ -1,15 +1,16 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Joy
-from geometry_msgs.msg import QuaternionStamped 
+from nav_msgs.msg import Odometry
 from std_msgs.msg import Bool, Int16MultiArray, Header, MultiArrayDimension 
 
-from Control.flight_controller import FC
+from control.flight_controller import FC
+from devices.utils import quat_2_euler
 
 '''
 Subscribes:
 - base/Joy | Joy
-- drone/Quaternion | QuaternionStamped
+- drone/Odom | Odometry
 
 Publishes:
 - drone/CMD | Int16MultiArray
@@ -21,8 +22,8 @@ Publishes:
 class ControlNode(Node):
     def __init__(self):
         super().__init__('control_node')
-        self.sub_quat = self.create_subscription(QuaternionStamped,'drone/Quaternion',self.quat_callback,10)
-        self.sub_quat 
+        self.sub_odom = self.create_subscription(Odometry,'drone/Odom',self.odom_callback,10)
+        self.sub_odom 
         self.sub_joy = self.create_subscription(Joy,'base/Joy',self.joy_callback,10)
         self.sub_joy 
         self.pub_cmd = self.create_publisher(Int16MultiArray,'drone/CMD', 10)
@@ -31,14 +32,16 @@ class ControlNode(Node):
         self.pub_arm = self.create_publisher(Bool,'drone/ARM', 10)
         
         self.Control = FC()
+        self.euler = None
 
-    def quat_callback(self, msg):
-        quat = [0, 0, 0, 0]
-        quat[0] = msg.quaternion.x 
-        quat[1] = msg.quaternion.y
-        quat[2] = msg.quaternion.z 
-        quat[3] = msg.quaternion.w 
-        self.Control.update_pose(quat)
+    def odom_callback(self, msg):
+        q = [0, 0, 0, 0]
+        q[0] = msg.pose.pose.orientation.x  
+        q[1] = msg.pose.pose.orientation.y 
+        q[2] = msg.pose.pose.orientation.z 
+        q[3] = msg.pose.pose.orientation.w 
+        self.euler = quat_2_euler(q[0], q[1], q[2], q[3])
+        self.Control.update_pose(self.euler)
     
     def joy_callback(self, msg):
         self.Control.read_joystick(msg.axes, msg.buttons)
@@ -71,7 +74,7 @@ def main(args=None):
     rclpy.init(args=args)
     control_node = ControlNode()
     rclpy.spin(control_node)
-    minimal_publisher.destroy_node()
+    control_node.destroy_node()
     rclpy.shutdown()
 
 
