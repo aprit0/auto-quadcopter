@@ -1,3 +1,4 @@
+import os
 import pygame
 import numpy as np
 from copy import deepcopy
@@ -13,13 +14,21 @@ See update_state for XBOX one Controller keymaps
 
 
 class Joystick:
-    def __init__(self, Keyboard=True, joystick=None, MVA=False):
+    def __init__(self, Keyboard=False, MVA=False):
         self.reset = {'axes': [-1] + [0.] * 5, # + [-1.] + [0.] * 2 + [-1.],
                       'buttons': [0.] * 11}
         self.MVA = MVA
         self.Key = Keyboard
         self.state = deepcopy(self.reset)
-        self.joy = joystick
+        self.joy = self.joy_heartbeat()
+
+    def joy_heartbeat(self):
+        # pygame.joystick.init()
+
+        print(pygame.joystick.get_count())
+        init_joystick = pygame.joystick.Joystick(0)
+        init_joystick.init()
+        return init_joystick
 
     def filter(self, old_axes):
         new_axes = self.state['axes']
@@ -116,3 +125,16 @@ class Joystick:
         self.state['axes'][1] += new_axes[3] # Roll : RX
         self.state['axes'][2] += new_axes[4] # Pitch : RY
         self.state['axes'][3] += new_axes[0] # Yaw : LX
+
+
+if __name__ == '__main__':
+    os.environ["SDL_VIDEODRIVER"] = "dummy"
+    os.environ['SDL_AUDIODRIVER'] = 'dsp'
+    pygame.init()
+    # pygame.joystick.init()
+    print(pygame.joystick.get_count())
+    joy = Joystick()
+    while True:
+        event_new = pygame.event.get()
+        state = joy.update_state(event_new)
+        print(state)
