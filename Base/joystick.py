@@ -1,4 +1,5 @@
 import os
+import time
 import pygame
 import numpy as np
 from copy import deepcopy
@@ -17,7 +18,7 @@ See update_state for XBOX one Controller keymaps
 
 
 class Joystick:
-    STEP = 0.02  # Increment for increase in axes
+    STEP = 0.05  # Increment for increase in axes
     DISC_HOME = 5  # Timeout for controller to reconnect before returning home
 
     def __init__(self):
@@ -27,26 +28,32 @@ class Joystick:
         self.state = deepcopy(self.reset)
         self.time_disconnect = None
         self.status = 0
-        self.joy = self.joy_init()
+        self.joy = None
+        
+        self.joy_init()
 
 
-    @staticmethod
-    def joy_init():
-        pygame.joystick.init()
+    def joy_init(self):
         while pygame.joystick.get_count() == 0:
+            event = pygame.event.get()  # Required to update the joystick values
             print('No Controller detected')
-        init_joystick = pygame.joystick.Joystick(0)
-        init_joystick.init()
-        return init_joystick
+        pygame.joystick.init()
+        self.joy = pygame.joystick.Joystick(0)
+        self.joy.init()
+        self.joy.rumble(0.5, 5, 200)
+        # print(self.joy.get_power_level())
+        # print(self.joy.get_name())
+
 
     def joy_heartbeat(self):
+        old_status = self.status
         self.status = bool(pygame.joystick.get_count())
-        # print('Heartbeat', self.status)
+        if old_status == 0 and self.status == 1:
+            self.joy_init()
 
     def update_state(self):
+        event = pygame.event.get()  # Required to update the joystick values
         # Main Control Loop
-        _ = pygame.event.get()  # Required to update the joystick values
-        old_state = deepcopy(self.state)
         self.joy_heartbeat()
         # Control gate 0: Check if connected to Joystick
         if self.status:
@@ -59,6 +66,7 @@ class Joystick:
                 # Reset throttle on LB
                 self.state['axes'][0] = self.reset['axes'][0]
         else:
+            print('disc')
             # Joystick disconnected
             self.state['axes'][1:] = self.reset['axes'][1:]  # Set drone to balance upright
             self.state['buttons'][1] = 1  # Set drone to hold altitude

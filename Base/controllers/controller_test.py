@@ -8,7 +8,7 @@ def test(joy, cont):
     # joysticks
     axes = [joy.get_axis(i) for i in range(joy.get_numaxes())]
     # cont.map(axes, None, None)
-    # print({i: axes[i] for i in range(len(axes))})
+    print({i: axes[i] for i in range(len(axes))})
     # print(cont.cartesian_axes, cont.trigger_axes)
 
     # Buttons
@@ -16,7 +16,7 @@ def test(joy, cont):
     hats = [joy.get_hat(i) for i in range(joy.get_numhats())]
     # print({i: buttons[i] for i in range(len(buttons))}, hats)
     cont.map(None, buttons, hats[0])
-    print(cont.buttons)
+    # print(cont.buttons)
 
 if __name__ == '__main__':
     cont = CONTROLLER()
