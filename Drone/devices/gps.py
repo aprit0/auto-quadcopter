@@ -14,6 +14,7 @@ class BN0:
         self.raw_pose = None
         self.local_pose = None
         self.sat_status = None
+        self.status = 0
 
         self.calib()
 
@@ -28,11 +29,11 @@ class BN0:
         self.raw_origin = [np.median(i) for i in cal]
 
     def read(self):
-        sts, out = self.get_pose()
-        if sts:
+        self.status, out = self.get_pose()
+        if self.status:
             self.raw_pose = out
             self.local_pose = pm.geodetic2enu(*self.raw_pose, *self.raw_origin)
-        return sts
+        return self.status
 
     
     def get_pose(self):

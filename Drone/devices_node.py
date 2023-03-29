@@ -9,7 +9,7 @@ from sensor_msgs.msg import CompressedImage, NavSatFix
 
 from devices.bno085 import INERTIAL
 from devices.motors import ESC
-from devices.tof import ZAXIS
+from devices.z_axis import ZAXIS
 from devices.camera import Video
 from devices.gps import BN0
 from devices.optical_flow import FLOW
@@ -35,20 +35,21 @@ class DeviceNode(Node):
         self.sub_cmd  
         self.sub_arm = self.create_subscription(Bool,'drone/ARM',self.arm_callback,10)
         self.sub_arm  
+
         # Publishers
         # Publish Odom at a higher rate to complement IMU
         self.pub_odom = self.create_publisher(Odometry, 'drone/Odom', 10)
         timer_odom = 0.005  # seconds
         self.timer_odom = self.create_timer(timer_odom, self.odom_callback)
 
-        timer_height = 0.05  # seconds
+        timer_height = 0.08  # seconds
         self.timer_height = self.create_timer(timer_height, self.height_callback)
         
         timer_flow = 0.01  # seconds
         self.timer_flow = self.create_timer(timer_flow, self.flow_callback)
 
-        self.pub_img0 = self.create_publisher(CompressedImage, 'drone/Img0', 10)
-        timer_img0 = 0.05  # seconds
+        # self.pub_img0 = self.create_publisher(CompressedImage, 'drone/Img0', 10)
+        # timer_img0 = 0.05  # seconds
         # self.timer_img0 = self.create_timer(timer_img0, self.img0_callback)
 
         timer_print= 0.1  # seconds
@@ -60,11 +61,11 @@ class DeviceNode(Node):
 
         self.mpu = INERTIAL()
         self.motors = ESC()
-        self.tof = ZAXIS()
+        self.height = ZAXIS()
         self.cam0 = Video()
         self.gps = BN0()
         self.of = FLOW()
-        self.gps_dt = time.time()
+        self.odom_dt = time.time()
 
         self.pose = [0., 0., 0.] # x, y, z
         self.quat = [0., 0., 0., 0.,] # x, y, z, w
@@ -74,10 +75,10 @@ class DeviceNode(Node):
     def print_callback(self):
         # print(f'{self.motors.armed}')
         # print(f'fl,fr:{self.motors.last_cmd[:2]} \nbl,br:{self.motors.last_cmd[2:]}')
+        print(f'Status: height:{self.height.status} | *mpu: {self.mpu.status} | gps: {self.gps.status} | *of: {self.of.status}')
         pass
 
     def gps_callback(self):
-        print('gps_callback')
         sts = self.gps.read()
         if sts:
             # self.pose[0] = self.gps.local_pose[0]
@@ -108,8 +109,8 @@ class DeviceNode(Node):
 
     def height_callback(self):
         print('height_callback')
-        self.tof.read()
-        self.pose[2] = self.tof.height if self.tof.status else self.pose[2]
+        self.height.read()
+        self.pose[2] = self.height.height
 
     def flow_callback(self):
         self.flow.read()
@@ -118,8 +119,8 @@ class DeviceNode(Node):
         
 
     def odom_callback(self):
-        print('loop_time: ', time.time() - self.gps_dt)
-        self.gps_dt = time.time()
+        print('ODOM loop: ', time.time() - self.odom_dt)
+        self.odom_dt = time.time()
         self.mpu.read()
         self.quat = self.mpu.quat
         self.twist[3:] = self.mpu.angular_vel

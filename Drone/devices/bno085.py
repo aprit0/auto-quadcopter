@@ -32,6 +32,7 @@ class INERTIAL:
         self.linear_vel = [0] * 3 # x, y, z
         self.angular_vel = []
         self.t_0 = None
+        self.status = 0
 
         self.read()
     
@@ -56,8 +57,8 @@ class INERTIAL:
             self.angular_vel = [math.radians((i - j))/dt for (i, j) in zip(self.euler, self.euler_last)]
         self.t_0 = time.time()
         self.euler_last = self.euler
-        
-        return 1
+        self.status = 1 # No health check implemented
+        return self.status
 
         
 if __name__ == '__main__':

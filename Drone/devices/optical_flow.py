@@ -12,6 +12,7 @@ class FLOW:
         self.pose = [0, 0] # x, y
         self.twist = [0, 0] # dx, dy
         self.last_time = None
+        self.status = 0
 
     def read(self):
         x, y = self.flo.get_motion()
@@ -20,6 +21,7 @@ class FLOW:
             self.twist = [x / dt, y / dt] if dt != 0. else [0., 0.]
             self.pose = [i + j for (i, j) in zip(self.pose, [x, y])]
         self.last_time = time.time()
+        self.status = 1 # No health check implemented
 
 
 if __name__ == '__main__':

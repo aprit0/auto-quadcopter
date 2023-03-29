@@ -14,8 +14,8 @@ def main():
     t_start = time.time()
     t_last = t_start
     try:
-        while time.time() - t_start < 10:
-            if time.time() - t_last > 0.1:
+        while time.time() - t_start < 30:
+            if time.time() - t_last > 0.05:
                 OF.read()
                 tof.read()
                 dt = time.time() - t_last
@@ -34,9 +34,10 @@ def main():
                 t_last = time.time()
     except Exception as e:
         print(e)
-        df = pd.DataFrame(odom)
-        df.to_csv('Outputs/OF_calib.csv')
-        print('DF Complete')
+
+    df = pd.DataFrame(odom)
+    df.to_csv('Outputs/OF_calib.csv')
+    print('DF Complete')
 
 
 if __name__ == '__main__':
