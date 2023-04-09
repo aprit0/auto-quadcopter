@@ -3,7 +3,7 @@ import math
 import numpy as np
 
 from Control.balance import ControlSystem
-
+from Control.planner import PLAN
 
 '''
 Receives:
@@ -16,7 +16,7 @@ Outputs:
 - Motor CMDS
 '''
 
-class FC:
+class FC(PLAN):
     def __init__(self, calib_imu=True):
         self.CS = ControlSystem()
 
@@ -54,6 +54,10 @@ class FC:
         elif not self.calib_imu and type(self.euler_offsets) == type(None):
             self.euler_offsets = [0, 0, 0]
         self.euler_current = [i + j for (i, j) in zip(euler, self.euler_offsets)]
+
+
+    def read_velocity(self, linear, angular):
+        self.vel_2_path(linear, angular)
 
 
     @staticmethod

@@ -22,8 +22,8 @@ Subscribes:
 - drone/ARM | Bool
 
 Publishes:
-- drone/Odom | Odometry
-- drone/Img0 | CompressedImage
+- drone/odom | Odometry
+- drone/img0 | CompressedImage
 '''
 
 
@@ -38,7 +38,7 @@ class DeviceNode(Node):
 
         # Publishers
         # Publish Odom at a higher rate to complement IMU
-        self.pub_odom = self.create_publisher(Odometry, 'drone/Odom', 10)
+        self.pub_odom = self.create_publisher(Odometry, 'drone/odom', 10)
         timer_odom = 0.005  # seconds
         self.timer_odom = self.create_timer(timer_odom, self.odom_callback)
 
@@ -48,7 +48,7 @@ class DeviceNode(Node):
         timer_flow = 0.01  # seconds
         self.timer_flow = self.create_timer(timer_flow, self.flow_callback)
 
-        # self.pub_img0 = self.create_publisher(CompressedImage, 'drone/Img0', 10)
+        # self.pub_img0 = self.create_publisher(CompressedImage, 'drone/img0', 10)
         # timer_img0 = 0.05  # seconds
         # self.timer_img0 = self.create_timer(timer_img0, self.img0_callback)
 

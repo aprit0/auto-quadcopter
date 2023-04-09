@@ -3,14 +3,15 @@ from rclpy.node import Node
 from sensor_msgs.msg import Joy
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Bool, Int16MultiArray, Header, MultiArrayDimension 
+from geometry_msgs.msg import TwistStamped, Vector3 
 
 from control.flight_controller import FC
 from devices.utils import quat_2_euler
 
 '''
 Subscribes:
-- base/Joy | Joy
-- drone/Odom | Odometry
+- base/twist | Twist
+- drone/odom | Odometry
 
 Publishes:
 - drone/CMD | Int16MultiArray
@@ -22,10 +23,10 @@ Publishes:
 class ControlNode(Node):
     def __init__(self):
         super().__init__('control_node')
-        self.sub_odom = self.create_subscription(Odometry,'drone/Odom',self.odom_callback,10)
+        self.sub_odom = self.create_subscription(Odometry,'drone/odom',self.odom_callback,10)
         self.sub_odom 
-        self.sub_joy = self.create_subscription(Joy,'base/Joy',self.joy_callback,10)
-        self.sub_joy 
+        self.sub_twist = self.create_subscription(Joy,'base/twist',self.twist_callback,10)
+        self.sub_twist 
         self.pub_cmd = self.create_publisher(Int16MultiArray,'drone/CMD', 10)
         timer_period = 0.01  # seconds
         self.timer_cmd = self.create_timer(timer_period, self.cmd_callback)
@@ -43,9 +44,8 @@ class ControlNode(Node):
         self.euler = quat_2_euler(q[0], q[1], q[2], q[3])
         self.Control.update_pose(self.euler)
     
-    def joy_callback(self, msg):
-        self.Control.read_joystick(msg.axes, msg.buttons)
-        # print('ARM: ', self.Control.ARM)
+    def twist_callback(self, msg):
+        self.Control.read_velocity(msg.linear, msg.angular)
 
     def cmd_callback(self):
         cmd = self.Control.run()
