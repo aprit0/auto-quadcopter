@@ -9,7 +9,7 @@ import pygame
 
 class JoystickNode(Node):
     def __init__(self):
-        super().__init__('joystick_mode')
+        super().__init__('joystick_node')
         self.pub_joy = self.create_publisher(Joy, 'base/Joy', 10)
         timer_period = 0.05  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)

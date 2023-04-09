@@ -10,7 +10,6 @@ count = 0
 fails = 0
 t_0 = time.time()
 while True:
-    dist = 720
     if time.time() - t_0 > 0.07:
         result = bytearray(2)
         dev.readinto(result)
@@ -19,9 +18,6 @@ while True:
         t_0 = time.time()
         dev.write(bytes([0x51]))
     
-    if dist == 720:
-        fails += 1
-    count += 1
-    # if time.time() - t_1 > 0.05:
-    print(time.time() - t_1, dist, fails/count)
-    t_1 = time.time()
+    if time.time() - t_1 > 0.1:
+        print(time.time() - t_1, dist)
+        t_1 = time.time()
