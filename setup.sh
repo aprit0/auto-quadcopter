@@ -8,5 +8,5 @@ sudo tailscale up
 
 ## Random
 sudo apt install i2c-tools
-
+sudo apt install iwlist
 ## ROS
