@@ -10,6 +10,8 @@ from devices.utils import quat_2_euler
 
 '''
 Subscribes:
+- base/ARM | Bool
+- base/HOLD | Bool
 - base/twist | Twist
 - drone/odom | Odometry
 
@@ -27,6 +29,10 @@ class ControlNode(Node):
         self.sub_odom 
         self.sub_twist = self.create_subscription(Joy,'base/twist',self.twist_callback,10)
         self.sub_twist 
+        self.sub_arm = self.create_subscription(Odometry,'base/ARM',self.arm_callback,10)
+        self.sub_arm 
+        self.sub_hold = self.create_subscription(Odometry,'base/HOLD',self.hold_callback,10)
+        self.sub_hold 
         self.pub_cmd = self.create_publisher(Int16MultiArray,'drone/CMD', 10)
         timer_period = 0.01  # seconds
         self.timer_cmd = self.create_timer(timer_period, self.cmd_callback)
@@ -37,15 +43,27 @@ class ControlNode(Node):
 
     def odom_callback(self, msg):
         q = [0, 0, 0, 0]
-        q[0] = msg.pose.pose.orientation.x  
-        q[1] = msg.pose.pose.orientation.y 
-        q[2] = msg.pose.pose.orientation.z 
-        q[3] = msg.pose.pose.orientation.w 
-        self.euler = quat_2_euler(q[0], q[1], q[2], q[3])
-        self.Control.update_pose(self.euler)
+        pose = msg.pose.pose
+        twist = msg.twist.twist
+        q[0] = pose.orientation.x  
+        q[1] = pose.orientation.y 
+        q[2] = pose.orientation.z 
+        q[3] = pose.orientation.w 
+        self.euler = list(quat_2_euler(q[0], q[1], q[2], q[3]))
+        cartesian = [pose.position.x, pose.position.y, pose.position.z]
+        linear = [twist.linear.x, twist.linear.y,twist.linear.z]
+        angular = [twist.angular.x, twist.angular.y,twist.angular.z]
+
+        self.Control.update_pose([cartesian, self.euler], [linear, angular])
     
     def twist_callback(self, msg):
-        self.Control.read_velocity(msg.linear, msg.angular)
+        self.Control.update_setpoints(msg.linear, msg.angular)
+
+    def arm_callback(self, msg):
+        self.Control.read_bools(msg.data, 'arm')
+    
+    def hold_callback(self, msg):
+        self.Control.read_bools(msg.data, 'hold')
 
     def cmd_callback(self):
         cmd = self.Control.run()

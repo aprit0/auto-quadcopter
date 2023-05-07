@@ -17,34 +17,31 @@ Functions:
 class ControlSystem:
     def __init__(self):
         self.kp =1.2
-        '''
-        7: takeoff then small oscillation
-        '''
-        self.ki = 0.1#.01#0.001# 0.01
-        self.kd = 0.55# 1
-        '''
-        0.01:
-        '''
+        self.ki = 0.1
+        self.kd = 0.55
         self.setpoint = 0
         
         self.roll, self.pitch = PID(self.kp, self.ki, self.kd), PID(-self.kp, -self.ki, -self.kd)
         self.yaw = PID(-2, 0, 0)
-        # self.height = PID()
+        self.height = PID(-2, 0, 0)
         self.init()
 
     def init(self, lim_o=100, proportional=False):
         self.roll.output_limits = (-lim_o, lim_o)
         self.pitch.output_limits = (-lim_o, lim_o)
         self.yaw.output_limits = (-lim_o, lim_o)
+        self.height.output_limits = (-lim_o, lim_o)
         self.roll.proportional_on_measurement = proportional
         self.pitch.proportional_on_measurement = proportional
         self.yaw.proportional_on_measurement = proportional
+        self.height.proportional_on_measurement = proportional
 
     def run(self, euler_input, euler_setpoint):
         self.roll.setpoint = euler_setpoint[0]
         self.pitch.setpoint = euler_setpoint[1]
-        self.pitch.setpoint = euler_setpoint[2]
-        output = [self.roll(euler_input[0]), self.pitch(euler_input[1]),  self.yaw(euler_input[2])]
+        self.yaw.setpoint = euler_setpoint[2]
+        self.height.setpoint = euler_setpoint[3]
+        output = [self.roll(euler_input[0]), self.pitch(euler_input[1]),  self.yaw(euler_input[2]), self.height(euler_input[3])]
 
         return [float(i) for i in output]
 
@@ -54,7 +51,7 @@ class ControlSystem:
     def update_params(self, kp, ki, kd):
         self.roll.tunings(kp, ki, kd)
         self.pitch.tunings(kp, ki, kd)
-        self.yaw.tunings(kp, ki, kd)
+        # self.yaw.tunings(kp, ki, kd)
 
 import random
 import time
