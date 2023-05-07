@@ -1,26 +1,29 @@
 import time
-import Adafruit_SSD1306
+import board, busio
+import adafruit_ssd1306 
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 import subprocess
 
-from tools.wifi import *
-# from wifi import *
+try:
+    from tools.wifi import *
+except:
+    from wifi import *
 
 
 class OLED:
     def __init__(self):
-        self.disp = Adafruit_SSD1306.SSD1306_128_32(rst=None)
-        self.disp.begin()
+        i2c = busio.I2C(board.SCL, board.SDA)
+        self.disp = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c, addr=0x3c)
         self.width = self.disp.width
         self.height = self.disp.height
         self.status_dict = None
         self.clear()
 
     def clear(self):
-        self.disp.clear()
-        self.disp.display()
+        self.disp.fill(0)
+        self.disp.show()
 
     def set_status(self):
         image = Image.new('1', (self.width, self.height))
@@ -36,7 +39,7 @@ class OLED:
         for i in range(len(keys)):
             draw.text((x, top + i * 8), self.status_dict[keys[i]], font=font, fill=255)
         self.disp.image(image)
-        self.disp.display()
+        self.disp.show()
 
     def get_status(self):
         cmd = "hostname -I | cut -d\' \' -f1"

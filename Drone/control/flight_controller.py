@@ -2,8 +2,13 @@
 import math
 import numpy as np
 
-from Control.balance import ControlSystem
-from Control.planner import PLAN
+try:
+    from Control.balance import ControlSystem
+    from Control.planner import PLAN
+except:
+    from balance import ControlSystem
+    from planner import PLAN
+
 
 '''
 Receives:
