@@ -56,9 +56,6 @@ class OLED:
 if __name__ == '__main__':
     disp = OLED()
     t_0 = time.time()
-    while True:
-        if time.time() - t_0 > 0.5:
-            disp.set_status()
-            t_0 = time.time()
+    disp.set_status()
 
     

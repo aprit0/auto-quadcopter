@@ -28,12 +28,13 @@ class GY_US42:
             result = bytearray(2)
             self.dev.readinto(result)
             dist = int.from_bytes(result, 'big') * 0.01
+            print(dist)
             if self.z:
                 if self.last_z and self.dz:
                     # Use previous value to check if current value is reasonable
                     s = self.dz * dt + self.z
                     stdev = 0.3
-                    print('CHECKS: ', dist==s, dist, s)
+                    # print('CHECKS: ', dist==s, dist, s)
                     dist = dist if s * (1 + stdev) > dist > s * (1 - stdev) else s
                 self.last_z = self.z
                 self.z = dist
@@ -52,8 +53,9 @@ if __name__ == '__main__':
     Z = GY_US42()
     while True:
         out = Z.run()
-        print(f'Z: {Z.z} dZ: {Z.dz}')
-        if not out:
-            time.sleep(0.01)
+        # print(f'Z: {Z.z} dZ: {Z.dz}')
+        # if not out:
+            # time.sleep(0.01)
+
 
 
