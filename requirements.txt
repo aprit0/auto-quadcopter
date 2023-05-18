@@ -262,6 +262,7 @@ sensor-msgs==4.2.3
 sensor-msgs-py==4.2.3
 service-identity==18.1.0
 shape-msgs==4.2.3
+simple-pid==2.0.0
 six==1.16.0
 smbus==1.1.post2
 smbus2==0.4.2
