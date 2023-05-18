@@ -62,7 +62,7 @@ class DeviceNode(Node):
         self.mpu = INERTIAL()
         self.motors = ESC()
         self.height = ZAXIS()
-        self.cam0 = Video()
+        # self.cam0 = Video()
         self.gps = BN0()
         self.of = FLOW()
         self.odom_dt = time.time()
@@ -95,17 +95,17 @@ class DeviceNode(Node):
 
 
 
-    def img0_callback(self):
-        print('img0_callback')
-        self.cam0.read()
-        image_np = self.cam0.processed
-        msg = CompressedImage()
-        h = Header()
-        h.stamp = self.get_clock().now().to_msg()
-        msg.header = h
-        msg.format = "jpeg"
-        msg.data = np.array(cv.imencode('.jpg', image_np)[1]).tostring()
-        self.pub_img0.publish(msg)
+    # def img0_callback(self):
+    #     print('img0_callback')
+    #     self.cam0.read()
+    #     image_np = self.cam0.processed
+    #     msg = CompressedImage()
+    #     h = Header()
+    #     h.stamp = self.get_clock().now().to_msg()
+    #     msg.header = h
+    #     msg.format = "jpeg"
+    #     msg.data = np.array(cv.imencode('.jpg', image_np)[1]).tostring()
+    #     self.pub_img0.publish(msg)
 
     def height_callback(self):
         print('height_callback')
@@ -113,9 +113,10 @@ class DeviceNode(Node):
         self.pose[2] = self.height.height
 
     def flow_callback(self):
-        self.flow.read()
-        self.pose[0:2] = self.flow.pose
-        self.twist[0:2] = self.flow.twist
+        self.of.read()
+        self.pose[0:2] = self.of.pose
+        self.twist[0:2] = self.of.twist
+        print(self.pose, self.twist)
         
 
     def odom_callback(self):
@@ -130,19 +131,20 @@ class DeviceNode(Node):
         h = Header()
         h.stamp = self.get_clock().now().to_msg()
         msg.header = h
-        msg.pose.pose.position.x = self.pose[0]
-        msg.pose.pose.position.y = self.pose[1]
+
+        msg.pose.pose.position.x = float(self.pose[0])
+        msg.pose.pose.position.y = float(self.pose[1])
         msg.pose.pose.position.z = self.pose[2]
-        msg.pose.pose.orientation.x =self.mpu.quat[0]
-        msg.pose.pose.orientation.y =self.mpu.quat[1]
-        msg.pose.pose.orientation.z =self.mpu.quat[2]
-        msg.pose.pose.orientation.w =self.mpu.quat[3]
-        msg.twist.twist.linear.x =self.twist[0]
-        msg.twist.twist.linear.y =self.twist[1]
-        msg.twist.twist.linear.z =self.twist[2]
-        msg.twist.twist.angular.x = self.twist[3]
-        msg.twist.twist.angular.y = self.twist[4]
-        msg.twist.twist.angular.z = self.twist[5]
+        msg.pose.pose.orientation.x = float(self.mpu.quat[0])
+        msg.pose.pose.orientation.y = float(self.mpu.quat[1])
+        msg.pose.pose.orientation.z = float(self.mpu.quat[2])
+        msg.pose.pose.orientation.w = float(self.mpu.quat[3])
+        msg.twist.twist.linear.x = float(self.twist[0])
+        msg.twist.twist.linear.y = float(self.twist[1])
+        msg.twist.twist.linear.z = float(self.twist[2])
+        msg.twist.twist.angular.x = float(self.twist[3])
+        msg.twist.twist.angular.y = float(self.twist[4])
+        msg.twist.twist.angular.z = float(self.twist[5])
         self.pub_odom.publish(msg)
     
     def cmd_callback(self, msg):

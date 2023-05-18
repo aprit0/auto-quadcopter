@@ -3,8 +3,8 @@ import math
 import numpy as np
 
 try:
-    from Control.balance import ControlSystem
-    from Control.planner import PLAN
+    from control.balance import ControlSystem
+    from control.planner import PLAN
 except:
     from balance import ControlSystem
     from planner import PLAN
@@ -55,6 +55,7 @@ class FC(PLAN):
     def update_pid(self):
         current = self.euler_current.append(self.cartesian_current[-1])
         setpoint = self.euler_setpoints.append(self.cartesian_setpoints[-1])
+        print(current, setpoint)
         self.throttle_pid = self.CS.run(current, setpoint)
 
     def update_setpoints(self, input, mode='angle'):
