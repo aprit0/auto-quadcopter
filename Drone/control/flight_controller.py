@@ -38,6 +38,10 @@ class FC(PLAN):
         self.euler_setpoints = [0, 0, 0] # [roll, pitch, yee-haw]
         self.throttle_pid = [0, 0, 0, 0] # [roll, pitch, yaw, height]
         self.throttle_base = 1000
+        self.bools = {
+            "arm": bool(0),
+            "hold": bool(0)
+            }
 
     def run(self):
         self.update_pid()
@@ -53,9 +57,8 @@ class FC(PLAN):
         return [fl, fr, bl, br]
         
     def update_pid(self):
-        current = self.euler_current.append(self.cartesian_current[-1])
-        setpoint = self.euler_setpoints.append(self.cartesian_setpoints[-1])
-        print(current, setpoint)
+        current = self.euler_current + [self.cartesian_current[-1]]
+        setpoint = self.euler_setpoints + [self.cartesian_setpoints[-1]]
         self.throttle_pid = self.CS.run(current, setpoint)
 
     def update_setpoints(self, input, mode='angle'):
@@ -69,9 +72,9 @@ class FC(PLAN):
             # input: [euler]
             setpoints = input.append([0, 0, self.cartesian_current[-1]])
 
-        # Apply limits
-        
+        # Apply limits 
         [self.euler_setpoints, self.cartesian_setpoints] = setpoints
+        print(f'Update: {self.euler_setpoints}')
 
     def twist_2_euler(self, input, STEP=0.01):
         [linear, angular] = input
@@ -92,7 +95,15 @@ class FC(PLAN):
         # pose: [cartesian, euler]
         # twist: [linear, angular]
         [self.cartesian_current, self.euler_current] = pose
-        self.twist_current = twist[0].append(twist[1][-1])
+        twist_new = twist
+        self.twist_current = twist_new[0].append(twist[1][-1])
+
+
+    def update_bools(self, name: str, value: bool = 0, get: bool = 1):
+        if get:
+            return self.bools[name]
+        else:
+            self.bools[name]: bool = value
 
 
 

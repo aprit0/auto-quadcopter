@@ -20,7 +20,7 @@ class BN0:
 
     def calib(self):
         cal = [[], [], []]
-        print('Begin_calibration')
+        print('Begin GPS calibration')
         while len(cal[0]) < 5:
             sts, out = self.get_pose()
             if sts:

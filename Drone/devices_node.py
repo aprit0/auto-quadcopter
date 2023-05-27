@@ -30,6 +30,7 @@ Publishes:
 class DeviceNode(Node):
     def __init__(self):
         super().__init__('device_node')
+        self.gps_init = int(input("Use GPS? (0|1)") or 1)
         # Subscribers
         self.sub_cmd = self.create_subscription(Int16MultiArray,'drone/CMD',self.cmd_callback,10)
         self.sub_cmd  
@@ -55,15 +56,18 @@ class DeviceNode(Node):
         timer_print= 0.1  # seconds
         self.timer_print = self.create_timer(timer_print, self.print_callback)
         
-        self.pub_gps = self.create_publisher(NavSatFix, 'drone/GPS', 10)
-        timer_gps= 0.1  # seconds
-        self.timer_gps = self.create_timer(timer_gps, self.gps_callback)
 
         self.mpu = INERTIAL()
         self.motors = ESC()
         self.height = ZAXIS()
         # self.cam0 = Video()
-        self.gps = BN0()
+        if self.gps_init:
+            self.pub_gps = self.create_publisher(NavSatFix, 'drone/GPS', 10)
+            timer_gps= 0.1  # seconds
+            self.timer_gps = self.create_timer(timer_gps, self.gps_callback)
+            self.gps_init = 1
+            self.gps = BN0()
+        
         self.of = FLOW()
         self.odom_dt = time.time()
 
@@ -75,7 +79,7 @@ class DeviceNode(Node):
     def print_callback(self):
         # print(f'{self.motors.armed}')
         # print(f'fl,fr:{self.motors.last_cmd[:2]} \nbl,br:{self.motors.last_cmd[2:]}')
-        print(f'Status: height:{self.height.status} | *mpu: {self.mpu.status} | gps: {self.gps.status} | *of: {self.of.status}')
+        print(f'Status: height:{self.height.status} | *mpu: {self.mpu.status} | gps: {self.gps.status if self.gps_init else "NULL"} | *of: {self.of.status}')
         pass
 
     def gps_callback(self):

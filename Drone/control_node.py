@@ -57,15 +57,17 @@ class ControlNode(Node):
         self.Control.update_pose([cartesian, self.euler], [linear, angular])
     
     def twist_callback(self, msg):
-        self.Control.update_setpoints(msg.linear, msg.angular)
+        print(f'twist callback: {[msg.linear, msg.angular]}')
+        self.Control.update_setpoints(msg.linear, msg.angular, 'twist')
 
     def arm_callback(self, msg):
-        self.Control.read_bools(msg.data, 'arm')
+        self.Control.update('arm', value=bool(msg.data), get=0)
     
     def hold_callback(self, msg):
-        self.Control.read_bools(msg.data, 'hold')
+        self.Control.read_bools('hold', value=bool(msg.data), get=0)
 
     def cmd_callback(self):
+        print('cmd callback')
         cmd = self.Control.run()
         width = 4
         height = 1
@@ -84,7 +86,7 @@ class ControlNode(Node):
         self.pub_cmd.publish(msg)
 
         msg = Bool()
-        msg.data = bool(self.Control.ARM)
+        msg.data = self.Control.update_bools('arm')
         self.pub_arm.publish(msg)
 
     
