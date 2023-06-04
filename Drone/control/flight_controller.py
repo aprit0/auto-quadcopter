@@ -34,6 +34,7 @@ class FC(PLAN):
         self.cartesian_current = [0, 0, 0] # [x, y, z]
         self.cartesian_setpoints = [0, 0, 0] # [x, y, z]
         self.twist_current = [0, 0, 0, 0] # [dx, dy, dz, dth]
+        self.twist_setpoints = [0, 0, 0, 0] # [dx, dy, dz, dth]
         self.euler_current = [0, 0, 0] # [roll, pitch, yaw]
         self.euler_setpoints = [0, 0, 0] # [roll, pitch, yee-haw]
         self.throttle_pid = [0, 0, 0, 0] # [roll, pitch, yaw, height]
@@ -44,7 +45,7 @@ class FC(PLAN):
             }
 
     def run(self):
-        self.update_pid()
+        self.update_pid('twist')
         # Roll axis facing forwards, ie Negative AC from front
         # Pitch axis facing right from front, ies Negative Facing up
         fl = self.throttle_base + self.throttle_pid[0] - self.throttle_pid[1] - self.throttle_pid[2] + self.throttle_pid[3] 
@@ -56,54 +57,75 @@ class FC(PLAN):
         # print(self.euler_offsets)
         return [fl, fr, bl, br]
         
-    def update_pid(self):
+    def update_pid(self, mode: str='twist'):
+        '''
+        REQ: Current and Setpoint transposed from twist to euler
+        input: [0, 5, 0] m/s && [1, 4, 1, 1] -> 
+        '''
+        # Modify to match [roll, pitch, yaw, height]
+        # current = self.twist_current[:2] + [self.twist_current[3], self.twist_current[2]] 
+        self.update_setpoints()
         current = self.euler_current + [self.cartesian_current[-1]]
         setpoint = self.euler_setpoints + [self.cartesian_setpoints[-1]]
+
         self.throttle_pid = self.CS.run(current, setpoint)
 
-    def update_setpoints(self, input, mode='angle'):
+    def update_setpoints(self, mode: str='twist'):
         if mode == 'twist':
             # input: [linear, angular]
-            setpoints = self.twist_2_euler(input) 
+            setpoints = self.twist_2_euler() 
         elif mode == 'pose':
             # input: 
-            setpoints = self.pose_2_euler(input)
+            setpoints = self.pose_2_euler()
         else:
             # input: [euler]
-            setpoints = input.append([0, 0, self.cartesian_current[-1]])
+            # setpoints = input.append([0, 0, self.cartesian_current[-1]])
+            raise
 
         # Apply limits 
         [self.euler_setpoints, self.cartesian_setpoints] = setpoints
-        print(f'Update: {self.euler_setpoints}')
+        rnd = lambda x: [round(i, 0) for i in x]
+        # print(f'Update: {rnd(self.euler_setpoints)} : {rnd(self.euler_current)} : {rnd(self.twist_current)} : {rnd(self.twist_setpoints)} ')
 
-    def twist_2_euler(self, input, STEP=0.01):
-        [linear, angular] = input
-        twist_setpoint = linear.append(angular[-1]) # [dx, dy, dz, dth]
-        error = [(i - j) / abs(max(i, j)) for (i, j) in zip(twist_setpoint, self.twist_current)] 
-        roll = error[0] * STEP + self.euler_current[0] 
-        pitch = error[1] * STEP + self.euler_current[1]
-        yaw = error[2] * STEP + self.euler_current[2]
-        height = error[3] * STEP + self.cartesian_current[2]
+    def twist_2_euler(self, STEP=10, MAX_ANG=10):
+        error = [(i - j) if i != 0.0 or j != 0.0 else 0.0 for (i, j) in zip(self.twist_setpoints, self.twist_current)] 
+        print(error)
+        # Convert error to angle/height with STEP multiplier
+        roll = np.clip(error[0] * STEP + self.euler_current[0], -MAX_ANG, MAX_ANG) 
+        pitch = np.clip(error[1] * STEP + self.euler_current[1], -MAX_ANG, MAX_ANG)
+        # height = error[2] * STEP + self.cartesian_current[2] # for position hold
+        height = self.cartesian_current[2]
+
+        yaw = error[3] * STEP + self.euler_current[2]
+        if yaw > 360:
+            yaw -= 360
+        elif yaw < 0:
+            yaw += 360
+        else:
+            pass
         return [[roll, pitch, yaw], [0, 0, height]]
 
     def pose_2_euler(self, input):
         return [[], []]
 
 
+    def update_twist_setpoints(self, input):
+        [linear, angular] = input
+        self.twist_setpoints = linear[0] + [angular[1][-1]]
     
     def update_pose(self, pose, twist):
         # pose: [cartesian, euler]
         # twist: [linear, angular]
         [self.cartesian_current, self.euler_current] = pose
         twist_new = twist
-        self.twist_current = twist_new[0].append(twist[1][-1])
+        self.twist_current = twist_new[0] + [twist[1][-1]]
 
 
-    def update_bools(self, name: str, value: bool = 0, get: bool = 1):
+    def update_bools(self, name: str, value: bool = False, get: bool = True):
         if get:
             return self.bools[name]
         else:
-            self.bools[name]: bool = value
+            self.bools[name] = value
 
 
 

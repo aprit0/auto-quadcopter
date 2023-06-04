@@ -53,21 +53,24 @@ class ControlNode(Node):
         cartesian = [pose.position.x, pose.position.y, pose.position.z]
         linear = [twist.linear.x, twist.linear.y,twist.linear.z]
         angular = [twist.angular.x, twist.angular.y,twist.angular.z]
+        # print('odom: ', cartesian, self.euler, linear, angular)
+        rnd = lambda x: [round(i, 2) for i in x]
+        # print(f"odom: {rnd(linear), rnd(angular)}")
 
         self.Control.update_pose([cartesian, self.euler], [linear, angular])
     
     def twist_callback(self, msg):
         print(f'twist callback: {[msg.linear, msg.angular]}')
-        self.Control.update_setpoints(msg.linear, msg.angular, 'twist')
+        self.Control.update_twist_setpoints([msg.linear, msg.angular])
 
     def arm_callback(self, msg):
-        self.Control.update('arm', value=bool(msg.data), get=0)
+        self.Control.update_bools('arm', value=bool(msg.data), get=False)
     
     def hold_callback(self, msg):
-        self.Control.read_bools('hold', value=bool(msg.data), get=0)
+        self.Control.update_bools('hold', value=bool(msg.data), get=False)
 
     def cmd_callback(self):
-        print('cmd callback')
+        # print('cmd callback')
         cmd = self.Control.run()
         width = 4
         height = 1

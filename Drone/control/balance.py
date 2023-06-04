@@ -37,12 +37,14 @@ class ControlSystem:
         self.height.proportional_on_measurement = proportional
 
     def run(self, euler_input, euler_setpoint):
-        print('balance: ', euler_input, euler_setpoint)
+        # [roll, pitch, yaw, heigh]
         self.roll.setpoint = euler_setpoint[0]
         self.pitch.setpoint = euler_setpoint[1]
         self.yaw.setpoint = euler_setpoint[2]
         self.height.setpoint = euler_setpoint[3]
         output = [self.roll(euler_input[0]), self.pitch(euler_input[1]),  self.yaw(euler_input[2]), self.height(euler_input[3])]
+        rnd = lambda x: [round(i, 0) for i in x]
+        print('balance: ', rnd(euler_input) , rnd(euler_setpoint), rnd(output))
 
         return [float(i) for i in output]
 

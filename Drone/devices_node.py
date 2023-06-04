@@ -46,7 +46,7 @@ class DeviceNode(Node):
         timer_height = 0.08  # seconds
         self.timer_height = self.create_timer(timer_height, self.height_callback)
         
-        timer_flow = 0.01  # seconds
+        timer_flow = 0.05  # seconds
         self.timer_flow = self.create_timer(timer_flow, self.flow_callback)
 
         # self.pub_img0 = self.create_publisher(CompressedImage, 'drone/img0', 10)
@@ -79,7 +79,7 @@ class DeviceNode(Node):
     def print_callback(self):
         # print(f'{self.motors.armed}')
         # print(f'fl,fr:{self.motors.last_cmd[:2]} \nbl,br:{self.motors.last_cmd[2:]}')
-        print(f'Status: height:{self.height.status} | *mpu: {self.mpu.status} | gps: {self.gps.status if self.gps_init else "NULL"} | *of: {self.of.status}')
+        # print(f'Status: height:{self.height.status} | *mpu: {self.mpu.status} | gps: {self.gps.status if self.gps_init else "NULL"} | *of: {self.of.status}')
         pass
 
     def gps_callback(self):
@@ -112,19 +112,19 @@ class DeviceNode(Node):
     #     self.pub_img0.publish(msg)
 
     def height_callback(self):
-        print('height_callback')
         self.height.read()
         self.pose[2] = self.height.height
+        self.twist[2] = self.height.d_height
 
     def flow_callback(self):
         self.of.read()
-        self.pose[0:2] = self.of.pose
-        self.twist[0:2] = self.of.twist
-        print(self.pose, self.twist)
+        # self.pose[:2] = self.of.pose
+        self.twist[:2] = [i * self.pose[2] for i in self.of.twist]
+        print('flow', self.of.twist, self.pose[2], self.twist[:2])
         
 
     def odom_callback(self):
-        print('ODOM loop: ', time.time() - self.odom_dt)
+        # print('ODOM loop: ', time.time() - self.odom_dt)
         self.odom_dt = time.time()
         self.mpu.read()
         self.quat = self.mpu.quat
