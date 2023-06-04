@@ -1,8 +1,14 @@
 import time
 import argparse
-# from sensor_lib.pmw_0 import PMW3901, BG_CS_FRONT_BCM, BG_CS_BACK_BCM
-from devices.sensor_lib.pmw_0 import PMW3901, BG_CS_FRONT_BCM, BG_CS_BACK_BCM
+try:
+    from devices.sensor_lib.pmw_0 import PMW3901, BG_CS_FRONT_BCM, BG_CS_BACK_BCM
+except:
+    from sensor_lib.pmw_0 import PMW3901, BG_CS_FRONT_BCM, BG_CS_BACK_BCM
 
+
+"""
+Y+ Forwards, X+ Right
+"""
 
 class FLOW:
     def __init__(self):
@@ -15,10 +21,17 @@ class FLOW:
         self.status = 0
 
     def read(self):
-        x, y = self.flo.get_motion()
+        y, x = self.flo.get_motion()
+        # Orientation
+        x = x * -1
+        # Filter
+        # x = x if abs(x) > 10 else 0.0
+        # y = y if abs(y) > 10 else 0.0
+                   
         if self.last_time is not None:
-            dt = time.time() - self.last_time
-            self.twist = [x / dt, y / dt] if dt != 0. else [0., 0.]
+            # dt = time.time() - self.last_time
+            dt = 1
+            self.twist = [x * dt, y * dt] if dt != 0. else [0., 0.]
             self.pose = [i + j for (i, j) in zip(self.pose, [x, y])]
         self.last_time = time.time()
         self.status = 1 # No health check implemented
@@ -26,8 +39,11 @@ class FLOW:
 
 if __name__ == '__main__':
     OF = FLOW()
+    time.sleep(2)
     while True:
         OF.read()
-        print(OF.pose, [round(i, 0) for i in OF.twist]) 
+        print([round(i, 5) for i in OF.twist]) 
+        # print([round(i, 1) for i in OF.pose]) 
+        time.sleep(0.01)
 
 
