@@ -1,6 +1,11 @@
 *.pyc
 *__pycache__/
+Drone/__pycache__/
+Drone/__pycache__/*
+Base/__pycache__/
+Base/__pycache__/*
 Drone/control/__pycache__/flight_controller.cpython-310.pyc
 Drone/devices/__pycache__/optical_flow.cpython-310.pyc
 Drone/devices/__pycache__/z_axis.cpython-310.pyc
 Drone/devices/sensor_lib/__pycache__/gy_us42v2.cpython-310.pyc
+Drone/control/__pycache__/flight_controller.cpython-310.pyc

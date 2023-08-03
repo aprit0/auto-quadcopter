@@ -64,4 +64,11 @@ This algorithm was coded and implemented. Loop speed was reasonable at 60Hz and 
 Limitation: The hardware used was a webcam, this was limited to 30Hz BUT *Auto focus could cause every second image to be blurred*  
 Fix: Buy Optical Flow hardware for lateral velocity
 
+# Ros
+## Handy lines
+```
+ros2 topic pub -r 10 base/ARM std_msgs/msg/Bool "{data: True}" 
+```
+
+
 

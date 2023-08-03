@@ -15,7 +15,7 @@ Functions
 class PLAN:
     def __init__(self):
         self.ARM = 0
-        self.MODE = 0
+        self.MODE = 0 # 0: , 1: Twist
         self.joy_angle_range = [[-5, 5], [-180, 180]]
         self.joy_input_range = [1000, 2000]
         self.button_output_range = [0, 1]

@@ -23,14 +23,14 @@ class ControlSystem:
         
         self.roll, self.pitch = PID(self.kp, self.ki, self.kd), PID(-self.kp, -self.ki, -self.kd)
         self.yaw = PID(-2, 0, 0)
-        self.height = PID(-2, 0, 0)
+        self.height = PID(5, 0, 0)
         self.init()
 
     def init(self, lim_o=100, proportional=False):
         self.roll.output_limits = (-lim_o, lim_o)
         self.pitch.output_limits = (-lim_o, lim_o)
         self.yaw.output_limits = (-lim_o, lim_o)
-        self.height.output_limits = (-lim_o, lim_o)
+        self.height.output_limits = (-lim_o*2, lim_o*2)
         self.roll.proportional_on_measurement = proportional
         self.pitch.proportional_on_measurement = proportional
         self.yaw.proportional_on_measurement = proportional

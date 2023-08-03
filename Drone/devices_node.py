@@ -30,11 +30,11 @@ Publishes:
 class DeviceNode(Node):
     def __init__(self):
         super().__init__('device_node')
-        self.gps_init = int(input("Use GPS? (0|1)") or 1)
+        self.gps_init = 0 # int(input("Use GPS? (0|1)") or 1)
         # Subscribers
         self.sub_cmd = self.create_subscription(Int16MultiArray,'drone/CMD',self.cmd_callback,10)
         self.sub_cmd  
-        self.sub_arm = self.create_subscription(Bool,'drone/ARM',self.arm_callback,10)
+        self.sub_arm = self.create_subscription(Bool,'base/ARM',self.arm_callback,10)
         self.sub_arm  
 
         # Publishers
@@ -120,7 +120,7 @@ class DeviceNode(Node):
         self.of.read()
         # self.pose[:2] = self.of.pose
         self.twist[:2] = [i * self.pose[2] for i in self.of.twist]
-        print('flow', self.of.twist, self.pose[2], self.twist[:2])
+        print('flow', self.of.twist, self.pose[2], self.twist[:3])
         
 
     def odom_callback(self):
@@ -153,7 +153,7 @@ class DeviceNode(Node):
     
     def cmd_callback(self, msg):
         cmd = msg.data
-        # print('CMD: ', cmd)
+        print('CMD: ', cmd)
         try:
             self.motors.drive(cmd)
         except Exception as e:
@@ -164,11 +164,8 @@ class DeviceNode(Node):
         arm = msg.data
         if arm and not self.motors.armed:
             self.motors.arm()
-        elif not arm and self.motors.armed:
+        elif not arm: #and self.motors.armed:
             self.motors.disarm()
-            
-        # print(f'Motor: {arm} == {self.motors.armed}')
-
 
 
 
