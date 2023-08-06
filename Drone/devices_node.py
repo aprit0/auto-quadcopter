@@ -36,6 +36,8 @@ class DeviceNode(Node):
         self.sub_cmd  
         self.sub_arm = self.create_subscription(Bool,'base/ARM',self.arm_callback,10)
         self.sub_arm  
+        timer_flow = 0.25  # seconds
+        self.timer_flow = self.create_timer(timer_flow, self.heartbeat_callback)
 
         # Publishers
         # Publish Odom at a higher rate to complement IMU
@@ -70,6 +72,8 @@ class DeviceNode(Node):
         
         self.of = FLOW()
         self.odom_dt = time.time()
+        self.arm_heartbeat_limit = 0.5 # second
+        self.arm_heartbeat_last = 0
 
         self.pose = [0., 0., 0.] # x, y, z
         self.quat = [0., 0., 0., 0.,] # x, y, z, w
@@ -162,10 +166,19 @@ class DeviceNode(Node):
     
     def arm_callback(self, msg):
         arm = msg.data
+        self.set_arm_state(arm)
+
+    def set_arm_state(self, arm: bool = False):
+        self.arm_heartbeat_last = time.time()
         if arm and not self.motors.armed:
             self.motors.arm()
         elif not arm: #and self.motors.armed:
             self.motors.disarm()
+    
+    def heartbeat_callback(self):
+        if time.time() - self.arm_heartbeat_last > self.arm_heartbeat_limit:
+            print("CONNECTION LOST")
+            self.set_arm_state(False)
 
 
 
