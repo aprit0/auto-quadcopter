@@ -26,7 +26,7 @@ class Joystick:
         self.reset = {'axes': [-1] + [0.] * 5,  # + [-1.] + [0.] * 2 + [-1.],
                       'buttons': [0.] * 11}
         self.state = deepcopy(self.reset) 
-        self.state_old = deepcopy(self.reset) 
+        self.state_debounce = deepcopy(self.reset) 
         self.time_disconnect = None
         self.status = 0
         self.joy = None
@@ -90,14 +90,19 @@ class Joystick:
         self.controller.map(axes, buttons, hats)
 
         for i in range(len(self.state['buttons'])):
+            debounce_cutoff = 2
             val = self.controller.buttons[i]
             if i == 7 or i == 8:
                 self.state['buttons'][i] = val
             else:
-                if self.state['buttons'][i] and self.state_old['buttons'][i] and val:
+                if val:
+                    self.state_debounce['buttons'][i] += 1
+                if self.state['buttons'][i] and self.state_debounce['buttons'][i] > debounce_cutoff:
                     self.state['buttons'][i] = 0
-                elif not self.state['buttons'][i] and not self.state_old['buttons'][i] and val:
+                    self.state_debounce['buttons'][i] = 0
+                elif not self.state['buttons'][i] and self.state_debounce['buttons'][i] > debounce_cutoff:
                     self.state['buttons'][i] = 1
+                    self.state_debounce['buttons'][i] = 0
         # 0: Arm, 1: ALT Hold
         self.state['axes'][0] += self.controller.cartesian_axes[0] * self.STEP  # Throttle : LY
         self.state['axes'][1] = self.controller.cartesian_axes[3]#+= self.controller.cartesian_axes[3] * self.STEP  # Roll : RX
