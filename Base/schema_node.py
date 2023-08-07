@@ -1,4 +1,5 @@
 import rclpy
+import numpy as np
 from rclpy.node import Node
 from std_msgs.msg import Header, Bool
 from sensor_msgs.msg import Joy
@@ -29,37 +30,43 @@ Publishes:
 class SchemaNode(Node):
     def __init__(self):
         super().__init__('schema_node')
-        self.pub_twist = self.create_publisher(Vector3, 'base/twist', 10)
+        self.pub_twist = self.create_publisher(TwistStamped, 'base/twist', 10)
         self.pub_arm = self.create_publisher(Bool, 'base/ARM', 10)
         self.pub_hold = self.create_publisher(Bool, 'base/HOLD', 10)
+        self.pub_mode = self.create_publisher(Bool, 'base/MODE', 10)
         self.sub_joy = self.create_subscription(Joy,'base/Joy',self.joy_callback,10)
 
 
     def joy_callback(self, msg):
         axes = msg.axes
-        [arm, hold, schema, _] = msg.buttons
-        if not schema:
+        [arm, hold, schema] = msg.buttons[:3]
+        if schema == 2000:
             # Velocity Control
             msg_twist = TwistStamped()
             msg_twist.header = Header()
-            msg_twist.linear, msg_twist.angular = self.vel_control(axes)
+            msg_twist.twist.linear, msg_twist.twist.angular = self.vel_control(axes)
             self.pub_twist.publish(msg_twist)
 
         msg_arm = Bool()
-        msg.data = bool(arm)
+        msg_arm.data = bool(arm - 1000)
         self.pub_arm.publish(msg_arm)
         msg_hold = Bool()
-        msg_hold.data = bool(hold)
+        msg_hold.data = bool(hold-1000)
         self.pub_hold.publish(msg_hold)
+        msg_mode = Bool()
+        msg_mode.data = bool(schema-1000)
+        self.pub_mode.publish(msg_mode)
+        print(f"[{msg_mode.data}]: A:{msg_arm.data}, H:{msg_hold.data}")
         
     def vel_control(self, axes):
         # Input: axes = [Throttle, Roll, Pitch, Yaw] 
         # Output: linear, angular = [x, y, z] * 2
         linear, angular = Vector3(), Vector3()
-        linear.x = axes[2]
-        linear.y = axes[1]
+        key_map = lambda x: np.interp(x, [1000, 2000], [-2, 2])
+        linear.x = key_map(axes[2])
+        linear.y = key_map(axes[1])
         linear.z = axes[0]
-        angular.z = axes[3]
+        angular.z = key_map(axes[3])
         return linear, angular
         
 def main():

@@ -25,7 +25,8 @@ class Joystick:
         self.controller = CONTROLLER()
         self.reset = {'axes': [-1] + [0.] * 5,  # + [-1.] + [0.] * 2 + [-1.],
                       'buttons': [0.] * 11}
-        self.state = deepcopy(self.reset)
+        self.state = deepcopy(self.reset) 
+        self.state_old = deepcopy(self.reset) 
         self.time_disconnect = None
         self.status = 0
         self.joy = None
@@ -70,7 +71,7 @@ class Joystick:
             # Joystick disconnected
             self.state['axes'][1:] = self.reset['axes'][1:]  # Set drone to balance upright
             self.state['buttons'][1] = 1  # Set drone to hold altitude
-
+        self.state_old = deepcopy(self.state)
         return self.input_to_pwm()
 
     def input_to_pwm(self):
@@ -88,12 +89,20 @@ class Joystick:
                 range(self.joy.get_numhats())] if self.joy.get_numhats() > 1 else self.joy.get_hat(0)
         self.controller.map(axes, buttons, hats)
 
-        self.state['buttons'] = self.controller.buttons
+        for i in range(len(self.state['buttons'])):
+            val = self.controller.buttons[i]
+            if i == 7 or i == 8:
+                self.state['buttons'][i] = val
+            else:
+                if self.state['buttons'][i] and self.state_old['buttons'][i] and val:
+                    self.state['buttons'][i] = 0
+                elif not self.state['buttons'][i] and not self.state_old['buttons'][i] and val:
+                    self.state['buttons'][i] = 1
         # 0: Arm, 1: ALT Hold
         self.state['axes'][0] += self.controller.cartesian_axes[0] * self.STEP  # Throttle : LY
-        self.state['axes'][1] += self.controller.cartesian_axes[3] * self.STEP  # Roll : RX
-        self.state['axes'][2] += self.controller.cartesian_axes[2] * self.STEP  # Pitch : RY
-        self.state['axes'][3] += self.controller.cartesian_axes[1] * self.STEP  # Yaw : LX
+        self.state['axes'][1] = self.controller.cartesian_axes[3]#+= self.controller.cartesian_axes[3] * self.STEP  # Roll : RX
+        self.state['axes'][2] = self.controller.cartesian_axes[2]#+= self.controller.cartesian_axes[2] * self.STEP  # Pitch : RY
+        self.state['axes'][3] = self.controller.cartesian_axes[1]#+= self.controller.cartesian_axes[1] * self.STEP  # Yaw : LX
 
 
 if __name__ == '__main__':

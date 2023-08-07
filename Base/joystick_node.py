@@ -21,7 +21,7 @@ class JoystickNode(Node):
         state = self.Joy.update_state()
         # state['axes'][2] = 1500
         # state['axes'][3] = 1500
-        state['axes'][3] = 1500
+        # state['axes'][3] = 1500
         msg = Joy()
         msg.header = Header()
         msg.header.stamp = self.get_clock().now().to_msg()
@@ -29,7 +29,8 @@ class JoystickNode(Node):
         msg.axes = [float(i) for i in state['axes']]
         msg.buttons = [int(i) for i in state['buttons']]
         print(f'{self.Joy.status}: Commands ax:{[round(i, 2) for i in msg.axes]} || bt: {[int(i) for i in msg.buttons]}')
-        self.pub_joy.publish(msg)
+        if self.Joy.status:
+            self.pub_joy.publish(msg)
         
 
 
