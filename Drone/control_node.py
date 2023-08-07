@@ -35,6 +35,8 @@ class ControlNode(Node):
         self.sub_arm 
         self.sub_hold = self.create_subscription(Bool,'base/HOLD',self.hold_callback,10)
         self.sub_hold 
+        self.sub_mode = self.create_subscription(Bool,'base/MODE',self.mode_callback,10)
+        self.sub_mode
         self.pub_cmd = self.create_publisher(Int16MultiArray,'drone/CMD', 10)
         timer_period = 0.01  # seconds
         self.timer_cmd = self.create_timer(timer_period, self.cmd_callback)
@@ -73,6 +75,9 @@ class ControlNode(Node):
     
     def hold_callback(self, msg):
         self.Control.update_bools('hold', value=bool(msg.data))
+    
+    def mode_callback(self, msg):
+        self.Control.update_bools('mode', value=bool(msg.data))
 
     def cmd_callback(self):
         # print('cmd callback')

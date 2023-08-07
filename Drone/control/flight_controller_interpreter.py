@@ -17,15 +17,16 @@ class FCI:
         self.euler_current = [0, 0, 0] # [roll, pitch, yaw]
         self.euler_setpoints = [0, 0, 0] # [roll, pitch, yee-haw]
         self.throttle_base = 1000
-        self.flight_mode = 1
+        self.flight_mode = 0
         self.bools = {
             "arm": bool(0),
             "hold": bool(0),
+            "mode":bool(0),
             }
         
         lim_o = 100
         # Yaw
-        self.yaw = PID(2, 0, 0)
+        self.yaw = PID(5, 0, 0)
         self.yaw.output_limits = (-lim_o, lim_o)
 
         # Hover XY
@@ -48,63 +49,68 @@ class FCI:
     def run(self) -> list:
         # Returns cmd[4]: [1000, 2000]
         if not self.bools['arm'] or not self.original_odom:
-            print(f"FCI[disarmed]]: Arm:{self.bools['arm']}, Odom:{bool(self.original_odom)}")
+            print(f"FCI[disarmed]][Twist:{self.bools['mode']}]: Arm:{self.bools['arm']}, Odom:{bool(self.original_odom)}")
             return [self.throttle_base]*4
         current = self.euler_current + [self.cartesian_current[-1]]
         setpoint_euler = self.euler_setpoints + [self.cartesian_current[-1]]
         setpoint_twist = self.calc_twist()
         setpoint_pose = [] # self.calc_pose()
-        if self.flight_mode == 1:
+        if self.bools["mode"] == True:
             # velocity control
-            setpoint = setpoint_twist + [0]
+            setpoint = setpoint_twist + self.twist_setpoints[2:][::-1] # [r:0, p:1, y:2, h:3]
             pass
-        elif self.flight_mode == 2:
+        elif self.bools["mode"] == 2:
             # position control
             # https://github.com/alduxvm/DronePilot/blob/master/mw-hover-controller.py
             setpoint = setpoint_pose
         else:
             setpoint = setpoint_euler
         # Yaw calcs
+        self.original_odom[0][1][-1] += setpoint[2] * 0.1
         yaw_setpoint = self.original_odom[0][1][-1]
+        yaw_setpoint = yaw_setpoint if abs(yaw_setpoint) < 180 else yaw_setpoint + (-1 * np.sign(yaw_setpoint) * 360) 
         yaw_current = current[2]
         y_new = yaw_setpoint - yaw_current
         yaw_dist = y_new if abs(y_new) < 180 else y_new + (-1 * np.sign(y_new) * 360) 
         self.yaw.setpoint = 0
-        setpoint[2] = 0
-        current[2] = yaw_dist
+        setpoint[2] = yaw_setpoint
         pid_yaw = self.yaw(yaw_dist) 
+        # print(yaw_dist, yaw_current, yaw_setpoint, pid_yaw)
         
         # Height calcs
-        setpoint[3] = self.original_odom[0][0][-1]
-        self.height.setpoint = setpoint[3]
-        pid_height = self.height(current[3])
+        # setpoint[3] = self.original_odom[0][0][-1]
+        # self.height.setpoint = setpoint[3]
+        # pid_height = self.height(current[3])
+        # TMP: Until Z control
+        pid_height = self.twist_setpoints[2] - 1000
+        current[3] = pid_height
+        setpoint[3] = pid_height
         self.pid_rp = self.FC.run(current, setpoint)
 
         # Roll axis facing forwards, ie Negative AC from front
         # Pitch axis facing right from front, ies Negative Facing up
         # Motors are as facing front. Ie from the persons perspective looking at them
-        fl = self.throttle_base + self.pid_rp[0] + self.pid_rp[1] #+ pid_yaw + pid_height # type: ignore
-        fr = self.throttle_base + self.pid_rp[0] - self.pid_rp[1] #- pid_yaw + pid_height # type: ignore
-        br = self.throttle_base - self.pid_rp[0] - self.pid_rp[1] #+ pid_yaw + pid_height # type: ignore
-        bl = self.throttle_base - self.pid_rp[0] + self.pid_rp[1] #- pid_yaw + pid_height # type: ignore #-pid_yaw#
+        fl = self.throttle_base + self.pid_rp[0] + self.pid_rp[1] + pid_yaw + pid_height # type: ignore
+        fr = self.throttle_base + self.pid_rp[0] - self.pid_rp[1] - pid_yaw + pid_height # type: ignore
+        br = self.throttle_base - self.pid_rp[0] - self.pid_rp[1] + pid_yaw + pid_height # type: ignore
+        bl = self.throttle_base - self.pid_rp[0] + self.pid_rp[1] - pid_yaw + pid_height # type: ignore #-pid_yaw#
         # print(f"PID: {self.rnd(self.pid_rp + [pid_yaw, pid_height])}")
         # print(f'PID0: {self.throttle_pid[0]:.2f} Ang0: {self.euler_current[0]:.2f}, Set0: {self.euler_setpoints[0]}' )
-        # print(f"FCI[Update]: {[f'E: {j}/{i} T: {k}/{l}' for [i, j, k, l] in zip(rnd(self.euler_setpoints), rnd(self.euler_current), rnd(self.twist_current), rnd(self.twist_setpoints))]}")
-        print(f"FCI[Update][{self.flight_mode}]: \
-              {[f'{k.upper()}: {i}/{j}' for [i, j, k] in zip(self.rnd(current), self.rnd(setpoint), ['r', 'p', 'y', 'h'])]}")
+        # print(f"FCI[Update]: {[f'E: {j}/{i} T: {k}/{l}' for [i, j, k, l] in zip(self.rnd(self.euler_setpoints), self.rnd(self.euler_current), self.rnd(self.twist_current), self.rnd(self.twist_setpoints))]}")
+        # print(f"FCI[Update][{self.bools['mode']}]: {[f'{k.upper()}: {i}/{j}' for [i, j, k] in zip(self.rnd(current), self.rnd(setpoint), ['r', 'p', 'y', 'h'])]}")
         return [fr, fl, bl, br]
     
 
     def calc_twist(self, rp_gain: int = 10) -> list:
         # print(f"FCI[twist]: {[f'{i}/{j}' for (i, j) in zip(self.rnd(self.twist_current), self.rnd(self.twist_setpoints))]}")
         error = [(i - j)/j if j!= 0 else i for (i, j) in zip(self.twist_current, self.twist_setpoints)]
-        print(f"FCI[error]: {self.rnd(error)}")
+        # prpid_heightint(f"FCI[error]: {self.rnd(error)}")
         setpoint = [i + j*rp_gain for (i, j) in zip(self.euler_setpoints, error)]
         # Enforce range limits
         setpoint[:2] = list(np.clip(setpoint[:2], -10, 10))
-        setpoint[2] = setpoint[2] if setpoint[2] < 180 or setpoint[2] > -180 else setpoint[2]  % (np.sign(setpoint[2] ) * 180) - (np.sign(setpoint[2] ) * 180)
+        # setpoint[2] = setpoint[2] if setpoint[2] < 180 or setpoint[2] > -180 else setpoint[2]  % (np.sign(setpoint[2] ) * 180) - (np.sign(setpoint[2] ) * 180)
 
-        return setpoint
+        return setpoint[:2]
     
     # Update variables
     def update_euler_setpoints(self, input) -> None:
