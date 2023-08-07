@@ -26,6 +26,7 @@ class Joystick:
         self.reset = {'axes': [-1] + [0.] * 5,  # + [-1.] + [0.] * 2 + [-1.],
                       'buttons': [0.] * 11}
         self.state = deepcopy(self.reset) 
+        self.state_old = deepcopy(self.reset) 
         self.state_debounce = deepcopy(self.reset) 
         self.time_disconnect = None
         self.status = 0
@@ -41,7 +42,7 @@ class Joystick:
         pygame.joystick.init()
         self.joy = pygame.joystick.Joystick(0)
         self.joy.init()
-        self.joy.rumble(0.5, 5, 200)
+        self.joy.rumble(0.5, 1, 200)
         # print(self.joy.get_power_level())
         # print(self.joy.get_name())
 
@@ -71,7 +72,6 @@ class Joystick:
             # Joystick disconnected
             self.state['axes'][1:] = self.reset['axes'][1:]  # Set drone to balance upright
             self.state['buttons'][1] = 1  # Set drone to hold altitude
-        self.state_old = deepcopy(self.state)
         return self.input_to_pwm()
 
     def input_to_pwm(self):
@@ -90,12 +90,12 @@ class Joystick:
         self.controller.map(axes, buttons, hats)
 
         for i in range(len(self.state['buttons'])):
-            debounce_cutoff = 2
+            debounce_cutoff = 0 # Not valid given 'action on release' 
             val = self.controller.buttons[i]
             if i == 7 or i == 8:
                 self.state['buttons'][i] = val
             else:
-                if val:
+                if not val and self.state_old['buttons'][i]:
                     self.state_debounce['buttons'][i] += 1
                 if self.state['buttons'][i] and self.state_debounce['buttons'][i] > debounce_cutoff:
                     self.state['buttons'][i] = 0
@@ -103,6 +103,7 @@ class Joystick:
                 elif not self.state['buttons'][i] and self.state_debounce['buttons'][i] > debounce_cutoff:
                     self.state['buttons'][i] = 1
                     self.state_debounce['buttons'][i] = 0
+            self.state_old['buttons'][i] = val
         # 0: Arm, 1: ALT Hold
         self.state['axes'][0] += self.controller.cartesian_axes[0] * self.STEP  # Throttle : LY
         self.state['axes'][1] = self.controller.cartesian_axes[3]#+= self.controller.cartesian_axes[3] * self.STEP  # Roll : RX
