@@ -6,7 +6,8 @@
 - [x] Code and integrate base station
 - [x] Roll/Pitch/Yaw PID Tuning
 - [x] FIRST FLIGHT  
-- [ ] Code and integrate XYZ Hover - Awaiting Optical Flow Sensor  
+- [~] Code and integrate XYZ Hover - Awaiting Optical Flow Sensor  
+- [ ] [Redesign pose to implement robot_localization package](https://automaticaddison.com/sensor-fusion-using-the-robot-localization-package-ros-2/)
 - [ ] STABLE PLATFORM FLIGHT
 - [x] Code and integrate GPS
 - [ ] ROS RANGE TEST FLIGHT
