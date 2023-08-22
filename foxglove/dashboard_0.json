@@ -1,0 +1,133 @@
+{
+  "configById": {
+    "Indicator!oxyzzx": {
+      "path": "/base/MODE.data",
+      "style": "background",
+      "fallbackColor": "#a0a0a0",
+      "fallbackLabel": "False",
+      "rules": [
+        {
+          "operator": "=",
+          "rawValue": "true",
+          "color": "#68e24a",
+          "label": "True"
+        }
+      ]
+    },
+    "Indicator!2lt3nq": {
+      "path": "/base/ARM.data",
+      "style": "background",
+      "fallbackColor": "#a0a0a0",
+      "fallbackLabel": "False",
+      "rules": [
+        {
+          "operator": "=",
+          "rawValue": "true",
+          "color": "#68e24a",
+          "label": "True"
+        }
+      ]
+    },
+    "Gauge!ujgocb": {
+      "path": "/base/twist.twist.linear.z",
+      "minValue": 1000,
+      "maxValue": 2000,
+      "colorMap": "turbo",
+      "colorMode": "colormap",
+      "gradient": [
+        "#0000ff",
+        "#ff00ff"
+      ],
+      "reverse": false
+    },
+    "Plot!4ekme4m": {
+      "paths": [
+        {
+          "value": "/base/twist.twist.linear.x",
+          "enabled": true,
+          "timestampMethod": "receiveTime"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/base/twist.twist.linear.y",
+          "enabled": true
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/base/twist.twist.angular.z",
+          "enabled": true
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": true,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "followingViewWidth": 10
+    },
+    "SourceInfo!13z2b4y": {},
+    "Publish!3yz8wdy": {
+      "buttonText": "Publish",
+      "buttonTooltip": "",
+      "advancedView": true,
+      "value": "{}"
+    },
+    "Tab!1xvstgs": {
+      "activeTabIdx": 0,
+      "tabs": [
+        {
+          "title": "1",
+          "layout": {
+            "first": {
+              "first": "map!2ff9xnr",
+              "second": {
+                "first": {
+                  "first": "Indicator!oxyzzx",
+                  "second": "Indicator!2lt3nq",
+                  "direction": "row"
+                },
+                "second": "Gauge!ujgocb",
+                "direction": "column"
+              },
+              "direction": "row"
+            },
+            "second": {
+              "first": "Plot!4ekme4m",
+              "second": {
+                "first": "SourceInfo!13z2b4y",
+                "second": "Publish!3yz8wdy",
+                "direction": "column"
+              },
+              "direction": "row"
+            },
+            "direction": "column",
+            "splitPercentage": 64.7964796479648
+          }
+        }
+      ]
+    },
+    "map!2ff9xnr": {
+      "center": {
+        "lat": -0.0006866455077859351,
+        "lon": 0
+      },
+      "customTileUrl": "",
+      "disabledTopics": [],
+      "followTopic": "",
+      "layer": "map",
+      "topicColors": {},
+      "maxNativeZoom": 18
+    }
+  },
+  "globalVariables": {
+    "": "\"\""
+  },
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": "Tab!1xvstgs"
+}

@@ -40,6 +40,7 @@ class SchemaNode(Node):
     def joy_callback(self, msg):
         axes = msg.axes
         [arm, hold, schema] = msg.buttons[:3]
+        print(arm,hold,schema)
         if schema == 2000:
             # Velocity Control
             msg_twist = TwistStamped()

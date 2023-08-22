@@ -3,10 +3,11 @@ sudo apt update && sudo apt upgrade
 
 # Setup environment
 ## VPN
-curl -fsSL https://tailscale.com/install.sh | sh
-sudo tailscale up
 
 ## Random
 sudo apt install i2c-tools
 sudo apt install iwlist
 ## ROS
+sudo apt install ros-$ROS_DISTRO-foxglove-bridge
+echo -e "\nalias foxglove='ros2 launch foxglove_bridge foxglove_bridge_launch.xml'" >> ~/.bashrc
+

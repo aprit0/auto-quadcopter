@@ -4,7 +4,8 @@ import pygame
 import numpy as np
 from copy import deepcopy
 
-from controllers.xbox_wireless import CONTROLLER
+from controllers.xbox_wireless import CONTROLLER as XBOX
+from controllers.ps5_wireless import CONTROLLER as PS5
 
 '''
 Aim: General controller class for ROS
@@ -22,7 +23,6 @@ class Joystick:
     DISC_HOME = 5  # Timeout for controller to reconnect before returning home
 
     def __init__(self):
-        self.controller = CONTROLLER()
         self.reset = {'axes': [-1] + [0.] * 5,  # + [-1.] + [0.] * 2 + [-1.],
                       'buttons': [0.] * 11}
         self.state = deepcopy(self.reset) 
@@ -33,6 +33,9 @@ class Joystick:
         self.joy = None
         
         self.joy_init()
+        self.controller = XBOX()
+        if "DualSense" in self.joy.get_name():
+            self.controller = PS5()
 
 
     def joy_init(self):
