@@ -10,6 +10,7 @@ import pygame
 class JoystickNode(Node):
     def __init__(self):
         super().__init__('joystick_node')
+        pygame.init()
         self.pub_joy = self.create_publisher(Joy, 'base/Joy', 10)
         timer_period = 0.05  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
@@ -37,8 +38,7 @@ class JoystickNode(Node):
 def main():
     # os.environ["SDL_VIDEODRIVER"] = "dummy"
     # os.environ['SDL_AUDIODRIVER'] = 'dsp'
-    pygame.init()
-    windowSize = width, height = 8, 6
+    # windowSize = width, height = 8, 6
     #screen = pygame.display.set_mode(windowSize)
 
     rclpy.init()
