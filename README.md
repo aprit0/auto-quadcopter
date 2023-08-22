@@ -49,6 +49,9 @@ Using ROS2 nodes, the code base can be easily modular, adaptable and upgradeable
 - XYZ Stabilisation with optical flow
 - Benefits of ROS ecosystem
 
+## Conventions
+- Orientation/Units: [REP103](https://www.ros.org/reps/rep-0103.html)
+
 
 
 # Installation

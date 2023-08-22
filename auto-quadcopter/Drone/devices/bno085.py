@@ -3,9 +3,8 @@ import math
 from board import SCL, SDA
 from busio import I2C
 from adafruit_bno08x import (
-    BNO_REPORT_STEP_COUNTER,
     BNO_REPORT_ROTATION_VECTOR,
-    BNO_REPORT_GEOMAGNETIC_ROTATION_VECTOR,
+    BNO_REPORT_GYROSCOPE,
     BNO_REPORT_LINEAR_ACCELERATION
 )
 from adafruit_bno08x.i2c import BNO08X_I2C
@@ -19,9 +18,8 @@ class INERTIAL:
         # Init
         i2c = I2C(SCL, SDA, frequency=800000)
         self.imu = BNO08X_I2C(i2c)
-        self.imu.enable_feature(BNO_REPORT_STEP_COUNTER)
         self.imu.enable_feature(BNO_REPORT_ROTATION_VECTOR)
-        self.imu.enable_feature(BNO_REPORT_GEOMAGNETIC_ROTATION_VECTOR)
+        self.imu.enable_feature(BNO_REPORT_GYROSCOPE)
         self.imu.enable_feature(BNO_REPORT_LINEAR_ACCELERATION)
 
         # params
@@ -46,6 +44,8 @@ class INERTIAL:
         self.linear_accel = [ax, ay, az]
         i, j, k, w = self.imu.quaternion
         self.quat = [i, j, k, w]
+        gyro_x, gyro_y, gyro_z = self.imu.gyro
+        self.angular_vel = [gyro_x, gyro_y, gyro_z]
         r, p, y = quat_2_euler(i, j, k, w)
         self.euler = [r, p, y] 
         if self.t_0 is not None:
@@ -54,7 +54,6 @@ class INERTIAL:
             self.linear_vel[0] = math.cos(math.radians(p)) * vel[0]
             self.linear_vel[1] = math.cos(math.radians(r)) * vel[1]
             self.linear_vel[2] = math.cos(math.radians(r)) * math.cos(math.radians(p)) * vel[2]
-            self.angular_vel = [math.radians((i - j))/dt for (i, j) in zip(self.euler, self.euler_last)]
         self.t_0 = time.time()
         self.euler_last = self.euler
         self.status = 1 # No health check implemented
