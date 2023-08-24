@@ -29,9 +29,8 @@ class JoystickNode(Node):
 
         msg.axes = [float(i) for i in state['axes']]
         msg.buttons = [int(i) for i in state['buttons']]
-        print(f'{self.Joy.status}: Commands ax:{[round(i, 2) for i in msg.axes]} || bt: {[int(i) for i in msg.buttons]}')
-        if self.Joy.status:
-            self.pub_joy.publish(msg)
+        # print(f'{self.Joy.status}: Commands ax:{[round(i, 2) for i in msg.axes]} || bt: {[int(i) for i in msg.buttons]}')
+        self.pub_joy.publish(msg)
         
 
 

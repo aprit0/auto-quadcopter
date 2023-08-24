@@ -6,20 +6,16 @@ if __name__ == '__main__':
     rclpy.init()
     node = SchemaNode()
     node2 = JoystickNode()
-    executor = rclpy.executors.MultiThreadedExecutor()
+    executor = rclpy.executors.MultiThreadedExecutor(num_threads=3)
     executor.add_node(node)
     executor.add_node(node2)
     # Spin in a separate thread
-    executor_thread = threading.Thread(target=executor.spin, daemon=True)
-    executor_thread.start()
-    rate = node.create_rate(2)
     try:
-        while rclpy.ok():
-            print('Help me body, you are my only hope')
-            rate.sleep()
-    except KeyboardInterrupt:
-        pass
-    rclpy.shutdown()
-    executor_thread.join()
+        executor.spin()
+    except Exception as e:
+        print(e)
+        node.destroy_node()
+        node2.destroy_node()
+        rclpy.shutdown()
 
 
