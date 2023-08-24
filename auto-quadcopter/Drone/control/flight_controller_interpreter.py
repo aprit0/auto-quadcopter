@@ -1,4 +1,4 @@
-import math
+import math, os
 from simple_pid import PID
 import numpy as np
 try:
@@ -49,6 +49,7 @@ class FCI:
     def run(self) -> list:
         # Returns cmd[4]: [1000, 2000]
         if not self.bools['arm'] or not self.original_odom:
+            os.system("clear")
             print(f"FCI[disarmed]][Twist:{self.bools['mode']}]: Arm:{self.bools['arm']}, Odom:{bool(self.original_odom)}")
             return [self.throttle_base]*4
         current = self.euler_current + [self.cartesian_current[-1]]
@@ -97,17 +98,17 @@ class FCI:
         # print(f"PID: {self.rnd(self.pid_rp + [pid_yaw, pid_height])}")
         # print(f'PID0: {self.throttle_pid[0]:.2f} Ang0: {self.euler_current[0]:.2f}, Set0: {self.euler_setpoints[0]}' )
         # print(f"FCI[Update]: {[f'E: {j}/{i} T: {k}/{l}' for [i, j, k, l] in zip(self.rnd(self.euler_setpoints), self.rnd(self.euler_current), self.rnd(self.twist_current), self.rnd(self.twist_setpoints))]}")
-        # print(f"FCI[Update][{self.bools['mode']}]: {[f'{k.upper()}: {i}/{j}' for [i, j, k] in zip(self.rnd(current), self.rnd(setpoint), ['r', 'p', 'y', 'h'])]}")
+        print(f"FCI[Update][{self.bools['mode']}]: {[f'{k.upper()}: {i}/{j}' for [i, j, k] in zip(self.rnd(current), self.rnd(setpoint), ['r', 'p', 'y', 'h'])]}")
         return [fr, fl, bl, br]
     
 
-    def calc_twist(self, rp_gain: int = 10) -> list:
+    def calc_twist(self, rp_gain: int = 7) -> list:
         # print(f"FCI[twist]: {[f'{i}/{j}' for (i, j) in zip(self.rnd(self.twist_current), self.rnd(self.twist_setpoints))]}")
-        error = [(i - j)/j if j!= 0 else i for (i, j) in zip(self.twist_current, self.twist_setpoints)]
-        # prpid_heightint(f"FCI[error]: {self.rnd(error)}")
-        setpoint = [i + j*rp_gain for (i, j) in zip(self.euler_setpoints, error)]
+        error = [np.sign(j) * (i - j)/j if j!= 0 else i for (i, j) in zip(self.twist_current[:2], self.twist_setpoints[:2])]
+        # print(f"FCI[error]: {self.rnd(error)}")
+        setpoint = [i + j*rp_gain for (i, j) in zip(self.euler_setpoints[:2], error)]
         # Enforce range limits
-        setpoint[:2] = list(np.clip(setpoint[:2], -10, 10))
+        setpoint[:2] = list(np.clip(setpoint, -10, 10))
         # setpoint[2] = setpoint[2] if setpoint[2] < 180 or setpoint[2] > -180 else setpoint[2]  % (np.sign(setpoint[2] ) * 180) - (np.sign(setpoint[2] ) * 180)
 
         return setpoint[:2]
