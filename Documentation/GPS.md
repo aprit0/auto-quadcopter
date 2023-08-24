@@ -8,3 +8,7 @@ RPI U-Boot Autoboot to avoid RX Pin overload:
 3. `U-Boot> setenv bootdelay -2`
 4. `U-Boot> saveenv`
 
+# To Test
+CPO May offer single module millimetre precision
+- https://github.com/utiasASRL/cpo
+

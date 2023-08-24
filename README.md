@@ -6,7 +6,8 @@
 - [x] Code and integrate base station
 - [x] Roll/Pitch/Yaw PID Tuning
 - [x] FIRST FLIGHT  
-- [ ] Code and integrate XYZ Hover - Awaiting Optical Flow Sensor  
+- [~] Code and integrate XYZ Hover - Awaiting Optical Flow Sensor  
+- [ ] [Redesign pose to implement robot_localization package](https://automaticaddison.com/sensor-fusion-using-the-robot-localization-package-ros-2/)
 - [ ] STABLE PLATFORM FLIGHT
 - [x] Code and integrate GPS
 - [ ] ROS RANGE TEST FLIGHT
@@ -47,6 +48,9 @@ Using ROS2 nodes, the code base can be easily modular, adaptable and upgradeable
 ## Features
 - XYZ Stabilisation with optical flow
 - Benefits of ROS ecosystem
+
+## Conventions
+- Orientation/Units: [REP103](https://www.ros.org/reps/rep-0103.html)
 
 
 
