@@ -35,6 +35,7 @@ class GpsNode(Node):
             msg.position_covariance[4] = 0
             msg.position_covariance[8] = 0
             msg.position_covariance_type = NavSatFix.COVARIANCE_TYPE_DIAGONAL_KNOWN
+            print(msg)
 
             self.publisher_.publish(msg)
             self.best_pos_a = None

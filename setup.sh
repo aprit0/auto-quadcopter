@@ -10,4 +10,5 @@ sudo apt install iwlist
 ## ROS
 sudo apt install ros-$ROS_DISTRO-foxglove-bridge
 echo -e "\nalias foxglove='ros2 launch foxglove_bridge foxglove_bridge_launch.xml'" >> ~/.bashrc
+echo -e "\nalias build='cd ~/ros2_ws && colcon build && cd -'" >> ~/.bashrc
 
