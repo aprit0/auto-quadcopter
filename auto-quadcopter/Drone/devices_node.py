@@ -87,6 +87,7 @@ class DeviceNode(Node):
             h = Header()
             h.stamp = self.get_clock().now().to_msg()
             msg.header = h
+            msg.header.frame_id = "map"
             msg.status.status = int(self.gps.sat_status)
             msg.latitude = self.gps.raw_pose[0]
             msg.longitude = self.gps.raw_pose[1]
@@ -105,6 +106,7 @@ class DeviceNode(Node):
         h = Header()
         h.stamp = self.get_clock().now().to_msg()
         msg.header = h
+        msg.header.frame_id = "base_link"
         msg.orientation.x = float(self.mpu.quat[0])
         msg.orientation.y = float(self.mpu.quat[1])
         msg.orientation.z = float(self.mpu.quat[2])
@@ -135,11 +137,15 @@ class DeviceNode(Node):
         h = Header()
         h.stamp = self.get_clock().now().to_msg()
         msg.header = h
-
+        msg.header.frame_id = "odom"
         msg.pose.pose.position.z = float(self.pose[2])
         msg.twist.twist.linear.x = float(self.twist[0])
         msg.twist.twist.linear.y = float(self.twist[1])
         msg.twist.twist.linear.z = float(self.twist[2])
+        msg.pose.pose.orientation.x = float(self.mpu.quat[0])
+        msg.pose.pose.orientation.y = float(self.mpu.quat[1])
+        msg.pose.pose.orientation.z = float(self.mpu.quat[2])
+        msg.pose.pose.orientation.w = float(self.mpu.quat[3])
         self.pub_odom.publish(msg)
 
     def cmd_callback(self, msg):

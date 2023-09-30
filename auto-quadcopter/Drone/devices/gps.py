@@ -30,7 +30,6 @@ class BN0:
 
     def read(self):
         self.status, out = self.get_pose()
-        print(self.status, out)
         if type(self.raw_origin) == type(None) and self.status:
             self.calib()
         if self.raw_origin and self.status:
@@ -102,7 +101,6 @@ class BN0:
 
     @staticmethod
     def convert_to_degrees(raw: str):
-        print(raw)
         raw_value = (float)(raw)
         decimal_value = raw_value/100.00
         degrees = int(decimal_value)
