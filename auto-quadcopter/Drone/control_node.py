@@ -80,7 +80,6 @@ class ControlNode(Node):
         self.Control.update_bools('mode', value=bool(msg.data))
 
     def cmd_callback(self):
-        # print('cmd callback')
         cmd = self.Control.run()
         width = 4
         height = 1

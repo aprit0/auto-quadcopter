@@ -45,12 +45,20 @@ class BN0:
         GPGGA_data_available = "GGA" in received_data   #check for NMEA GGA string                
         GNRMC_data_available = "RMC" in received_data   #check for NMEA GGA string                
         NMEA_buff = received_data.split(',')
-        if GPGGA_data_available and NMEA_buff[6] != '0':
-            gpgga_out = self.get_gngga(NMEA_buff)
+        if GPGGA_data_available and NMEA_buff[6] != '0' and False:
+            try:
+                gpgga_out = self.get_gngga(NMEA_buff)
+            except:
+                print(NMEA_buff)
+                raise
             self.height = gpgga_out[2]
             return 1, gpgga_out[:2]
         elif GNRMC_data_available and NMEA_buff[2] == 'A':
-            gnrmc_out = self.get_gnrmc(NMEA_buff)
+            try:
+                gnrmc_out = self.get_gnrmc(NMEA_buff)
+            except:
+                print(NMEA_buff)
+                raise
             self.speed = gnrmc_out[2]
             return 1, gnrmc_out[:2]
         else:

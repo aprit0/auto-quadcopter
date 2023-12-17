@@ -18,9 +18,9 @@ def test(joy, cont):
     # print("buttons: ", {i: buttons[i] for i in range(len(buttons))}, hats)
 
     cont.map(axes, buttons, hats[0])
-    print(cont.cartesian_axes)
-    print(cont.trigger_axes)
-    print(cont.buttons)
+    # print(cont.cartesian_axes)
+    # print(cont.trigger_axes)
+    # print(cont.buttons)
 
 def stats(joy):
     print("name: ",joy.get_name())

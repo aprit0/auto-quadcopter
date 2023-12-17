@@ -9,14 +9,17 @@ from adafruit_bno08x import (
 )
 from adafruit_bno08x.i2c import BNO08X_I2C
 # from utils import quat_2_euler
-from devices.utils import quat_2_euler
+try:
+    from devices.utils import quat_2_euler
+except:
+    from utils import quat_2_euler
 
 class INERTIAL:
     SETTINGS_FILE = "RTIMULib_2"
     def __init__(self, zero=True):
 
         # Init
-        i2c = I2C(SCL, SDA, frequency=800000)
+        i2c = I2C(SCL, SDA, frequency=400000)
         self.imu = BNO08X_I2C(i2c)
         self.imu.enable_feature(BNO_REPORT_ROTATION_VECTOR)
         self.imu.enable_feature(BNO_REPORT_GYROSCOPE)
@@ -40,7 +43,11 @@ class INERTIAL:
         Current loop speed of max: 0.0022, min: 0.00067
         '''
         # Get Data 
-        ax, ay, az = self.imu.linear_acceleration
+        try:
+            ax, ay, az = self.imu.linear_acceleration
+        except Exception as e:
+            print(e)
+            raise
         self.linear_accel = [ax, ay, az]
         i, j, k, w = self.imu.quaternion
         self.quat = [i, j, k, w]
@@ -68,6 +75,6 @@ if __name__ == '__main__':
             mpu.read()
             t_0 = time.time()
             # time.sleep(0.1)
-            print([round(i, 4) for i in mpu.linear_vel])
+            print([round(i, 4) for i in mpu.euler])
 
 

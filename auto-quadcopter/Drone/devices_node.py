@@ -30,7 +30,7 @@ Publishes:
 class DeviceNode(Node):
     def __init__(self):
         super().__init__('device_node')
-        self.gps_init = 1  # int(input("Use GPS? (0|1)") or 1)
+        self.gps_init = 0  # int(input("Use GPS? (0|1)") or 1)
         # Subscribers
         self.sub_cmd = self.create_subscription(Int16MultiArray, 'drone/CMD', self.cmd_callback, 10)
         self.sub_cmd
@@ -41,7 +41,7 @@ class DeviceNode(Node):
 
         # Publishers
         # Publish Odom at a rate matching components: OF/Z_axis
-        self.pub_odom = self.create_publisher(Odometry, 'drone/odom_raw', 10)
+        self.pub_odom = self.create_publisher(Odometry, 'drone/odom', 10)
         timer_odom = 0.08  # seconds
         self.timer_odom = self.create_timer(timer_odom, self.odom_callback)
 
@@ -57,6 +57,7 @@ class DeviceNode(Node):
         self.motors = ESC()
         self.height = ZAXIS()
         if self.gps_init:
+            print('Start GPS')
             self.pub_gps = self.create_publisher(NavSatFix, 'drone/GPS', 10)
             timer_gps = 0.1  # seconds
             self.timer_gps = self.create_timer(timer_gps, self.gps_callback)

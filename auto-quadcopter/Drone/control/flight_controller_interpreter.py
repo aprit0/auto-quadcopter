@@ -62,9 +62,11 @@ class FCI:
             pass
         elif self.bools["mode"] == 2:
             # position control
+            print("Position Control")
             # https://github.com/alduxvm/DronePilot/blob/master/mw-hover-controller.py
             setpoint = setpoint_pose
         else:
+            print("Euler Control")
             setpoint = setpoint_euler
         # Yaw calcs
         self.original_odom[0][1][-1] += setpoint[2] * 0.1

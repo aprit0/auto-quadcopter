@@ -6,7 +6,7 @@ if __name__ == '__main__':
     rclpy.init()
     node = SchemaNode()
     node2 = JoystickNode()
-    executor = rclpy.executors.MultiThreadedExecutor(num_threads=3)
+    executor = rclpy.executors.MultiThreadedExecutor(num_threads=1)
     executor.add_node(node)
     executor.add_node(node2)
     # Spin in a separate thread

@@ -54,12 +54,13 @@ class SchemaNode(Node):
             self.pub_arm.publish(self.msg_arm)
             self.pub_mode.publish(self.msg_mode)
             self.pub_hold.publish(self.msg_hold)
-            if self.msg_mode.data == False:
-                self.pub_twist.publish(self.msg_twist)
+            # if self.msg_mode.data == False:
+            self.pub_twist.publish(self.msg_twist)
 
 
 
     def joy_callback(self, msg):
+        reverse = lambda x: 1000 if x == 2000 else 2000
         axes = msg.axes
         [arm, hold, schema] = msg.buttons[:3]
         # Velocity Control
@@ -70,20 +71,22 @@ class SchemaNode(Node):
         self.msg_arm = Bool()
         self.msg_arm.data = bool(arm - 1000)
         self.msg_hold = Bool()
-        self.msg_hold.data = bool(hold-1000)
+        self.msg_hold.data = bool(reverse(hold)-1000)
         self.msg_mode = Bool()
-        self.msg_mode.data = bool(schema-1000)
+        self.msg_mode.data = bool(reverse(schema)-1000)
         print(f"[{self.msg_arm.data}]: Mode:{self.msg_mode.data}, Hold:{self.msg_hold.data}")
+    
         
     def vel_control(self, axes):
         # Input: axes = [Throttle, Roll, Pitch, Yaw] 
         # Output: linear, angular = [x, y, z] * 2
         linear, angular = Vector3(), Vector3()
         key_map = lambda x: np.interp(x, [1000, 2000], [-2, 2])
-        linear.x = key_map(axes[2])
-        linear.y = key_map(axes[1])
-        linear.z = axes[0]
-        angular.z = key_map(axes[3])
+        zero_out = lambda x: x if abs(x) > 1e-7 else 0.
+        linear.x = zero_out(key_map(axes[2]))
+        linear.y = zero_out(key_map(axes[1]))
+        linear.z = zero_out(axes[0])
+        angular.z = zero_out(key_map(axes[3]))
         return linear, angular
         
 def main():
