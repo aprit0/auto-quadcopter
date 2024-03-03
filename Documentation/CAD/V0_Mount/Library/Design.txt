@@ -1,0 +1,17 @@
+Objective:
+- Contain electronics safely
+
+Features:
+- Lid removable easily
+- Entire assembly removable from pcb easily
+- Even weight distribution
+
+Requirements:
+- RPI
+- PCB
+- Power
+- Holes for external routing: all sides bar top
+- Oled display
+- LCV Voltage display
+- GPS Antenna to the sky
+
