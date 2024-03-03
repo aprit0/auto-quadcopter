@@ -25,5 +25,6 @@ class INERTIAL(BNO08X_I2C):
         self.quat = [i, j, k, w]
         r, p, y = quat_2_euler(i, j, k, w)
         self.euler = [r, p, y] 
+        # print(self.euler)
         return self.euler
                  

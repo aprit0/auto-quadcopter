@@ -18,23 +18,29 @@ inv_message_mapping = {value: key for [key, value] in message_mapping.items()}
 class PICO2PI:
     def __init__(self, baudrate=115200) -> None:
         self.uart = busio.UART(board.GP4, board.GP5, baudrate=baudrate)
-        self.sreader = asyncio.StreamReader(self.uart)
         self.str_out = ""
         self.message_queue = []
 
     async def read_serial(self):
+        print("0read_serial")
+        reader = asyncio.StreamReader(self.uart)
         while True:
-            bytes_out = await self.sreader.readline()
+            print("0read_serial")
+            bytes_out = await reader.readline()
+            # if bytes_out:
+            print(1, bytes_out)
             str_out = bytes_out.decode().rstrip("\n")
             self.message_queue.append(str_out)
+            # print("1read_serial")
+            # await asyncio.sleep(0.1)
 
     def get_message(self, msg):
         if "<" == msg[0] and ">" == msg[-1]:
             # Valid message
             msg = msg[1:-1]
-            msg_type, data = msg.split(",")
+            msg_type = msg.split(",")[0]
+            data = msg.split(",")[1:]
             data = [data] if type(data) != type([]) else data
-            print(msg_type, data) 
             msg_data = {i.split(":")[0]: i.split(":")[1] for i in data}
             return msg_type, msg_data
         print("Invalid_msg", msg)
@@ -45,6 +51,8 @@ class PICO2PI:
         if _msg_type in message_mapping:
             call_func = getattr(self, message_mapping[_msg_type])
             call_func(_msg)
+        else:
+            print("Failed process_msg", _msg_type, _msg)
 
     def write_msg(self, _msg_func, _msg_dict):
         data_str = ",".join([f"{key}:{value}" for [key, value] in _msg_dict.items()])
@@ -54,11 +62,16 @@ class PICO2PI:
     
     async def update_state(self):
         while True:
-            for msg in self.message_queue:
+            # print("0update_state")
+            while self.message_queue:
+                msg = self.message_queue.pop(0)
                 msg_type, msg = self.get_message(msg)
                 if type(msg_type) != None:
                     self.process_msg(msg_type, msg)
-            await asyncio.sleep(0)
+                else:
+                    print("Failed update msg", msg_type)
+            # print("1update_state")
+            await asyncio.sleep(0.1)
 
     # async def main(self):
     #     while True:

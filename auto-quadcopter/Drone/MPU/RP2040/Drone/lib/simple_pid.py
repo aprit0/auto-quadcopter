@@ -180,13 +180,13 @@ class PID(object):
         """
         return self._proportional, self._integral, self._derivative
 
-    @property
-    def tunings(self):
+    # @property
+    def get_tunings(self):
         """The tunings used by the controller as a tuple: (Kp, Ki, Kd)."""
         return self.Kp, self.Ki, self.Kd
 
-    @tunings.setter
-    def tunings(self, tunings):
+    # @tunings.setter
+    def set_tunings(self, tunings):
         """Set the PID tunings."""
         self.Kp, self.Ki, self.Kd = tunings
 
