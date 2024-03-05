@@ -63,13 +63,15 @@ class FlightController(PICO2PI):
         else:
             self.pid.pid_disable()
         
-    def write_config(self, msg):
+    def write_config(self, _msg):
         self.write_pid()
 
-    def get_pid_setpoints(self):
-        self.pid.get_params()
+    def get_pid_setpoints(self, _msg):
+        out = self.pid.get_params()
+        self.write_msg("get_pid_setpoints", {i:j for i, j in zip(["P", "I", "D"], out)})
+
         
-    def get_pose(self):
+    def get_pose(self, _msg):
         out_dict = {key: round(value, 1) for key, value in zip(["R", "P", "Y"], self.euler_current)}
         self.write_msg("get_pose", out_dict)
 
@@ -93,10 +95,15 @@ class FlightController(PICO2PI):
             json.dump(pid_out, f)
 
 
+def custom_exception_handler(loop, context):
+    loop.default_exception_handler(context)
+    print(context)
+    loop.stop()
 
 if __name__ == "__main__":
     FC = FlightController()
     loop = asyncio.get_event_loop()
+    # loop.set_exception_handler(custom_exception_handler)
     loop.create_task(FC.main())
     loop.create_task(FC.read_serial())
     loop.create_task(FC.update_state())
