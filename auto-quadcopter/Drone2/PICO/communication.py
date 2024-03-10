@@ -1,5 +1,4 @@
 import serial
-print(serial.__file__) 
 import time
 
 
@@ -17,7 +16,7 @@ message_mapping = {
 inv_message_mapping = {value: key for [key, value] in message_mapping.items()}
 
 
-class PI2PICO:
+class PI2PICO(object):
     def __init__(self) -> None:
         self.serialPort = serial.Serial(
             port="/dev/ttyS0", baudrate=460800, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
@@ -25,6 +24,7 @@ class PI2PICO:
         self.message_queue = []
         self.buffer = ["", 0]
         self.t_0 = 0
+        self.euler_pose = []
 
     def check_string(self, str_in, is_buffer=False):
         start_idx = [idx for idx, i in enumerate(str_in) if i == "<"]
@@ -80,7 +80,7 @@ class PI2PICO:
         type_str = inv_message_mapping[_msg_func]
         out_str = f"<{type_str},{data_str}>\n"
         self.serialPort.write(bytes(out_str, "ascii"))
-        print("writing", out_str)
+        # print("writing", out_str)
 
     def update_state(self):
         while self.message_queue:
@@ -91,8 +91,8 @@ class PI2PICO:
             else:
                 print("Failed update msg", msg_type)
 
-    def set_setpoints(self):
-        out_dict = {key: round(value, 1) for key, value in zip(["T", "R", "P", "Y"], [1000,10,2.4,160.3])}
+    def set_setpoints(self, _msg):
+        out_dict = {key: round(value, 1) for key, value in zip(["T", "R", "P", "Y"], _msg)}
         self.write_msg("set_setpoints", out_dict)
     
     def set_pid_setpoints(self):
@@ -109,14 +109,14 @@ class PI2PICO:
 
     def get_pid_setpoints(self, _msg=""):
         if _msg:
-            print(_msg)
+            pass
         else:
             self.write_msg("get_pid_setpoints")
 
     def get_pose(self, _msg=""):
         if _msg:
-            print(time.time() - self.t_0)
-            print(_msg)
+            # print(time.time() - self.t_0)
+            self.euler_pose = [round(float(_msg[i]),2) for i in ["R", "P", "Y"]]
         else:
             self.t_0 = time.time()
             self.write_msg("get_pose")
@@ -130,10 +130,11 @@ class PI2PICO:
             self.update_state()
             if time.time() - t_0 > 0.1:
                 self.get_pose()
+                print(self.euler_pose)
                 t_0 = time.time()
 
 
 
 if __name__ == "__main__":
     comms = PI2PICO()
-    # comms.main()
+    comms.main()
