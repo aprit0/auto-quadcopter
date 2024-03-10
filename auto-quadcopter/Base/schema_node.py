@@ -1,10 +1,9 @@
 import rclpy
 import numpy as np
 from rclpy.node import Node
-from std_msgs.msg import Header, Bool
+from std_msgs.msg import Header, Bool,Int16MultiArray, MultiArrayDimension
 from sensor_msgs.msg import Joy
-from geometry_msgs.msg import TwistStamped, Vector3 
-
+from geometry_msgs.msg import TwistStamped, Vector3
 '''
 Aim: Convert joystick messages to control schema 
 - Velocity mode: Twist
@@ -32,6 +31,7 @@ class SchemaNode(Node):
         super().__init__('schema_node')
         self.sub_joy = self.create_subscription(Joy,'base/Joy',self.joy_callback,10)
         self.pub_twist = self.create_publisher(TwistStamped, 'base/twist', 10)
+        self.pub_euler = self.create_publisher(TwistStamped, 'base/angle', 10)
         self.pub_arm = self.create_publisher(Bool, 'base/ARM', 10)
         self.pub_hold = self.create_publisher(Bool, 'base/HOLD', 10)
         self.pub_mode = self.create_publisher(Bool, 'base/MODE', 10)
@@ -67,6 +67,23 @@ class SchemaNode(Node):
         self.msg_twist = TwistStamped()
         self.msg_twist.header = Header()
         self.msg_twist.twist.linear, self.msg_twist.twist.angular = self.vel_control(axes)
+        # Angle Control
+        cmd_angle = self.angle_control(axes)
+        width = 3
+        height = 1
+        msg = Int16MultiArray()
+        msg.layout.dim.append(MultiArrayDimension())
+        msg.layout.dim.append(MultiArrayDimension())
+        msg.layout.dim[0].label = "height"
+        msg.layout.dim[1].label = "width"
+        msg.layout.dim[0].size = height
+        msg.layout.dim[1].size = width
+        msg.layout.dim[0].stride = width*height
+        msg.layout.dim[1].stride = width
+        msg.layout.data_offset = 0
+        msg.data = [int(i) for i in cmd_angle]
+        self.msg_angle = msg
+
 
         self.msg_arm = Bool()
         self.msg_arm.data = bool(arm - 1000)
@@ -88,6 +105,18 @@ class SchemaNode(Node):
         linear.z = zero_out(axes[0])
         angular.z = zero_out(key_map(axes[3]))
         return linear, angular
+
+    def angle_control(self, axes):
+        key_map = lambda x: np.interp(x, [1000, 2000], [-2, 2])
+        zero_out = lambda x: x if abs(x) > 1e-7 else 0.
+        throttle = zero_out(axes[0])
+        pitch = zero_out(key_map(axes[2]))
+        roll = zero_out(key_map(axes[1]))
+        yaw = zero_out(key_map(axes[3]))
+        return [throttle, roll, pitch, yaw]
+
+
+
         
 def main():
     rclpy.init()

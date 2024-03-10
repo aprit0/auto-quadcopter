@@ -27,8 +27,8 @@ class ControlNode(Node):
         super().__init__('control_node') # type: ignore
         self.sub_twist = self.create_subscription(TwistStamped,'base/twist',self.twist_callback,10)
         self.sub_twist 
-        self.sub_euler = self.create_subscription(Int16MultiArray,'base/euler',self.euler_callback,10)
-        self.sub_euler 
+        self.sub_angle = self.create_subscription(Int16MultiArray,'base/angle',self.angle_callback,10)
+        self.sub_angle
         self.sub_arm = self.create_subscription(Bool,'base/ARM',self.arm_callback,10)
         self.sub_arm 
         self.sub_hold = self.create_subscription(Bool,'base/HOLD',self.hold_callback,10)
@@ -43,7 +43,7 @@ class ControlNode(Node):
 
         self.GCS = GRANDCENTRALSTATION()
     
-    def euler_callback(self, msg):
+    def angle_callback(self, msg):
         self.GCS.set_command(msg, str(type(msg)))
     
     def twist_callback(self, msg):
