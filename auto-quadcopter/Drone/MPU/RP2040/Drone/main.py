@@ -36,8 +36,8 @@ class FlightController(PICO2PI):
             y_new = self.euler_setpoints[2] - self.euler_current[2]
             yaw_dist = y_new if abs(y_new) < 180 else y_new + (-1 * m.copysign(1, y_new) * 360)
             pid_out = self.pid.run(self.euler_current[:2]+[yaw_dist])
-            print(f"R:{self.euler_current[0]}/{self.euler_setpoints[0]}={pid_out[0]}, Y:{yaw_dist}={pid_out[2]}")
-            print(pid_out, self.throttle_setpoint, self.ARM)
+            # print(f"R:{self.euler_current[0]}/{self.euler_setpoints[0]}={pid_out[0]}, Y:{yaw_dist}={pid_out[2]}")
+            # print(pid_out, self.throttle_setpoint, self.ARM)
             if self.pid.enabled:
                 fl = self.throttle_setpoint + pid_out[0] + pid_out[1] + pid_out[2]
                 fr = self.throttle_setpoint + pid_out[0] - pid_out[1] - pid_out[2]
@@ -48,6 +48,7 @@ class FlightController(PICO2PI):
 
             self.motors.set_speed(fl, fr, bl, br, self.ARM)
             # print("1main")
+            # self.get_pose({})
             await asyncio.sleep(0)
         
     def set_setpoints(self, msg):
@@ -86,18 +87,18 @@ class FlightController(PICO2PI):
         key, value = list(msg.items())[0]
         setattr(self, key, value)
         self.pid.set_params(self.P, self.I, self.D)
-        print(self.pid.kp)
+        # print(self.pid.kp)
         
     def write_pid(self):
         pid_out = {key: value for key, value in zip(["P", "I", "D"], self.pid.get_params())} 
-        print(pid_out)
+        # print(pid_out)
         with open(self.PID_FILENAME, "w") as f:
             json.dump(pid_out, f)
 
 
 def custom_exception_handler(loop, context):
     loop.default_exception_handler(context)
-    print(context)
+    # print(context)
     loop.stop()
 
 if __name__ == "__main__":
@@ -107,4 +108,7 @@ if __name__ == "__main__":
     loop.create_task(FC.main())
     loop.create_task(FC.read_serial())
     loop.create_task(FC.update_state())
-    loop.run_forever()
+    try:
+        loop.run_forever()
+    except Exception as e:
+        print(e)

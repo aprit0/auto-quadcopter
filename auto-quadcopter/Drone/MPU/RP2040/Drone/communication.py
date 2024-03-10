@@ -2,7 +2,8 @@ import board
 import busio
 import asyncio
 import gc
-
+import time
+import digitalio
 # <TYPE,KEY:VALUE,KEY:VALUE> ... <TYPE,DATA,DATA>
 message_mapping = {
     # Setters
@@ -18,6 +19,17 @@ inv_message_mapping = {value: key for [key, value] in message_mapping.items()}
 
 class PICO2PI:
     def __init__(self, baudrate=460800) -> None:
+        # TX = digitalio.DigitalInOut(board.GP4)
+        # TX.switch_to_input(pull=digitalio.Pull.DOWN)
+        # RX = digitalio.DigitalInOut(board.GP5)
+        # RX.switch_to_input(pull=digitalio.Pull.DOWN)
+        self.LED = digitalio.DigitalInOut(board.LED)
+        self.LED.direction = digitalio.Direction.OUTPUT
+        self.LED.value = False
+        # time.sleep(120)
+        # TX.deinit()
+        # RX.deinit()
+        # time.sleep(1)
         self.uart = busio.UART(board.GP4, board.GP5, baudrate=baudrate)
         self.str_out = ""
         self.message_queue = []
@@ -30,7 +42,7 @@ class PICO2PI:
         if start_idx and end_idx and end_idx[-1] > start_idx[-1]: 
             str_out = str_in[start_idx[-1]:end_idx[-1]+1]
             self.buffer = ["", 0]
-            print("VALID READ: ", str_out)
+            # print("VALID READ: ", str_out)
             self.message_queue.append(str_out)
             return 1
         elif self.buffer[1] <= 2 and not is_buffer:
@@ -43,14 +55,14 @@ class PICO2PI:
         return 0
 
     async def read_serial(self):
-        print("0read_serial")
         reader = asyncio.StreamReader(self.uart)
         while True:
-            print("0read_serial")
+            self.LED.value = False if self.LED.value == True else True
+            # print("0read_serial", self.LED.value)
             bytes_out = await reader.readline()
             gc.collect()
             # if bytes_out:
-            print(1, bytes_out)
+            # print(1, bytes_out)
             str_out = str(bytes_out).lstrip("b''").rstrip("\n")
             if str_out:
                 status = self.check_string(str_out)
@@ -62,7 +74,7 @@ class PICO2PI:
         error = ""
         if "<" == msg[0] and ">" == msg[-1]:
             # Valid message
-            print("MSG: ",msg)
+            # print("MSG: ",msg)
             msg = msg[1:-1]
             msg_type = msg.split(",")[0]
             data = msg.split(",")[1:]
@@ -72,7 +84,7 @@ class PICO2PI:
                 return msg_type, msg_data
             except Exception as e:
                 error += str(e)
-                print("AAAAAAAAAAAAAAAAAAAAAAAA: ", error)
+                # print("AAAAAAAAAAAAAAAAAAAAAAAA: ", error)
         print("Invalid_msg", msg, error)
         return None, None
 
