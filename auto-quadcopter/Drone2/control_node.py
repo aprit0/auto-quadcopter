@@ -27,7 +27,7 @@ class ControlNode(Node):
         super().__init__('control_node') # type: ignore
         self.sub_twist = self.create_subscription(TwistStamped,'base/twist',self.twist_callback,10)
         self.sub_twist 
-        self.sub_angle = self.create_subscription(Int16MultiArray,'base/angle',self.angle_callback,10)
+        self.sub_angle = self.create_subscription(Float32MultiArray,'base/angle',self.angle_callback,10)
         self.sub_angle
         self.sub_arm = self.create_subscription(Bool,'base/ARM',self.arm_callback,10)
         self.sub_arm 
@@ -35,7 +35,7 @@ class ControlNode(Node):
         self.sub_hold 
         self.sub_mode = self.create_subscription(Bool,'base/MODE',self.mode_callback,10)
         self.sub_mode
-        self.pub_cmd_euler = self.create_publisher(Int16MultiArray,'drone/cmd/euler', 10)
+        self.pub_cmd_euler = self.create_publisher(Float32MultiArray,'drone/cmd/euler', 10)
         self.pub_cmd_throttle = self.create_publisher(Int16,'drone/cmd/throttle', 10)
 
         timer_period = 0.1  # seconds
@@ -44,10 +44,10 @@ class ControlNode(Node):
         self.GCS = GRANDCENTRALSTATION()
     
     def angle_callback(self, msg):
-        self.GCS.set_command(msg, str(type(msg)))
+        self.GCS.set_command(msg, "Angle")
     
     def twist_callback(self, msg):
-        self.GCS.set_command(msg, str(type(msg)))
+        self.GCS.set_command(msg, "Twist")
 
     def arm_callback(self, msg):
         self.GCS.update_bools('arm', value=bool(msg.data))
@@ -62,7 +62,7 @@ class ControlNode(Node):
         cmd_throttle, cmd_euler = self.GCS.get_command()
         width = 3
         height = 1
-        msg = Int16MultiArray()
+        msg = Float32MultiArray()
         msg.layout.dim.append(MultiArrayDimension())
         msg.layout.dim.append(MultiArrayDimension())
         msg.layout.dim[0].label = "height"
@@ -72,11 +72,11 @@ class ControlNode(Node):
         msg.layout.dim[0].stride = width*height
         msg.layout.dim[1].stride = width
         msg.layout.data_offset = 0
-        msg.data = [int(i) for i in cmd_euler]
-        # print('CMD: ', cmd)
+        msg.data = [float(i) for i in cmd_euler]
+        print('CMD: ', cmd_throttle, cmd_euler, self.GCS.bools)
         self.pub_cmd_euler.publish(msg)
         msg = Int16()
-        msg.data = cmd_throttle
+        msg.data = int(cmd_throttle)
         self.pub_cmd_throttle.publish(msg)
 
 def main(args=None):

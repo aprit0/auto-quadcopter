@@ -10,17 +10,17 @@ class GRANDCENTRALSTATION:
     BASE_THROTTLE = 1000
     def __init__(self):
         self.bools = {
-            "ARM": False,
-            "MODE": False,
-            "HOLD": False,
+            "arm": False,
+            "mode": False,
+            "hold": False,
         }
         self.base_cmd_angle = [self.BASE_THROTTLE, 0, 0, 0]
         self.base_cmd_twist = None
 
 
-    def set_command(self, msg, msg_type="Int16MultiArray"):
+    def set_command(self, msg, msg_type="Angle"):
         # Receive and interpret command from base
-        if msg_type == "Int16MultiArray":
+        if msg_type == "Angle":
             self.base_cmd_angle = list(msg.data)
         elif msg_type == "Twist":
             pass
@@ -31,15 +31,15 @@ class GRANDCENTRALSTATION:
         return cmd[0], cmd[1:]
 
     def get_mode(self):
-        if self.bools["ARM"]:
-            if self.bools["MODE"] and self.bools["HOLD"]:
-                return self._auto_mode()
-            elif self.bools["MODE"]:
-                return self._semi_xy()
-            elif self.bools["HOLD"]:
-                return self._semi_z()
-            else:
-                return self._human_mode()
+        if self.bools["arm"]:
+            # if self.bools["mode"] and self.bools["hold"]:
+            #     return self._auto_mode()
+            # elif self.bools["mode"]:
+            #     return self._semi_xy()
+            # elif self.bools["hold"]:
+            #     return self._semi_z()
+            # else:
+            return self._human_mode()
         else:
             return [self.BASE_THROTTLE, 0, 0, 0]
 

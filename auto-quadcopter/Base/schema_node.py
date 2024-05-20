@@ -1,7 +1,7 @@
 import rclpy
 import numpy as np
 from rclpy.node import Node
-from std_msgs.msg import Header, Bool,Int16MultiArray, MultiArrayDimension
+from std_msgs.msg import Header, Bool,Float32MultiArray, MultiArrayDimension
 from sensor_msgs.msg import Joy
 from geometry_msgs.msg import TwistStamped, Vector3
 '''
@@ -31,7 +31,7 @@ class SchemaNode(Node):
         super().__init__('schema_node')
         self.sub_joy = self.create_subscription(Joy,'base/Joy',self.joy_callback,10)
         self.pub_twist = self.create_publisher(TwistStamped, 'base/twist', 10)
-        self.pub_euler = self.create_publisher(TwistStamped, 'base/angle', 10)
+        self.pub_euler = self.create_publisher(Float32MultiArray, 'base/angle', 10)
         self.pub_arm = self.create_publisher(Bool, 'base/ARM', 10)
         self.pub_hold = self.create_publisher(Bool, 'base/HOLD', 10)
         self.pub_mode = self.create_publisher(Bool, 'base/MODE', 10)
@@ -55,7 +55,9 @@ class SchemaNode(Node):
             self.pub_mode.publish(self.msg_mode)
             self.pub_hold.publish(self.msg_hold)
             # if self.msg_mode.data == False:
-            self.pub_twist.publish(self.msg_twist)
+            # self.pub_twist.publish(self.msg_twist)
+            self.pub_euler.publish(self.msg_angle)
+            print(f"[{self.msg_arm.data}]: Mode:{self.msg_mode.data}, Hold:{self.msg_hold.data}, Out: {self.msg_angle.data}")
 
 
 
@@ -71,7 +73,7 @@ class SchemaNode(Node):
         cmd_angle = self.angle_control(axes)
         width = 3
         height = 1
-        msg = Int16MultiArray()
+        msg = Float32MultiArray()
         msg.layout.dim.append(MultiArrayDimension())
         msg.layout.dim.append(MultiArrayDimension())
         msg.layout.dim[0].label = "height"
@@ -81,7 +83,7 @@ class SchemaNode(Node):
         msg.layout.dim[0].stride = width*height
         msg.layout.dim[1].stride = width
         msg.layout.data_offset = 0
-        msg.data = [int(i) for i in cmd_angle]
+        msg.data = [float(i) for i in cmd_angle]
         self.msg_angle = msg
 
 
@@ -91,7 +93,6 @@ class SchemaNode(Node):
         self.msg_hold.data = bool(reverse(hold)-1000)
         self.msg_mode = Bool()
         self.msg_mode.data = bool(reverse(schema)-1000)
-        print(f"[{self.msg_arm.data}]: Mode:{self.msg_mode.data}, Hold:{self.msg_hold.data}")
     
         
     def vel_control(self, axes):

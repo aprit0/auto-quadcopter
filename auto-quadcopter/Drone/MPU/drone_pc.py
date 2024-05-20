@@ -20,7 +20,7 @@ inv_message_mapping = {value: key for [key, value] in message_mapping.items()}
 class PI2PICO:
     def __init__(self) -> None:
         self.serialPort = serial.Serial(
-            port="/dev/ttyS0", baudrate=460800, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
+            port="/dev/ttyS0", baudrate=115200, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
         )
         self.message_queue = []
         self.buffer = ["", 0]
@@ -136,4 +136,4 @@ class PI2PICO:
 
 if __name__ == "__main__":
     comms = PI2PICO()
-    # comms.main()
+    comms.main()

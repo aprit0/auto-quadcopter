@@ -24,10 +24,12 @@ class PICONode(Node, PI2PICO):
         # super(Node, self).__init__('PICO_node') # type: ignore
         Node.__init__(self, 'PICO_node')
         PI2PICO.__init__(self)
-        self.sub_euler = self.create_subscription(TwistStamped,'drone/cmd/euler',self.euler_callback,10)
+        self.sub_euler = self.create_subscription(Float32MultiArray,'drone/cmd/euler',self.euler_callback,10)
         self.sub_euler
-        self.sub_throttle = self.create_subscription(TwistStamped,'drone/cmd/throttle',self.throttle_callback,10)
+        self.sub_throttle = self.create_subscription(Int16,'drone/cmd/throttle',self.throttle_callback,10)
         self.sub_throttle
+        self.sub_arm = self.create_subscription(Bool,'base/ARM',self.arm_callback,10)
+        self.sub_arm 
         self.pub_euler = self.create_publisher(Float32MultiArray,'drone/dev/euler', 10)
 
         timer_period = 0.1  # seconds
@@ -40,20 +42,34 @@ class PICONode(Node, PI2PICO):
         self.cmd_euler = []
         self.cmd_pid = {}
         self.cmd_throttle = 0
+        self.ARM = [0, False] # delta state, current arm
+    
+    def arm_callback(self, msg):
+        if bool(msg.data) == bool(self.ARM[1]):
+            # Not new data,
+            pass
+        else:
+            self.ARM = [1, bool(msg.data)]
+            print("arm: ", self.ARM)
 
     def recv_callback(self):
+        # print("reading")
         self.read_serial()
         self.update_state()
 
     def send_callback(self):
         self.get_pose()
-        if self.cmd_euler:
+        # print("getting")
+        if self.cmd_euler and self.ARM[1]:
             msg = [self.cmd_throttle] + self.cmd_euler
-            print("send_callback: ", msg.data)
             self.set_setpoints(msg)
             self.cmd_euler = []
         if self.cmd_pid:
             pass
+        if self.ARM[0]:
+            self.set_arm(self.ARM[1])
+            self.ARM[0] = 0
+            print("set_arm: ", self.ARM)
 
 
     def euler_callback(self, msg):
@@ -76,7 +92,7 @@ class PICONode(Node, PI2PICO):
             msg.layout.dim[0].stride = width*height
             msg.layout.dim[1].stride = width
             msg.layout.data_offset = 0
-            print("dev_euler_callback: ", self.euler_pose)
+            # print("dev_euler_callback: ", self.euler_pose)
             msg.data = [float(i) for i in self.euler_pose]
             self.pub_euler.publish(msg)
     
