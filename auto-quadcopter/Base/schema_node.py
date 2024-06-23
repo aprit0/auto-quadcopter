@@ -108,9 +108,10 @@ class SchemaNode(Node):
         return linear, angular
 
     def angle_control(self, axes):
-        key_map = lambda x: np.interp(x, [1000, 2000], [-2, 2])
+        key_map = lambda x: np.interp(x, [1000, 2000], [-10, 10])
+        thr_map = lambda x: np.interp(x, [1000, 2000], [950, 2000])
         zero_out = lambda x: x if abs(x) > 1e-7 else 0.
-        throttle = zero_out(axes[0])
+        throttle = thr_map(zero_out(axes[0]))
         pitch = zero_out(key_map(axes[2]))
         roll = zero_out(key_map(axes[1]))
         yaw = zero_out(key_map(axes[3]))

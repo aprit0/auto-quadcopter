@@ -30,10 +30,14 @@ class PICONode(Node, PI2PICO):
         self.sub_throttle
         self.sub_arm = self.create_subscription(Bool,'base/ARM',self.arm_callback,10)
         self.sub_arm 
+        self.sub_pid = self.create_subscription(Float32MultiArray,'base/PID',self.pid_callback,10)
+        self.sub_pid 
         self.pub_euler = self.create_publisher(Float32MultiArray,'drone/dev/euler', 10)
 
         timer_period = 0.1  # seconds
         self.timer_send = self.create_timer(timer_period, self.send_callback)
+        timer_period = 0.5  # seconds
+        self.timer_cmd = self.create_timer(timer_period, self.status_callback)
         self.timer_euler = self.create_timer(timer_period, self.dev_euler_callback)
         timer_period = 0.01  # seconds
         self.timer_cmd = self.create_timer(timer_period, self.recv_callback)
@@ -51,11 +55,21 @@ class PICONode(Node, PI2PICO):
         else:
             self.ARM = [1, bool(msg.data)]
             print("arm: ", self.ARM)
+    
+    def pid_callback(self, msg):
+        self.cmd_pid = {key: value for (key, value) in zip(["P", "I", "D"], list(msg.data))}
 
     def recv_callback(self):
         # print("reading")
         self.read_serial()
         self.update_state()
+
+    def status_callback(self):
+        if self.cmd_pid:
+            self.set_pid_setpoints(self.cmd_pid.values())
+            print("PID", self.cmd_pid)
+            self.cmd_pid = {}
+        self.get_pid_setpoints()
 
     def send_callback(self):
         self.get_pose()
@@ -64,8 +78,6 @@ class PICONode(Node, PI2PICO):
             msg = [self.cmd_throttle] + self.cmd_euler
             self.set_setpoints(msg)
             self.cmd_euler = []
-        if self.cmd_pid:
-            pass
         if self.ARM[0]:
             self.set_arm(self.ARM[1])
             self.ARM[0] = 0

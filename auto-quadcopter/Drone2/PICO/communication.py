@@ -12,6 +12,8 @@ message_mapping = {
     # Getters
     "Z": "get_pid_setpoints",
     "Y": "get_pose",
+    # Debug
+    "0x0": "get_log"
 }
 inv_message_mapping = {value: key for [key, value] in message_mapping.items()}
 
@@ -104,8 +106,8 @@ class PI2PICO(object):
         out_dict = {key: round(value, 1) for key, value in zip(["T", "R", "P", "Y"], _msg)}
         self.write_msg("set_setpoints", out_dict)
     
-    def set_pid_setpoints(self):
-        out_dict = {key: round(value, 1) for key, value in zip(["P"], [3.3])}
+    def set_pid_setpoints(self, _msg):
+        out_dict = {key: round(value, 1) for key, value in zip(["P", "I", "D"], _msg)}
         self.write_msg("set_pid_setpoints", out_dict)
 
     def set_arm(self, inp):
@@ -118,9 +120,13 @@ class PI2PICO(object):
 
     def get_pid_setpoints(self, _msg=""):
         if _msg:
-            pass
+            print("get_pid_setpoints", _msg)
         else:
             self.write_msg("get_pid_setpoints")
+    
+    def get_log(self, _msg=""):
+        if _msg:
+            print("AAAAAAAAAAAAA ", _msg)
 
     def get_pose(self, _msg=""):
         if _msg:
