@@ -69,7 +69,7 @@ class PICONode(Node, PI2PICO):
             self.set_pid_setpoints(self.cmd_pid.values())
             print("PID", self.cmd_pid)
             self.cmd_pid = {}
-        self.get_pid_setpoints()
+        # self.get_pid_setpoints()
 
     def send_callback(self):
         self.get_pose()
