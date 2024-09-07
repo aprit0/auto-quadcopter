@@ -10,7 +10,7 @@ import busio, board
 
 class INERTIAL(BNO08X_I2C):
     def __init__(self) -> None:
-        self.i2c = busio.I2C(board.GP3, board.GP2)
+        self.i2c = busio.I2C(board.GP3, board.GP2,frequency=400000)
         super().__init__(self.i2c)
         self.enable_feature(BNO_REPORT_ROTATION_VECTOR)
         self.enable_feature(BNO_REPORT_GYROSCOPE)
@@ -18,6 +18,7 @@ class INERTIAL(BNO08X_I2C):
 
         self.quat = None
         self.euler = None
+        pass
 
 
     def read(self):
@@ -27,4 +28,5 @@ class INERTIAL(BNO08X_I2C):
         self.euler = [r, p, y] 
         # print(self.euler)
         return self.euler
+        # return [0,0,1]
                  

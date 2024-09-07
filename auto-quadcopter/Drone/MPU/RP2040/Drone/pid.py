@@ -5,10 +5,10 @@ class FC_PID:
     '''
     FC: Designed as a barebones implementation for roll and pitch
     '''
+    kp = 5
+    ki = 0#0.1
+    kd = 0#0.55
     def __init__(self):
-        self.kp =1.2
-        self.ki = 0.1
-        self.kd = 0.55
         self.roll, self.pitch, self.yaw = PID(self.kp, self.ki, self.kd), PID(-self.kp, -self.ki, -self.kd), PID(self.kp, 0, 0)
         self.init()
         self.enabled = False
@@ -47,15 +47,15 @@ class FC_PID:
         return self.kp, self.ki, self.kd 
 
     def pid_disable(self) -> None:
-        self.roll.auto_mode = False
-        self.pitch.auto_mode = False
-        self.yaw.auto_mode = False
+        self.roll.set_auto_mode(False)
+        self.pitch.set_auto_mode(False)
+        self.yaw.set_auto_mode(False)
         self.enabled = False
     
     def pid_enable(self) -> None:
-        self.roll.auto_mode = True 
-        self.pitch.auto_mode = True
-        self.yaw.auto_mode = True
+        self.roll.set_auto_mode(True)
+        self.pitch.set_auto_mode(True)
+        self.yaw.set_auto_mode(True)
         self.enabled = True
 
 

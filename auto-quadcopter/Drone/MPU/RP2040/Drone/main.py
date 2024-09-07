@@ -1,6 +1,7 @@
 import asyncio
 import json
 import math as m
+import time
 from communication import PICO2PI
 from motors import MOTORS
 from pid import FC_PID
@@ -11,11 +12,14 @@ from sensors import INERTIAL
 
 class FlightController(PICO2PI):
     PID_FILENAME = "PID_CALIB.json"
-    def __init__(self):
+    THROTTLE_BASE = 1000
+    TEST_LIMIT = 1200
+    def __init__(self, test_mode=False):
         self.euler_setpoints = [0] * 3
         self.throttle_setpoint = 1000
         self.euler_current = [None] * 3
         self.ARM = False
+        self.test_mode = test_mode
         super().__init__()
 
         # PID
@@ -30,25 +34,30 @@ class FlightController(PICO2PI):
         self.motors = MOTORS()
         
     async def main(self):
+        if self.test_mode:
+            self.set_arm({"any_value": True})
         while True:
-            # print("0main")
             self.euler_current = self.imu.read()
             y_new = self.euler_setpoints[2] - self.euler_current[2]
             yaw_dist = y_new if abs(y_new) < 180 else y_new + (-1 * m.copysign(1, y_new) * 360)
             pid_out = self.pid.run(self.euler_current[:2]+[yaw_dist])
-            # print(f"R:{self.euler_current[0]}/{self.euler_setpoints[0]}={pid_out[0]}, Y:{yaw_dist}={pid_out[2]}")
-            # print(pid_out, self.throttle_setpoint, self.ARM)
-            if self.pid.enabled:
-                fl = self.throttle_setpoint + pid_out[0] + pid_out[1] + pid_out[2]
-                fr = self.throttle_setpoint + pid_out[0] - pid_out[1] - pid_out[2]
-                br = self.throttle_setpoint - pid_out[0] - pid_out[1] + pid_out[2]
-                bl = self.throttle_setpoint - pid_out[0] + pid_out[1] - pid_out[2]
+            # print("main euler: ", self.euler_current[:2], yaw_dist)
+            if self.pid.enabled or self.test_mode:
+                # print("main pid: ", self.throttle_setpoint, pid_out)
+                '''
+                self.euler_current = [roll, pitch] + [yaw]
+                roll: +ive euler, LHS Up, RHS Down, LHS less speed, RHS more speed, pid more negative
+                pitch: +ve euler, Back Up, Front Down, Back less speed, Front more speed, pid more negative 
+                '''
+                fl = self.throttle_setpoint + pid_out[0] - pid_out[1] #+ pid_out[2]
+                fr = self.throttle_setpoint - pid_out[0] - pid_out[1] #- pid_out[2]
+                br = self.throttle_setpoint - pid_out[0] + pid_out[1] #+ pid_out[2]
+                bl = self.throttle_setpoint + pid_out[0] + pid_out[1] #- pid_out[2]
+                if self.test_mode:
+                    [fl, fr, br, bl] = [min(self.TEST_LIMIT, i) for i in [fl, fr, br, bl]]
             else:
-                fl, fr, bl, br = self.throttle_setpoint, self.throttle_setpoint, self.throttle_setpoint, self.throttle_setpoint 
-
+                fl, fr, bl, br = self.THROTTLE_BASE, self.THROTTLE_BASE, self.THROTTLE_BASE, self.THROTTLE_BASE 
             self.motors.set_speed(fl, fr, bl, br, self.ARM)
-            # print("1main")
-            # self.get_pose({})
             await asyncio.sleep(0)
         
     def set_setpoints(self, msg):
@@ -69,10 +78,12 @@ class FlightController(PICO2PI):
 
     def get_pid_setpoints(self, _msg):
         out = self.pid.get_params()
+        # self.set_log(out)
         self.write_msg("get_pid_setpoints", {i:j for i, j in zip(["P", "I", "D"], out)})
 
         
     def get_pose(self, _msg):
+        # print("pose")
         out_dict = {key: round(value, 1) for key, value in zip(["R", "P", "Y"], self.euler_current)}
         self.write_msg("get_pose", out_dict)
 
@@ -84,8 +95,10 @@ class FlightController(PICO2PI):
         self.pid.set_params(self.P, self.I, self.D)
 
     def set_pid_setpoints(self, msg):
-        key, value = list(msg.items())[0]
-        setattr(self, key, value)
+        out = list(msg.items())
+        # self.set_log(out)
+        for (key, value) in out:
+            setattr(self, key, float(value))
         self.pid.set_params(self.P, self.I, self.D)
         # print(self.pid.kp)
         
@@ -97,18 +110,17 @@ class FlightController(PICO2PI):
 
 
 def custom_exception_handler(loop, context):
+    print(context)
     loop.default_exception_handler(context)
-    # print(context)
     loop.stop()
 
 if __name__ == "__main__":
-    FC = FlightController()
+    FC = FlightController(False)
     loop = asyncio.get_event_loop()
     # loop.set_exception_handler(custom_exception_handler)
     loop.create_task(FC.main())
-    loop.create_task(FC.read_serial())
+    # loop.create_task(FC.read_serial())
     loop.create_task(FC.update_state())
-    try:
-        loop.run_forever()
-    except Exception as e:
-        print(e)
+    loop.create_task(FC.sender())
+    loop.create_task(FC.receiver())
+    loop.run_forever()

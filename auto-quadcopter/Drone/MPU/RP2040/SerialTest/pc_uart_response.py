@@ -3,7 +3,7 @@ print(serial.__file__)
 import time
 
 serialPort = serial.Serial(
-    port="COM5", baudrate=115200, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
+    port="COM5", baudrate=9600, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
 )
 serialString = ""  # Used to hold data coming over UART
 t_0 = time.time()
