@@ -1,5 +1,4 @@
 import serial
-print(serial.__file__) 
 import time
 
 
@@ -13,50 +12,64 @@ message_mapping = {
     # Getters
     "Z": "get_pid_setpoints",
     "Y": "get_pose",
+    # Debug
+    "0x0": "get_log"
 }
 inv_message_mapping = {value: key for [key, value] in message_mapping.items()}
 
 
-class PI2PICO:
+class PI2PICO(object):
     def __init__(self) -> None:
         self.serialPort = serial.Serial(
-            port="/dev/ttyS0", baudrate=115200, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
+            port="/dev/ttyACM0", baudrate=230400#, bytesize=8, timeout=0, #stopbits=serial.STOPBITS_ONE
         )
         self.message_queue = []
         self.buffer = ""
         self.t_0 = 0
+        self.euler_pose = []
 
     def check_string(self, str_in, is_buffer=False):
         self.buffer += str_in
         start_idx = [idx for idx, i in enumerate(self.buffer) if i == "<"]
         end_idx = [idx for idx, i in enumerate(self.buffer) if i == ">"]
         if start_idx and end_idx and end_idx[-1] > start_idx[-1]: 
-            str_out = str_in[start_idx[-1]:end_idx[-1]+1]
-            self.buffer = ["", 0]
+            str_out = self.buffer[start_idx[-1]:end_idx[-1]+1]
+            self.buffer = ""
             # print("VALID READ: ", str_out)
             self.message_queue.append(str_out)
             return 1
         else:
-            print("1oop READ: ", str_in, self.buffer)
+            # print("1oop READ: ", str_in, self.buffer)
+            pass
         return 0
 
     
     def read_serial(self):
-        str_out = self.serialPort.read().decode("ascii")
-        # print("READ: ", str_out)
-        if str_out:
-            status = self.check_string(str_out)
+        bytes_out = self.serialPort.read(self.serialPort.in_waiting)
+        try:
+            str_out = bytes_out.decode("ascii")
+            if str_out:
+                print("reading", str_out, self.buffer)
+                status = self.check_string(str_out)
+        except Exception as e:
+            print(e)
 
 
     def get_message(self, msg):
+        error=""
         if "<" == msg[0] and ">" == msg[-1]:
             # Valid message
             msg = msg[1:-1]
             msg_type = msg.split(",")[0]
             data = msg.split(",")[1:]
             data = [data] if type(data) != type([]) else data
-            msg_data = {i.split(":")[0]: i.split(":")[1] for i in data}
-            return msg_type, msg_data
+            data = [i for i in data if i]
+            try:
+                msg_data = {i.split(":")[0]: i.split(":")[1] for i in data}
+                return msg_type, msg_data
+            except Exception as e:
+                error += str(e)
+                print("AAAAAAAAAAAAAAAAAAAAAAAA: ", msg, data, error)
         else:
             print("get_message[FAIL]", msg)
         return None, None
@@ -64,7 +77,11 @@ class PI2PICO:
     def process_msg(self, _msg_type, _msg):
         if _msg_type in message_mapping:
             call_func = getattr(self, message_mapping[_msg_type])
-            call_func(_msg)
+            try:
+                call_func(_msg)
+            except KeyError:
+                pass
+
         else:
             print("Failed process_msg", _msg_type, _msg)
 
@@ -72,6 +89,7 @@ class PI2PICO:
         data_str = ",".join([f"{key}:{value}" for [key, value] in _msg_dict.items()])
         type_str = inv_message_mapping[_msg_func]
         out_str = f"<{type_str},{data_str}>\n"
+        # self.serialPort.flush()
         self.serialPort.write(bytes(out_str, "ascii"))
         print("writing", out_str)
 
@@ -84,12 +102,12 @@ class PI2PICO:
             else:
                 print("Failed update msg", msg_type)
 
-    def set_setpoints(self):
-        out_dict = {key: round(value, 1) for key, value in zip(["T", "R", "P", "Y"], [1000,10,2.4,160.3])}
+    def set_setpoints(self, _msg):
+        out_dict = {key: round(value, 1) for key, value in zip(["T", "R", "P", "Y"], _msg)}
         self.write_msg("set_setpoints", out_dict)
     
-    def set_pid_setpoints(self):
-        out_dict = {key: round(value, 1) for key, value in zip(["P"], [3.3])}
+    def set_pid_setpoints(self, _msg):
+        out_dict = {key: round(value, 1) for key, value in zip(["P", "I", "D"], _msg)}
         self.write_msg("set_pid_setpoints", out_dict)
 
     def set_arm(self, inp):
@@ -102,14 +120,20 @@ class PI2PICO:
 
     def get_pid_setpoints(self, _msg=""):
         if _msg:
-            print(_msg)
+            print("get_pid_setpoints", _msg)
         else:
             self.write_msg("get_pid_setpoints")
+    
+    def get_log(self, _msg=""):
+        if _msg:
+            print("AAAAAAAAAAAAA ", _msg)
 
     def get_pose(self, _msg=""):
         if _msg:
-            print(time.time() - self.t_0)
-            print(_msg)
+            # print(time.time() - self.t_0)
+            # print("get_pose", _msg)
+            self.euler_pose = [round(float(_msg[i]),2) for i in ["R", "P", "Y"]]
+            # print("get_pose", self.euler_pose)
         else:
             self.t_0 = time.time()
             self.write_msg("get_pose")
@@ -121,8 +145,9 @@ class PI2PICO:
         while True:
             self.read_serial()
             self.update_state()
-            if time.time() - t_0 > 0.1:
-                # self.get_pose()
+            if time.time() - t_0 > 0.5:
+                self.get_pose()
+                # print(self.euler_pose)
                 t_0 = time.time()
 
 

@@ -30,3 +30,7 @@ class MPL3115A2:
 
             
 
+if __name__ == "__main__":
+    altimeter = MPL3115A2()
+    alt = altimeter.read()
+    print(altimeter.altitude)
