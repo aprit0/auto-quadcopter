@@ -20,39 +20,32 @@ inv_message_mapping = {value: key for [key, value] in message_mapping.items()}
 class PI2PICO:
     def __init__(self) -> None:
         self.serialPort = serial.Serial(
-            port="COM5", baudrate=460800, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
+            port="COM5", baudrate=115200, bytesize=8, timeout=0, stopbits=serial.STOPBITS_ONE
         )
         self.message_queue = []
-        self.buffer = ["", 0]
+        self.buffer = ""
         self.t_0 = 0
 
     def check_string(self, str_in, is_buffer=False):
-        start_idx = [idx for idx, i in enumerate(str_in) if i == "<"]
-        end_idx = [idx for idx, i in enumerate(str_in) if i == ">"]
+        self.buffer += str_in
+        start_idx = [idx for idx, i in enumerate(self.buffer) if i == "<"]
+        end_idx = [idx for idx, i in enumerate(self.buffer) if i == ">"]
         if start_idx and end_idx and end_idx[-1] > start_idx[-1]: 
-            str_out = str_in[start_idx[-1]:end_idx[-1]+1]
-            self.buffer = ["", 0]
+            str_out = self.buffer[start_idx[-1]:end_idx[-1]+1]
+            self.buffer = ""
             print("VALID READ: ", str_out)
             self.message_queue.append(str_out)
             return 1
-        elif self.buffer[1] <= 2 and not is_buffer:
-            self.buffer[0] += str_in
-            self.buffer[1] += 1
-            print("0INVALID READ: ", str_in, self.buffer)
-        elif self.buffer[1] > 2 and not is_buffer:
-            self.buffer = ["", 0]
-            print("1INVALID READ: ", str_in)
+        else:
+            print("1oop READ: ", str_in, self.buffer)
         return 0
 
     
     def read_serial(self):
-        bytes_out = self.serialPort.readline()
-        str_out = str(bytes_out).lstrip("b''").rstrip("\n")
+        str_out = self.serialPort.read().decode("ascii")
+        # print("READ: ", str_out)
         if str_out:
             status = self.check_string(str_out)
-            if not status and self.buffer[0]:
-                print("CHECKING BUFFER: ", str_out)
-                status = self.check_string(self.buffer[0])
 
 
     def get_message(self, msg):
@@ -129,7 +122,7 @@ class PI2PICO:
             self.read_serial()
             self.update_state()
             if time.time() - t_0 > 0.1:
-                self.get_pose()
+                # self.get_pose()
                 t_0 = time.time()
 
 
