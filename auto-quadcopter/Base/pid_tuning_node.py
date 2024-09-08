@@ -8,8 +8,8 @@ def main(args=None):
     publisher = node.create_publisher(Float32MultiArray, 'base/PID', 10)
 
     p_input = input("Enter the P value: ") or 3.0
-    i_input = input("Enter the I value: ") or 3.0
-    d_input = input("Enter the D value: ") or 3.0
+    i_input = input("Enter the I value: ") or 0.0
+    d_input = input("Enter the D value: ") or 0.0
 
     try:
         p = float(p_input)
