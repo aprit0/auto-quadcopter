@@ -1,9 +1,9 @@
-import pymultiwii
+from pymultiwii_local import pyMultiWii
 import threading
 
 class MultiWiiCLI:
     def __init__(self, port):
-        self.mw = pymultiwii.MultiWii(port)
+        self.mw = pyMultiWii(port)
         self.reader_thread = threading.Thread(target=self.read_messages)
         self.reader_thread.daemon = True
         self.reader_thread.start()
