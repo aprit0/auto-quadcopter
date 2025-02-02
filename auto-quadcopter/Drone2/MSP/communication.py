@@ -47,7 +47,7 @@ class PI2MSP(object):
     def set_setpoints(self):
         if self.cmd_euler:
             # _msg = ["T", "R", "P", "Y"]
-            roll_pwm = np.interp(np.clip(self.cmd_euler[0], -10, 10), [-10, 10], [1000, 2000])
+            roll_pwm = np.interp(np.clip(self.cmd_euler[0], -10, 10), [-10, 10], [1300, 1700])
             pitch_pwm = np.interp(np.clip(self.cmd_euler[1], -10, 10), [-10, 10], [1000, 2000])
             yaw_pwm = np.interp(self.cmd_euler[2], [-10, 10], [1000, 2000])
             self.CMDS["roll"] = roll_pwm
@@ -99,7 +99,7 @@ class PI2MSP(object):
                         self.board.fast_read_attitude()
                         # Internal Commands
                         self.get_pose()
-                        print(f"[{True if self.CMDS['aux1'] == self.PWM_ARM else False}]: ", self.CMDS, self.euler_pose)
+                        print(f"[{True if self.CMDS['aux1'] == self.PWM_ARM else False}]: ", {i:round(j,0) for (i,j) in self.CMDS.items()}, self.euler_pose)
             except Exception as e:
                 print(e)
 

@@ -54,8 +54,11 @@ class OLED:
                 'CPU': CPU[2:-1]}
 
 if __name__ == '__main__':
-    disp = OLED()
-    t_0 = time.time()
-    disp.set_status()
+    try:
+        disp = OLED()
+        t_0 = time.time()
+        disp.set_status()
+    except Exception as e:
+        print(e)
 
     
