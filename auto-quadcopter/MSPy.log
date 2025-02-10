@@ -1,0 +1,12 @@
+[WARNING] [2025-02-03 21:51:48,809]: Timeout occured when receiving a message
+[WARNING] [2025-02-03 21:52:43,991]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2025-02-03 21:52:44,491]: Serial port (/dev/ttyUSB0) not ready/available
+[WARNING] [2025-02-03 21:52:44,593]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2025-02-03 21:52:45,094]: Serial port (/dev/ttyUSB0) not ready/available
+[WARNING] [2025-02-03 21:52:45,195]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2025-02-03 21:52:45,696]: Serial port (/dev/ttyUSB0) not ready/available
+[WARNING] [2025-02-03 21:52:45,797]: Error opening the serial port (/dev/ttyUSB0): [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[WARNING] [2025-02-03 21:52:46,298]: Serial port (/dev/ttyUSB0) not ready/available
+[WARNING] [2025-02-03 21:52:56,420]: Timeout occured when receiving a message
+[WARNING] [2025-02-03 21:53:10,923]: Timeout occured when receiving a message
+[WARNING] [2025-02-03 21:53:22,023]: Timeout occured when receiving a message

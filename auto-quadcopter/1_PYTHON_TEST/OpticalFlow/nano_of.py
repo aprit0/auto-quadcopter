@@ -1,7 +1,7 @@
 import serial
-write = True
+write = False
 # Set up the serial port (adjust for your system)
-ser = serial.Serial('/dev/ttyUSB0', 115200)
+ser = serial.Serial("/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0", 115200)
 if write:
     f = open("/home/pi/ros2_ws/src/auto-quadcopter/auto-quadcopter/1_PYTHON_TEST/OpticalFlow/readings.txt", "w")
     f.write("dt,us_height,us_velocity,pressure_height,pressure_velocity,tof_height,tof_velocity,dx,dy" + "\n")

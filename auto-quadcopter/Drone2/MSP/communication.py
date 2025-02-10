@@ -32,7 +32,7 @@ class PI2MSP(object):
     'aux3':     1000, # FAILSAFE (1800)
     'aux4':     1000  # HEADFREE (1800)
     }
-    def __init__(self, port="/dev/ttyUSB0") -> None:
+    def __init__(self, port="/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_D-if00-port0") -> None:
         self.port = port
         self.board = None
         self.shutdown = False
